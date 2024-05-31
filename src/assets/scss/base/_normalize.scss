@@ -7,6 +7,7 @@
   padding: 0;
   text-decoration: none;
   letter-spacing: unset !important;
+  list-style: none !important;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -190,13 +191,9 @@ a {
   flex-direction: column !important;
 }
 
-.odd-row {
-  background-color: rgba($black-color, 0.03) !important;
-}
+.odd-row {}
 
-.black-font {
-  color: rgba($black-color, 0.8) !important;
-}
+.black-font {}
 
 
 img {
@@ -213,11 +210,11 @@ img {
 
 .neoja-title {
   padding-left: 1.6rem;
-  border-left: 1px solid rgba($black-color, 0.2);
+  border-left: 1px solid rgba($white-color, 0.25);
 
   h4 {
     font-family: $font-montreal;
-    color: $black-color;
+    color: $white-color;
     font-size: 2.8rem;
     font-weight: 600;
     font-style: italic;
@@ -231,9 +228,8 @@ img {
 }
 
 .title {
-  margin: 4rem 0rem 3.2rem 0rem;
 
-  h2 {
+  h5 {
     font-family: $font-montreal;
     color: $primary-color;
     font-size: 4.8rem;
@@ -247,41 +243,5 @@ img {
 
   @include respond ('tab-port') {
     margin: 2.4rem 0rem 3.2rem 0rem;
-  }
-}
-
-.green-input {
-  background-color: rgba($green-color, 0.1) !important;
-  border: 1px solid rgba($green-color, 0.25) !important;
-
-  &:focus {
-    border: 1px solid $green-color !important;
-  }
-}
-
-.blue-input {
-  background-color: rgba($blue-color, 0.1) !important;
-  border: 1px solid rgba($blue-color, 0.25) !important;
-
-  &:focus {
-    border: 1px solid $blue-color !important;
-  }
-}
-
-.orange-input {
-  background-color: rgba($orange-color, 0.1) !important;
-  border: 1px solid rgba($orange-color, 0.25) !important;
-
-  &:focus {
-    border: 1px solid $orange-color !important;
-  }
-}
-
-.yellow-input {
-  background-color: rgba($yellow-color, 0.1) !important;
-  border: 1px solid rgba($yellow-color, 0.25) !important;
-
-  &:focus {
-    border: 1px solid $yellow-color !important;
   }
 }

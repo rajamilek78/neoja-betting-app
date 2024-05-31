@@ -1,0 +1,53 @@
+<div class="operator">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 PLR-0 title">
+      <h5>Players</h5>
+    </div>
+    <div
+      class="col-lg-6 col-md-6 col-sm-6 PLR-0 text-right flex justify-end align-center"
+    >
+      <div class="timer-display">
+        <span
+          ><img src="../../../../../assets/images/timer-icon.svg" alt=""
+        /></span>
+        <small>120</small>
+      </div>
+      <div>
+        <button class="btn secondary-btn">Reset database</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 PLR-0 operator__left">
+      <div
+        cdkDropList
+        [cdkDropListData]="playersList"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of playersList; track item) {
+        <div cdkDrag><input type="text" value="{{ item }}" /></div>
+        }
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+      <div
+        cdkDropList
+        [cdkDropListData]="blueTeamPlayers"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of blueTeamPlayers; track item) {
+        <div cdkDrag><input type="text" value="{{ item }}" /></div>
+        }
+      </div>
+      <div
+        cdkDropList
+        [cdkDropListData]="redTeamPlayers"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of redTeamPlayers; track item) {
+        <div cdkDrag><input type="text" value="{{ item }}" /></div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -92,7 +92,7 @@ $eleague-frontend-theme: mat.define-light-theme((color: (primary: $eleague-front
 }
 
 .mat-mdc-form-field-type-mat-native-select .mat-mdc-form-field-infix::after {
-  color: rgba($black-color, 0.25) !important;
+  // color: rgba($black-color, 0.25) !important;
 }
 
 .mat-mdc-standard-chip {

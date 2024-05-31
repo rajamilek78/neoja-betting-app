@@ -47,7 +47,6 @@
     }
 
     &:after {
-      background-color: rgba($black-color, 0.1);
       position: absolute;
       left: 10rem;
       width: 1px;
@@ -120,5 +119,5 @@
 }
 
 .mdc-text-field--filled.mdc-text-field--disabled .mdc-text-field__input{
-  color: rgba($black-color, 0.6) !important;
+  // color: rgba($black-color, 0.6) !important;
 }

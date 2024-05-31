@@ -116,6 +116,11 @@ a {
   width: 50%;
 }
 
+.border-dash {
+  border-right: 1px dashed rgba($white-color, 0.1);
+  height: calc(100% - 10.4rem);
+}
+
 
 .container {
   margin: 0 auto;

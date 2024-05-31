@@ -14,11 +14,9 @@ import {
   styleUrl: './operator.component.scss',
 })
 export class OperatorComponent {
-  playersList = ['jatin', 'jignesh', 'nishan', 'nishant'];
-
-  blueTeamPlayers = ['shyam', 'hemali'];
-
-  redTeamPlayers = ['radha', 'brinda'];
+  players = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+  blueTeam = ['Player 5', 'Player 6'];
+  redTeam = ['Player 7', 'Player 8'];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

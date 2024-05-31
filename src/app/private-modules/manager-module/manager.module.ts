@@ -3,9 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { ManagerRoutingModule } from './manager-routing.module';
 import { managerModuleComponents } from './components/components.export';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [managerModuleComponents],
-  imports: [CommonModule, ManagerRoutingModule],
+  imports: [CommonModule, ManagerRoutingModule, CdkDropList, CdkDrag],
 })
 export class ManagerModule {}

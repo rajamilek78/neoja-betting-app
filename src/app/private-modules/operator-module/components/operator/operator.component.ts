@@ -51,7 +51,6 @@ export class OperatorComponent {
       if (!this.teamPlayer.some((p) => p.name === playerName)) {
         this.teamPlayer.push(playerObj);
       }
-      // player.get('editable')!.setValue(false);
       player.get('name')!.reset();
     }
     console.log(player);
@@ -61,7 +60,7 @@ export class OperatorComponent {
 
   drop(event: CdkDragDrop<{ name: string }[]>) {
     if (this.isDragDropDisabled) {
-      return; // Prevent drag-and-drop if the flag is set
+      return;
     }
 
     if (event.previousContainer === event.container) {

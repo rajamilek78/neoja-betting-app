@@ -23,6 +23,7 @@ export class OperatorComponent {
   playersForm: FormGroup;
   timeLeft: number = 120;
   interval: any;
+  isDragDropDisabled: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.playersForm = this.fb.group({
@@ -59,6 +60,10 @@ export class OperatorComponent {
   }
 
   drop(event: CdkDragDrop<{ name: string }[]>) {
+    if (this.isDragDropDisabled) {
+      return; // Prevent drag-and-drop if the flag is set
+    }
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -83,8 +88,20 @@ export class OperatorComponent {
         this.timeLeft--;
       } else {
         clearInterval(this.interval);
+        this.submitBets();
       }
     }, 1000);
+  }
+
+  startNewGame(){
+    this.blueTeamPlayers = [];
+    this.redTeamplayers = [];
+    this.blueTeamBatter = [];
+    this.redTeamBatter = [];
+  }
+
+  submitBets() {
+    this.isDragDropDisabled = true;
   }
   
 }

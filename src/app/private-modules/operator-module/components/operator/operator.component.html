@@ -24,9 +24,13 @@
         #playersList="cdkDropList"
         [cdkDropListData]="teamPlayer"
         class="example-list"
-        [cdkDropListConnectedTo]="[blueTeamList, redTeamList, blueTeamBatterList, redTeamBatterList]"
+        [cdkDropListConnectedTo]="[]"
         (cdkDropListDropped)="drop($event)"
       >
+        <!-- blueTeamList,
+          redTeamList,
+          blueTeamBatterList,
+          redTeamBatterList -->
         <div class="example-box" *ngFor="let player of teamPlayer" cdkDrag>
           <div class="drag-icon">
             <svg
@@ -102,7 +106,7 @@
         </div>
       </form>
     </div>
-    <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+    <!-- <div class="col-lg-9 col-md-9 PLR-0 operator__right">
       <div class="row">
         <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
           <h6>TEAM VS TEAM</h6>
@@ -111,51 +115,47 @@
 
       <div class="row bg-gray MB-2-half">
         <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
-          <!-- <div
-            cdkDropList
-            #blueTeamList="cdkDropList"
-            [cdkDropListData]="blueTeamPlayers"
-            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamBatterList, redTeamBatterList]"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="example-box" *ngFor="let player of blueTeamPlayers" cdkDrag>
-              <input type="text" value="  {{ player.name }}" />
-            </div>
-          </div> -->
           <div
             cdkDropList
             #blueTeamList="cdkDropList"
             [cdkDropListData]="blueTeamPlayers"
-            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamBatterList, redTeamBatterList]"
-            class="example-list"
+            [cdkDropListConnectedTo]="[
+              playersList,
+              redTeamList,
+              blueTeamBatterList,
+              redTeamBatterList
+            ]"
+            class="example-list-team"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of blueTeamPlayers" cdkDrag>
+            <div
+              class="example-box"
+              *ngFor="let player of blueTeamPlayers"
+              cdkDrag
+            >
               <input type="text" value="  {{ player.name }}" />
             </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 PR-0 pl-1">
-          <!-- <div
-            cdkDropList
-            #redTeamList="cdkDropList"
-            [cdkDropListData]="redTeamplayers"
-            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamBatterList]"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="example-box" *ngFor="let player of redTeamplayers" cdkDrag>
-              <input type="text" value="{{ player.name }}" />
-            </div>
-          </div> -->
           <div
             cdkDropList
             #redTeamList="cdkDropList"
             [cdkDropListData]="redTeamplayers"
-            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamBatterList]"
-            class="example-list"
+            [cdkDropListConnectedTo]="[
+              playersList,
+              blueTeamList,
+              blueTeamBatterList,
+              redTeamBatterList
+            ]"
+            class="example-list-team"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of redTeamplayers" cdkDrag>
+            <div
+              class="example-box"
+              *ngFor="let player of redTeamplayers"
+              cdkDrag
+            >
               <input type="text" value="  {{ player.name }}" />
             </div>
           </div>
@@ -175,11 +175,20 @@
             cdkDropList
             #blueTeamBatterList="cdkDropList"
             [cdkDropListData]="blueTeamBatter"
-            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamList, redTeamBatterList]"
+            [cdkDropListConnectedTo]="[
+              playersList,
+              redTeamList,
+              blueTeamList,
+              redTeamBatterList
+            ]"
             class="example-list-blue"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of blueTeamBatter" cdkDrag>
+            <div
+              class="example-box"
+              *ngFor="let player of blueTeamBatter"
+              cdkDrag
+            >
               <input type="text" value="  {{ player.name }}" />
             </div>
           </div>
@@ -213,11 +222,20 @@
             cdkDropList
             #redTeamBatterList="cdkDropList"
             [cdkDropListData]="redTeamBatter"
-            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamList]"
+            [cdkDropListConnectedTo]="[
+              playersList,
+              blueTeamList,
+              blueTeamBatterList,
+              redTeamList
+            ]"
             class="example-list-red"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of redTeamBatter" cdkDrag>
+            <div
+              class="example-box"
+              *ngFor="let player of redTeamBatter"
+              cdkDrag
+            >
               <input type="text" value="{{ player.name }}" />
             </div>
           </div>
@@ -251,9 +269,14 @@
         <button type="submit" class="btn primary-btn" (click)="submitBets()">SUBMIT BETS</button>
         <button type="submit" class="btn primary-btn">SUBMIT GAME</button>
       </div>
-    </div>
-    <!-- <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+    </div> -->
+    <div class="col-lg-9 col-md-9 PLR-0 operator__right">
       <div class="row">
+        <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
+          <h6>TEAM VS TEAM</h6>
+        </div>
+      </div>
+      <div class="row bg-gray MB-2-half">
         <div class="col-lg-6 col-md-6 PLR-0 pr-1 border-dash">
           <div class="no-player-selected">
             <div>
@@ -277,6 +300,35 @@
           </div>
         </div>
       </div>
-    </div> -->
+      <div class="row">
+        <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
+          <h6>BETTERS</h6>
+        </div>
+      </div>
+      <div class="row MB-2-half">
+        <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
+          <div class="no-player-selected example-list-blue">
+            <div>
+              <img
+                src="../../../../../assets/images/blue-team-person-icon.svg"
+                alt=""
+              />
+            </div>
+            <div><span>Select bet for blue team</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 PR-0 pl-1">
+          <div class="no-player-selected example-list-red">
+            <div>
+              <img
+                src="../../../../../assets/images/red-team-person-icon.svg"
+                alt=""
+              />
+            </div>
+            <div><span>Select bet for red team</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

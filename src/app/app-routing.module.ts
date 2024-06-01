@@ -8,32 +8,31 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
   },
-
-  {
-    path: RouteConstant.HIGH_SCORE,
-    loadChildren: () =>
-      import('./private-modules/high-score-module/high-score.module').then(
-        (m) => m.HighScoreModule
-      ),
-      // canActivate: [AppAuthGuard]
-  },
-
   {
     path: RouteConstant.MANAGER,
     loadChildren: () =>
       import('./private-modules/manager-module/manager.module').then(
         (m) => m.ManagerModule
       ),
-      // canActivate: [AppAuthGuard]
+    // canActivate: [AppAuthGuard]
   },
 
   {
-    path: RouteConstant.SCORE_FEED,
+    path: RouteConstant.RANKING_SCORE,
     loadChildren: () =>
-      import('./private-modules/score-feed-module/score-feed.module').then(
-        (m) => m.ScoreFeedModule
+      import(
+        './private-modules/ranking-score-module/ranking-score.module'
+      ).then((m) => m.RankingScoreModule),
+    // canActivate: [AppAuthGuard]
+  },
+
+  {
+    path: RouteConstant.OPERATOR,
+    loadChildren: () =>
+      import('./private-modules/operator-module/operator.module').then(
+        (m) => m.OperatorModule
       ),
-      // canActivate: [AppAuthGuard]
+    // canActivate: [AppAuthGuard]
   },
 
   {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScoreFeedComponent } from './score-feed.component';
+import { RankingScoreComponent } from './ranking-score.component';
 
-describe('ScoreFeedComponent', () => {
-  let component: ScoreFeedComponent;
-  let fixture: ComponentFixture<ScoreFeedComponent>;
+describe('RankingScoreComponent', () => {
+  let component: RankingScoreComponent;
+  let fixture: ComponentFixture<RankingScoreComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ScoreFeedComponent]
+      declarations: [RankingScoreComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ScoreFeedComponent);
+    fixture = TestBed.createComponent(RankingScoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,281 @@
+@import "../../../../../assets/scss/abstracts/abstracts";
+
+.operator {
+    padding: 2.4rem;
+
+    .timer-display {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 3.2rem;
+
+        span {
+            img {
+                width: 3.2rem;
+            }
+        }
+
+        small {
+            font-family: $font-bebas;
+            color: $white-color;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 4.8rem;
+        }
+    }
+
+    &__left {
+        position: relative;
+        border-right: 1px solid rgba($white-color, 0.1);
+        padding-right: 3.2rem !important;
+        overflow-y: auto;
+
+        input {
+            background-color: transparent;
+            position: relative;
+            display: inline-block;
+            font-family: $font-bebas;
+            color: $white-color;
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 3.3rem;
+            border: 1px solid rgba($white-color, 0.1);
+            border-radius: 1rem;
+            margin-bottom: 1.2rem;
+            padding: 1.6rem 1.6rem 1.6rem 3.5rem !important;
+            width: 100%;
+            text-transform: uppercase;
+
+            &:focus {
+                outline: none;
+            }
+
+            &::placeholder {
+                color: rgba($white-color, 0.25);
+            }
+
+            &.active {
+                color: $primary-color;
+                background-color: rgba($primary-color, 0.1);
+
+                .drag-icon {
+                    svg {
+                        path {
+                            fill: $primary-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .edit-btn {
+            position: absolute;
+            top: 2.2rem;
+            right: 8.3rem;
+
+            img {
+                width: 2.1rem !important;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2.2rem;
+            right: 5rem;
+
+            svg {
+
+                path {
+                    fill: $red-color;
+                }
+            }
+        }
+
+
+        .add-btn {
+            button {
+                background-color: transparent;
+                padding: 2rem 3.2rem;
+                width: 100%;
+                border: 1px solid $primary-color;
+                border-radius: 1rem;
+
+                img {
+                    width: 2.4rem;
+                    margin-top: 0.5rem;
+                }
+
+                span {
+                    font-family: $font-bebas;
+                    color: $primary-color;
+                    font-size: 2.6rem;
+                    font-weight: 400;
+                    line-height: 3.12rem;
+                    text-transform: uppercase;
+                    margin-left: 0.8rem;
+                }
+            }
+        }
+    }
+
+
+    &__right {
+        padding-left: 3.2rem !important;
+        overflow-y: auto;
+
+        h6 {
+            color: $white-color;
+            font-family: $font-bebas;
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 3.3rem;
+        }
+    }
+}
+
+.example-box {
+    overflow-y: hidden;
+    margin-bottom: 1.2rem;
+
+    input {
+        background-color: transparent;
+        position: relative;
+        display: inline-block;
+        font-family: $font-bebas;
+        color: $white-color;
+        font-size: 2.8rem;
+        font-weight: 400;
+        line-height: 3.3rem;
+        border: 1px solid rgba($white-color, 0.1);
+        border-radius: 1rem;
+        margin-bottom: 0rem !important;
+        overflow-y: hidden;
+        padding: 1.6rem;
+        width: 100%;
+        text-transform: uppercase;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+
+    .edit-btn {
+        position: absolute;
+        top: 2.2rem;
+        right: 8.3rem;
+
+        img {
+            width: 2.1rem !important;
+        }
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 2.2rem;
+        right: 5rem;
+
+        svg {
+
+            path {
+                fill: $red-color;
+            }
+        }
+    }
+
+    .drag-icon {
+        position: absolute;
+        top: 1.9rem;
+        left: 1rem;
+
+        svg {
+
+            path {
+                fill: $white-color;
+            }
+        }
+    }
+}
+
+.win-btn {
+    margin-top: 2.4rem;
+
+    button {
+        border: 1px solid rgba($white-color, 0.1);
+        font-family: $font-bebas;
+        color: $white-color;
+        font-size: 2.8rem;
+        font-weight: 400;
+        line-height: 3.3rem;
+        border-radius: 1rem;
+        padding: 1.6rem 0.8rem;
+        background-color: transparent;
+        width: 100%;
+
+        svg {
+            width: 2.4rem;
+            vertical-align: middle;
+            margin-top: -0.2rem;
+            margin-right: 0.8rem;
+        }
+
+        &.disabled {
+            color: rgba($white-color, 0.5);
+
+            svg {
+                path {
+                    fill: rgba($white-color, 0.5);
+                }
+            }
+        }
+
+        &.active {
+            background-color: rgba($primary-color, 0.1);
+            border: 1px solid transparent;
+            color: $primary-color;
+
+            svg {
+                path {
+                    fill: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+.example-list-red {
+    border-radius: 1rem;
+    padding: 1.6rem;
+    background-color: rgba($red-color, 0.1);
+}
+
+.example-list-blue {
+    border-radius: 1rem;
+    padding: 1.6rem;
+    background-color: rgba($blue-color, 0.1);
+}
+
+.example-list {
+    //border-radius: 1rem;
+    padding: 1.6rem;
+    //background-color: rgba($red-color, 0.1);
+}
+
+.no-player-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    span {
+        color: rgba($white-color, 0.5);
+        font-family: $font-montreal;
+        font-size: 2.4rem;
+        font-weight: 400;
+        line-height: 2.8rem;
+    }
+}
+
+.MT-2-half {
+    margin-top: 3.7rem !important;
+}

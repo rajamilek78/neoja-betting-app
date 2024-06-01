@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HighScoreComponent } from './high-score.component';
+import { OperatorComponent } from './operator.component';
 
-describe('HighScoreComponent', () => {
-  let component: HighScoreComponent;
-  let fixture: ComponentFixture<HighScoreComponent>;
+describe('OperatorComponent', () => {
+  let component: OperatorComponent;
+  let fixture: ComponentFixture<OperatorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HighScoreComponent]
+      declarations: [OperatorComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(HighScoreComponent);
+    fixture = TestBed.createComponent(OperatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

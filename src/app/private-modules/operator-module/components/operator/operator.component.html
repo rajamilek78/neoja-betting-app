@@ -1,0 +1,239 @@
+<div class="operator">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 PLR-0 title">
+      <h5>Players</h5>
+    </div>
+    <div
+      class="col-lg-6 col-md-6 col-sm-6 PLR-0 text-right flex justify-end align-center"
+    >
+      <div class="timer-display">
+        <span
+          ><img src="../../../../../assets/images/timer-icon.svg" alt=""
+        /></span>
+        <small>120</small>
+      </div>
+      <div>
+        <button type="button" class="btn secondary-btn">Reset database</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-lg-3 col-md-3 PLR-0 operator__left">
+      <div
+        cdkDropList
+        #playersList="cdkDropList"
+        [cdkDropListData]="teamPlayer"
+        class="example-list"
+        [cdkDropListConnectedTo]="[blueTeamList, redTeamList, blueTeamBatterList, redTeamBatterList]"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let player of teamPlayer" cdkDrag>
+          <div class="drag-icon">
+            <svg
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 20.5C8.45 20.5 7.97917 20.3042 7.5875 19.9125C7.19583 19.5208 7 19.05 7 18.5C7 17.95 7.19583 17.4792 7.5875 17.0875C7.97917 16.6958 8.45 16.5 9 16.5C9.55 16.5 10.0208 16.6958 10.4125 17.0875C10.8042 17.4792 11 17.95 11 18.5C11 19.05 10.8042 19.5208 10.4125 19.9125C10.0208 20.3042 9.55 20.5 9 20.5ZM15 20.5C14.45 20.5 13.9792 20.3042 13.5875 19.9125C13.1958 19.5208 13 19.05 13 18.5C13 17.95 13.1958 17.4792 13.5875 17.0875C13.9792 16.6958 14.45 16.5 15 16.5C15.55 16.5 16.0208 16.6958 16.4125 17.0875C16.8042 17.4792 17 17.95 17 18.5C17 19.05 16.8042 19.5208 16.4125 19.9125C16.0208 20.3042 15.55 20.5 15 20.5ZM9 14.5C8.45 14.5 7.97917 14.3042 7.5875 13.9125C7.19583 13.5208 7 13.05 7 12.5C7 11.95 7.19583 11.4792 7.5875 11.0875C7.97917 10.6958 8.45 10.5 9 10.5C9.55 10.5 10.0208 10.6958 10.4125 11.0875C10.8042 11.4792 11 11.95 11 12.5C11 13.05 10.8042 13.5208 10.4125 13.9125C10.0208 14.3042 9.55 14.5 9 14.5ZM15 14.5C14.45 14.5 13.9792 14.3042 13.5875 13.9125C13.1958 13.5208 13 13.05 13 12.5C13 11.95 13.1958 11.4792 13.5875 11.0875C13.9792 10.6958 14.45 10.5 15 10.5C15.55 10.5 16.0208 10.6958 16.4125 11.0875C16.8042 11.4792 17 11.95 17 12.5C17 13.05 16.8042 13.5208 16.4125 13.9125C16.0208 14.3042 15.55 14.5 15 14.5ZM9 8.5C8.45 8.5 7.97917 8.30417 7.5875 7.9125C7.19583 7.52083 7 7.05 7 6.5C7 5.95 7.19583 5.47917 7.5875 5.0875C7.97917 4.69583 8.45 4.5 9 4.5C9.55 4.5 10.0208 4.69583 10.4125 5.0875C10.8042 5.47917 11 5.95 11 6.5C11 7.05 10.8042 7.52083 10.4125 7.9125C10.0208 8.30417 9.55 8.5 9 8.5ZM15 8.5C14.45 8.5 13.9792 8.30417 13.5875 7.9125C13.1958 7.52083 13 7.05 13 6.5C13 5.95 13.1958 5.47917 13.5875 5.0875C13.9792 4.69583 14.45 4.5 15 4.5C15.55 4.5 16.0208 4.69583 16.4125 5.0875C16.8042 5.47917 17 5.95 17 6.5C17 7.05 16.8042 7.52083 16.4125 7.9125C16.0208 8.30417 15.55 8.5 15 8.5Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+          <input type="text" value=" {{ player.name }}" />
+          <a class="edit-btn">
+            <img src="../../../../../assets/images/edit-icon.svg" alt=""
+          /></a>
+          <a class="close-btn">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.83073 16.3341L4.66406 15.1675L9.33073 10.5008L4.66406 5.83415L5.83073 4.66748L10.4974 9.33415L15.1641 4.66748L16.3307 5.83415L11.6641 10.5008L16.3307 15.1675L15.1641 16.3341L10.4974 11.6675L5.83073 16.3341Z"
+                fill="#E8EAED"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <form [formGroup]="playersForm">
+        <div formArrayName="players">
+          <div *ngFor="let player of players.controls; let i = index" [formGroupName]="i" >
+            <input type="text" placeholder="ENTER PLAYER NAME" formControlName="name" (blur)="savePlayerName(i)" />
+          </div>
+        </div>
+        
+        <div class="add-btn">
+          <button (click)="addPlayer()">
+            <img src="../../../../../assets/images/add-icon.svg" alt="" />
+            <span>Add PLAYER</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
+          <h6>TEAM VS TEAM</h6>
+        </div>
+      </div>
+      <div class="row bg-gray">
+        <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
+          <!-- <div
+            cdkDropList
+            #blueTeamList="cdkDropList"
+            [cdkDropListData]="blueTeamPlayers"
+            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamBatterList, redTeamBatterList]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of blueTeamPlayers" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
+            </div>
+          </div> -->
+          <div
+            cdkDropList
+            #blueTeamList="cdkDropList"
+            [cdkDropListData]="blueTeamPlayers"
+            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamBatterList, redTeamBatterList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of blueTeamPlayers" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 PR-0 pl-1">
+          <!-- <div
+            cdkDropList
+            #redTeamList="cdkDropList"
+            [cdkDropListData]="redTeamplayers"
+            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamBatterList]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of redTeamplayers" cdkDrag>
+              <input type="text" value="{{ player.name }}" />
+            </div>
+          </div> -->
+          <div
+            cdkDropList
+            #redTeamList="cdkDropList"
+            [cdkDropListData]="redTeamplayers"
+            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamBatterList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of redTeamplayers" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 PLR-0 text-center MT-2-half MB-2-half">
+          <h6>BETTERS</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
+          <div
+            cdkDropList
+            #blueTeamBatterList="cdkDropList"
+            [cdkDropListData]="blueTeamBatter"
+            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamList, redTeamBatterList]"
+            class="example-list-blue"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of blueTeamBatter" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
+            </div>
+          </div>
+          <div class="win-btn">
+            <button class="active">
+              <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 21.5V19.5H11V16.4C10.1833 16.2167 9.45417 15.8708 8.8125 15.3625C8.17083 14.8542 7.7 14.2167 7.4 13.45C6.15 13.3 5.10417 12.7542 4.2625 11.8125C3.42083 10.8708 3 9.76667 3 8.5V7.5C3 6.95 3.19583 6.47917 3.5875 6.0875C3.97917 5.69583 4.45 5.5 5 5.5H7V3.5H17V5.5H19C19.55 5.5 20.0208 5.69583 20.4125 6.0875C20.8042 6.47917 21 6.95 21 7.5V8.5C21 9.76667 20.5792 10.8708 19.7375 11.8125C18.8958 12.7542 17.85 13.3 16.6 13.45C16.3 14.2167 15.8292 14.8542 15.1875 15.3625C14.5458 15.8708 13.8167 16.2167 13 16.4V19.5H17V21.5H7ZM7 11.3V7.5H5V8.5C5 9.13333 5.18333 9.70417 5.55 10.2125C5.91667 10.7208 6.4 11.0833 7 11.3ZM17 11.3C17.6 11.0833 18.0833 10.7208 18.45 10.2125C18.8167 9.70417 19 9.13333 19 8.5V7.5H17V11.3Z"
+                  fill="white"
+                />
+              </svg>
+              BLUE TEAM WINS
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 PR-0 pl-1">
+          <div
+            cdkDropList
+            #redTeamBatterList="cdkDropList"
+            [cdkDropListData]="redTeamBatter"
+            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamList]"
+            class="example-list-red"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of redTeamBatter" cdkDrag>
+              <input type="text" value="{{ player.name }}" />
+            </div>
+          </div>
+          <div class="win-btn">
+            <button class="disabled">
+              <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 21.5V19.5H11V16.4C10.1833 16.2167 9.45417 15.8708 8.8125 15.3625C8.17083 14.8542 7.7 14.2167 7.4 13.45C6.15 13.3 5.10417 12.7542 4.2625 11.8125C3.42083 10.8708 3 9.76667 3 8.5V7.5C3 6.95 3.19583 6.47917 3.5875 6.0875C3.97917 5.69583 4.45 5.5 5 5.5H7V3.5H17V5.5H19C19.55 5.5 20.0208 5.69583 20.4125 6.0875C20.8042 6.47917 21 6.95 21 7.5V8.5C21 9.76667 20.5792 10.8708 19.7375 11.8125C18.8958 12.7542 17.85 13.3 16.6 13.45C16.3 14.2167 15.8292 14.8542 15.1875 15.3625C14.5458 15.8708 13.8167 16.2167 13 16.4V19.5H17V21.5H7ZM7 11.3V7.5H5V8.5C5 9.13333 5.18333 9.70417 5.55 10.2125C5.91667 10.7208 6.4 11.0833 7 11.3ZM17 11.3C17.6 11.0833 18.0833 10.7208 18.45 10.2125C18.8167 9.70417 19 9.13333 19 8.5V7.5H17V11.3Z"
+                  fill="white"
+                />
+              </svg>
+              RED TEAM WINS
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="MT-2-half">
+        <button type="submit" class="btn primary-btn">SUBMIT BETS</button>
+        <button type="submit" class="btn primary-btn">SUBMIT GAME</button>
+      </div>
+    </div>
+    <!-- <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 PLR-0 pr-1 border-dash">
+          <div class="no-player-selected">
+            <div>
+              <img
+                src="../../../../../assets/images/blue-team-person-icon.svg"
+                alt=""
+              />
+            </div>
+            <div><span>Select player for blue team</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 PLR-0 pl-1">
+          <div class="no-player-selected">
+            <div>
+              <img
+                src="../../../../../assets/images/red-team-person-icon.svg"
+                alt=""
+              />
+            </div>
+            <div><span>Select player for red team</span></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

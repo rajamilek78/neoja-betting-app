@@ -35,6 +35,14 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogContent } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {
+  CdkDragDrop,
+  CdkDrag,
+  CdkDropList,
+  CdkDropListGroup,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 // import { MomentDateAdapter } from '@angular/material-moment-adapter';
 // import { MY_FORMATS } from '@app/helpers';
 
@@ -71,6 +79,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCardModule,
     MatDialogContent,
     MatSidenavModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
   ],
   exports: [
     MatCardModule,
@@ -104,6 +115,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSliderModule,
     ClipboardModule,
     MatSidenavModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
   ],
   providers: [
     // { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },

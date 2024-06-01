@@ -69,6 +69,30 @@
             }
         }
 
+        .edit-btn {
+            position: absolute;
+            top: 2.2rem;
+            right: 8.3rem;
+
+            img {
+                width: 2.1rem !important;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2.2rem;
+            right: 5rem;
+
+            svg {
+
+                path {
+                    fill: $red-color;
+                }
+            }
+        }
+
+
         .add-btn {
             button {
                 background-color: transparent;
@@ -100,6 +124,14 @@
         padding-left: 3.2rem !important;
         margin-top: 2.4rem;
         overflow-y: auto;
+
+        h6 {
+            color: $white-color;
+            font-family: $font-bebas;
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 3.3rem;
+        }
     }
 }
 
@@ -166,51 +198,6 @@
             }
         }
     }
-
-    .red-box {
-        background-color: $red-color;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0.8rem;
-        right: 4rem;
-        height: 4.9rem;
-        width: 4.9rem;
-        border-radius: 0.8rem;
-
-        span {
-            color: $white-color;
-            font-family: $font-bebas;
-            font-size: 2.8rem;
-            font-weight: 400;
-            line-height: 3.3rem;
-        }
-    }
-
-    .blue-box {
-        background-color: $blue-color;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0.8rem;
-        right: 4rem;
-        height: 4.9rem;
-        width: 4.9rem;
-        border-radius: 0.8rem;
-
-        span {
-            color: $white-color;
-            font-family: $font-bebas;
-            font-size: 2.8rem;
-            font-weight: 400;
-            line-height: 3.3rem;
-        }
-    }
-
 }
 
 .example-list-red {

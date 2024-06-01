@@ -196,9 +196,13 @@ a {
   flex-direction: column !important;
 }
 
-.odd-row {}
+.even-row {
+  background-color: rgba($white-color, 0.03);
+}
 
-.black-font {}
+.white-font {
+  color: $white-color !important;
+}
 
 
 img {

@@ -25,6 +25,7 @@
     }
 
     &__left {
+        position: relative;
         border-right: 1px solid rgba($white-color, 0.1);
         padding-right: 3.2rem !important;
         margin-top: 2.4rem;

@@ -13,7 +13,7 @@
         <small>{{timeLeft}}</small>
       </div>
       <div>
-        <button type="button" class="btn secondary-btn">Reset database</button>
+        <button type="button" class="btn primary-btn">START NEW GAME</button>
       </div>
     </div>
   </div>
@@ -64,15 +64,40 @@
       </div>
       <form [formGroup]="playersForm">
         <div formArrayName="players">
-          <div *ngFor="let player of players.controls; let i = index" [formGroupName]="i" >
-            <input type="text" placeholder="ENTER PLAYER NAME" formControlName="name" (blur)="savePlayerName(i)" />
+          <div
+            *ngFor="let player of players.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <input
+              type="text"
+              placeholder="ENTER PLAYER NAME"
+              formControlName="name"
+              (blur)="savePlayerName(i)"
+            />
           </div>
         </div>
-        
+
         <div class="add-btn">
           <button (click)="addPlayer()">
             <img src="../../../../../assets/images/add-icon.svg" alt="" />
             <span>Add PLAYER</span>
+          </button>
+        </div>
+        <div class="remove-btn">
+          <button>
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 21 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.83073 16.3341L4.66406 15.1675L9.33073 10.5008L4.66406 5.83415L5.83073 4.66748L10.4974 9.33415L15.1641 4.66748L16.3307 5.83415L11.6641 10.5008L16.3307 15.1675L15.1641 16.3341L10.4974 11.6675L5.83073 16.3341Z"
+                fill="#E8EAED"
+              />
+            </svg>
+            <span>REMOVE PLAYERS</span>
           </button>
         </div>
       </form>
@@ -83,7 +108,8 @@
           <h6>TEAM VS TEAM</h6>
         </div>
       </div>
-      <div class="row bg-gray">
+
+      <div class="row bg-gray MB-2-half">
         <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
           <!-- <div
             cdkDropList
@@ -135,8 +161,11 @@
           </div>
         </div>
       </div>
+      <div class="MB-2-half">
+        <button class="btn primary-btn">SUBMIT GAME PLAYERS</button>
+      </div>
       <div class="row">
-        <div class="col-lg-12 col-md-12 PLR-0 text-center MT-2-half MB-2-half">
+        <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
           <h6>BETTERS</h6>
         </div>
       </div>
@@ -155,7 +184,7 @@
             </div>
           </div>
           <div class="win-btn">
-            <button class="active">
+            <button>
               <svg
                 width="24"
                 height="25"
@@ -170,6 +199,13 @@
               </svg>
               BLUE TEAM WINS
             </button>
+            <input
+              type="radio"
+              id=""
+              name="winningTeam"
+              value=""
+              class="radio"
+            />
           </div>
         </div>
         <div class="col-lg-6 col-md-6 PR-0 pl-1">
@@ -186,7 +222,7 @@
             </div>
           </div>
           <div class="win-btn">
-            <button class="disabled">
+            <button>
               <svg
                 width="24"
                 height="25"
@@ -201,6 +237,13 @@
               </svg>
               RED TEAM WINS
             </button>
+            <input
+              type="radio"
+              id=""
+              name="winningTeam"
+              value=""
+              class="radio"
+            />
           </div>
         </div>
       </div>

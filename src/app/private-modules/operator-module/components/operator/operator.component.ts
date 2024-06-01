@@ -17,16 +17,16 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 export class OperatorComponent {
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
-  redTeamplayers : { name: string }[] = [];
+  redTeamplayers: { name: string }[] = [];
   blueTeamBatter: { name: string }[] = [];
-  redTeamBatter : { name: string }[] = [];
+  redTeamBatter: { name: string }[] = [];
   playersForm: FormGroup;
   timeLeft: number = 120;
   interval: any;
 
   constructor(private fb: FormBuilder) {
     this.playersForm = this.fb.group({
-      players: this.fb.array([])
+      players: this.fb.array([]),
     });
   }
 
@@ -35,9 +35,11 @@ export class OperatorComponent {
   }
 
   addPlayer() {
-    this.players.push(this.fb.group({
-      name: ['', Validators.required]
-    }));
+    this.players.push(
+      this.fb.group({
+        name: ['', Validators.required],
+      })
+    );
   }
 
   savePlayerName(index: number) {
@@ -45,18 +47,18 @@ export class OperatorComponent {
     if (player.get('name')!.valid) {
       const playerName = player.get('name')!.value;
       const playerObj = { name: playerName };
-      if (!this.teamPlayer.some(p => p.name === playerName)) {
+      if (!this.teamPlayer.some((p) => p.name === playerName)) {
         this.teamPlayer.push(playerObj);
       }
       // player.get('editable')!.setValue(false);
       player.get('name')!.reset();
     }
-    console.log(player)
-    console.log(this.players.value)
-    console.log(this.teamPlayer)
+    console.log(player);
+    console.log(this.players.value);
+    console.log(this.teamPlayer);
   }
 
-  drop(event:  CdkDragDrop<{ name: string }[]>) {
+  drop(event: CdkDragDrop<{ name: string }[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

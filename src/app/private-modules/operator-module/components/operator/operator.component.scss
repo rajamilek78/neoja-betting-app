@@ -28,7 +28,6 @@
         position: relative;
         border-right: 1px solid rgba($white-color, 0.1);
         padding-right: 3.2rem !important;
-        margin-top: 2.4rem;
         overflow-y: auto;
 
         input {
@@ -122,7 +121,6 @@
 
     &__right {
         padding-left: 3.2rem !important;
-        margin-top: 2.4rem;
         overflow-y: auto;
 
         h6 {
@@ -152,7 +150,6 @@
         border-radius: 1rem;
         margin-bottom: 0rem !important;
         overflow-y: hidden;
-
         padding: 1.6rem;
         width: 100%;
         text-transform: uppercase;
@@ -195,6 +192,52 @@
 
             path {
                 fill: $white-color;
+            }
+        }
+    }
+}
+
+.win-btn {
+    margin-top: 2.4rem;
+
+    button {
+        border: 1px solid rgba($white-color, 0.1);
+        font-family: $font-bebas;
+        color: $white-color;
+        font-size: 2.8rem;
+        font-weight: 400;
+        line-height: 3.3rem;
+        border-radius: 1rem;
+        padding: 1.6rem 0.8rem;
+        background-color: transparent;
+        width: 100%;
+
+        svg {
+            width: 2.4rem;
+            vertical-align: middle;
+            margin-top: -0.2rem;
+            margin-right: 0.8rem;
+        }
+
+        &.disabled {
+            color: rgba($white-color, 0.5);
+
+            svg {
+                path {
+                    fill: rgba($white-color, 0.5);
+                }
+            }
+        }
+
+        &.active {
+            background-color: rgba($primary-color, 0.1);
+            border: 1px solid transparent;
+            color: $primary-color;
+
+            svg {
+                path {
+                    fill: $primary-color;
+                }
             }
         }
     }

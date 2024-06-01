@@ -21,6 +21,8 @@ export class OperatorComponent {
   blueTeamBatter: { name: string }[] = [];
   redTeamBatter : { name: string }[] = [];
   playersForm: FormGroup;
+  timeLeft: number = 120;
+  interval: any;
 
   constructor(private fb: FormBuilder) {
     this.playersForm = this.fb.group({
@@ -69,5 +71,18 @@ export class OperatorComponent {
         event.currentIndex
       );
     }
+    console.log(this.blueTeamPlayers)
+    console.log(this.redTeamplayers)
   }
+
+  startTimer(){
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        clearInterval(this.interval);
+      }
+    }, 1000);
+  }
+  
 }

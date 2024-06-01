@@ -16,8 +16,10 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 })
 export class OperatorComponent {
   teamPlayer: { name: string }[] = [];
-  blueTeam: { name: string }[] = [];
-  redTeam : { name: string }[] = [];
+  blueTeamPlayers: { name: string }[] = [];
+  redTeamplayers : { name: string }[] = [];
+  blueTeamBatter: { name: string }[] = [];
+  redTeamBatter : { name: string }[] = [];
   playersForm: FormGroup;
 
   constructor(private fb: FormBuilder) {

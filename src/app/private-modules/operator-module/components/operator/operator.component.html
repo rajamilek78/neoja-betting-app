@@ -24,7 +24,7 @@
         #playersList="cdkDropList"
         [cdkDropListData]="teamPlayer"
         class="example-list"
-        [cdkDropListConnectedTo]="[blueTeamList, redTeamList]"
+        [cdkDropListConnectedTo]="[blueTeamList, redTeamList, blueTeamBatterList, redTeamBatterList]"
         (cdkDropListDropped)="drop($event)"
       >
         <div class="example-box" *ngFor="let player of teamPlayer" cdkDrag>
@@ -85,28 +85,52 @@
       </div>
       <div class="row bg-gray">
         <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
+          <!-- <div
+            cdkDropList
+            #blueTeamList="cdkDropList"
+            [cdkDropListData]="blueTeamPlayers"
+            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamBatterList, redTeamBatterList]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of blueTeamPlayers" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
+            </div>
+          </div> -->
           <div
             cdkDropList
             #blueTeamList="cdkDropList"
-            [cdkDropListData]="blueTeam"
-            [cdkDropListConnectedTo]="[playersList, redTeamList]"
+            [cdkDropListData]="blueTeamPlayers"
+            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamBatterList, redTeamBatterList]"
+            class="example-list"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of blueTeam" cdkDrag>
-              <input type="text" value="  {{ player }}" />
+            <div class="example-box" *ngFor="let player of blueTeamPlayers" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
             </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 PR-0 pl-1">
+          <!-- <div
+            cdkDropList
+            #redTeamList="cdkDropList"
+            [cdkDropListData]="redTeamplayers"
+            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamBatterList]"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="example-box" *ngFor="let player of redTeamplayers" cdkDrag>
+              <input type="text" value="{{ player.name }}" />
+            </div>
+          </div> -->
           <div
             cdkDropList
             #redTeamList="cdkDropList"
-            [cdkDropListData]="redTeam"
-            [cdkDropListConnectedTo]="[playersList, blueTeamList]"
+            [cdkDropListData]="redTeamplayers"
+            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamBatterList]"
+            class="example-list"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of redTeam" cdkDrag>
-              <input type="text" value="{{ player }}" />
+            <div class="example-box" *ngFor="let player of redTeamplayers" cdkDrag>
+              <input type="text" value="  {{ player.name }}" />
             </div>
           </div>
         </div>
@@ -120,13 +144,13 @@
         <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
           <div
             cdkDropList
-            #blueTeamList="cdkDropList"
-            [cdkDropListData]="blueTeam"
-            [cdkDropListConnectedTo]="[playersList, redTeamList]"
+            #blueTeamBatterList="cdkDropList"
+            [cdkDropListData]="blueTeamBatter"
+            [cdkDropListConnectedTo]="[playersList, redTeamList, blueTeamList, redTeamBatterList]"
             class="example-list-blue"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of blueTeam" cdkDrag>
+            <div class="example-box" *ngFor="let player of blueTeamBatter" cdkDrag>
               <input type="text" value="  {{ player.name }}" />
             </div>
           </div>
@@ -151,13 +175,13 @@
         <div class="col-lg-6 col-md-6 PR-0 pl-1">
           <div
             cdkDropList
-            #redTeamList="cdkDropList"
-            [cdkDropListData]="redTeam"
-            [cdkDropListConnectedTo]="[playersList, blueTeamList]"
+            #redTeamBatterList="cdkDropList"
+            [cdkDropListData]="redTeamBatter"
+            [cdkDropListConnectedTo]="[playersList, blueTeamList, blueTeamBatterList, redTeamList]"
             class="example-list-red"
             (cdkDropListDropped)="drop($event)"
           >
-            <div class="example-box" *ngFor="let player of redTeam" cdkDrag>
+            <div class="example-box" *ngFor="let player of redTeamBatter" cdkDrag>
               <input type="text" value="{{ player.name }}" />
             </div>
           </div>

@@ -7,6 +7,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-operator',
@@ -14,11 +15,44 @@ import {
   styleUrl: './operator.component.scss',
 })
 export class OperatorComponent {
-  players = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
-  blueTeam = ['Player 5', 'Player 6'];
-  redTeam = ['Player 7', 'Player 8'];
+  teamPlayer: { name: string }[] = [];
+  blueTeam: { name: string }[] = [];
+  redTeam : { name: string }[] = [];
+  playersForm: FormGroup;
 
-  drop(event: CdkDragDrop<string[]>) {
+  constructor(private fb: FormBuilder) {
+    this.playersForm = this.fb.group({
+      players: this.fb.array([])
+    });
+  }
+
+  get players(): FormArray {
+    return this.playersForm.get('players') as FormArray;
+  }
+
+  addPlayer() {
+    this.players.push(this.fb.group({
+      name: ['', Validators.required]
+    }));
+  }
+
+  savePlayerName(index: number) {
+    const player = this.players.at(index);
+    if (player.get('name')!.valid) {
+      const playerName = player.get('name')!.value;
+      const playerObj = { name: playerName };
+      if (!this.teamPlayer.some(p => p.name === playerName)) {
+        this.teamPlayer.push(playerObj);
+      }
+      // player.get('editable')!.setValue(false);
+      player.get('name')!.reset();
+    }
+    console.log(player)
+    console.log(this.players.value)
+    console.log(this.teamPlayer)
+  }
+
+  drop(event:  CdkDragDrop<{ name: string }[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

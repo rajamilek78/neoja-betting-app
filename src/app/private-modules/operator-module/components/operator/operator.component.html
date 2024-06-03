@@ -24,13 +24,13 @@
         #playersList="cdkDropList"
         [cdkDropListData]="teamPlayer"
         class="example-list"
-        [cdkDropListConnectedTo]="[]"
+        [cdkDropListConnectedTo]="[blueTeamList,
+        redTeamList,
+        blueTeamBatterList,
+        redTeamBatterList]"
         (cdkDropListDropped)="drop($event)"
       >
-        <!-- blueTeamList,
-          redTeamList,
-          blueTeamBatterList,
-          redTeamBatterList -->
+        
         <div class="example-box" *ngFor="let player of teamPlayer" cdkDrag>
           <div class="drag-icon">
             <svg
@@ -106,7 +106,7 @@
         </div>
       </form>
     </div>
-    <!-- <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+    <div class="col-lg-9 col-md-9 PLR-0 operator__right">
       <div class="row">
         <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
           <h6>TEAM VS TEAM</h6>
@@ -193,7 +193,10 @@
             </div>
           </div>
           <div class="win-btn">
-            <button>
+            <button
+            [ngClass]="{'checked': selectedTeam === 'blue', 'disabled': selectedTeam === 'red'}"
+            (click)="selectTeam('blue')"
+            >
               <svg
                 width="24"
                 height="25"
@@ -210,10 +213,12 @@
             </button>
             <input
               type="radio"
-              id=""
+              id="blueTeam"
               name="winningTeam"
-              value=""
+              [value]="'blue'"
               class="radio"
+              (change)="selectTeam('blue')"
+              [checked]="selectedTeam === 'blue'"
             />
           </div>
         </div>
@@ -240,7 +245,10 @@
             </div>
           </div>
           <div class="win-btn">
-            <button>
+            <button
+            [ngClass]="{'checked': selectedTeam === 'red', 'disabled': selectedTeam === 'blue'}"
+            (click)="selectTeam('red')"
+            >
               <svg
                 width="24"
                 height="25"
@@ -257,20 +265,22 @@
             </button>
             <input
               type="radio"
-              id=""
+              id="redTeam"
               name="winningTeam"
-              value=""
+              [value]="'red'"
               class="radio"
+              (change)="selectTeam('red')"
+              [checked]="selectedTeam === 'red'"
             />
           </div>
         </div>
       </div>
       <div class="MT-2-half">
         <button type="submit" class="btn primary-btn" (click)="submitBets()">SUBMIT BETS</button>
-        <button type="submit" class="btn primary-btn">SUBMIT GAME</button>
+        <button type="submit" class="btn primary-btn" (click)="submitGame()">SUBMIT GAME</button>
       </div>
-    </div> -->
-    <div class="col-lg-9 col-md-9 PLR-0 operator__right">
+    </div>
+    <!-- <div class="col-lg-9 col-md-9 PLR-0 operator__right">
       <div class="row">
         <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
           <h6>TEAM VS TEAM</h6>
@@ -329,6 +339,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

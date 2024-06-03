@@ -17,17 +17,28 @@ export class CommonService {
     private apiManager: APIManager) {
   }
 
-  getAllCompanies(): Observable<any> {
-    return this.apiManager.getApis(API_ENDPOINTS.GET_ALL_COMPANIES, {}, true)
+  // getAllCompanies(): Observable<any> {
+  //   return this.apiManager.getApis(API_ENDPOINTS.GET_ALL_COMPANIES, {}, true)
+  // }
+
+  // getAllClubsNew(path: string): Observable<any> {
+  //   return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, true)
+  // }
+
+  // addTeam(params: any){
+  //   return this.apiManager.postApis(`${API_ENDPOINTS.TEAM_ADD}`,params, true)
+  // }
+
+  addPlayers(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.PLAYER_ADD}`,params, true)
   }
 
-  getAllClubsNew(path: string): Observable<any> {
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, true)
+  addGame(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.GAME_ADD}`,params, true)
   }
 
-  addTeam(params: any){
-    return this.apiManager.postApis(`${API_ENDPOINTS.TEAM_ADD}`,params, true)
+  getAllPlayer(): Observable<any> {
+    return this.apiManager.getApis(API_ENDPOINTS.PLAYER_ALL, {}, true)
   }
-
 
 }

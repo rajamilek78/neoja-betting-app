@@ -12,6 +12,15 @@ export class API_ENDPOINTS{
     // Taam add 
     public static TEAM_ADD = `${API_URL}/team/add`;
 
+    // Game add
+    public static GAME_ADD = `${API_URL}/bet/save-bet`;
+
+    //Player add
+    public static PLAYER_ADD = `${API_URL}/player/add-player`;
+
+    //Player add
+    public static PLAYER_ALL = `${API_URL}/player/get-all-players`;
+
     //Reset teams
 
     public static RESET_TEAMS = `${API_URL}/highscore/reset`

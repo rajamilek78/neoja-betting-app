@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -8,13 +8,14 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { CommonService } from '@app/core';
 
 @Component({
   selector: 'app-operator',
   templateUrl: './operator.component.html',
   styleUrl: './operator.component.scss',
 })
-export class OperatorComponent {
+export class OperatorComponent implements OnInit {
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
   redTeamplayers: { name: string }[] = [];
@@ -24,12 +25,18 @@ export class OperatorComponent {
   timeLeft: number = 120;
   interval: any;
   isDragDropDisabled: boolean = false;
+  selectedTeam!: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private CommonService: CommonService ) {
     this.playersForm = this.fb.group({
       players: this.fb.array([]),
     });
   }
+
+  ngOnInit(): void {
+  }
+
+  
 
   get players(): FormArray {
     return this.playersForm.get('players') as FormArray;
@@ -52,10 +59,17 @@ export class OperatorComponent {
         this.teamPlayer.push(playerObj);
       }
       player.get('name')!.reset();
+
+      this.CommonService.addPlayers({ name: playerName }).subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    
     }
-    console.log(player);
-    console.log(this.players.value);
-    console.log(this.teamPlayer);
   }
 
   drop(event: CdkDragDrop<{ name: string }[]>) {
@@ -87,7 +101,7 @@ export class OperatorComponent {
         this.timeLeft--;
       } else {
         clearInterval(this.interval);
-        this.submitBets();
+       this.submitBets();
       }
     }, 1000);
   }
@@ -101,6 +115,47 @@ export class OperatorComponent {
 
   submitBets() {
     this.isDragDropDisabled = true;
+  }
+
+  selectTeam(team: string) {
+    this.selectedTeam = team;
+    console.log(this.selectedTeam)
+  }
+
+  submitGame() {
+
+    const gameData = {
+      team_blue: {
+        players: this.blueTeamPlayers.map(player => ({ name: player.name })),
+        bettors: this.blueTeamBatter.map(bettor => ({ name: bettor.name })),
+        isWin: false
+      },
+      team_red: {
+        players: this.redTeamplayers.map(player => ({ name: player.name })),
+        bettors: this.redTeamBatter.map(bettor => ({ name: bettor.name })),
+        isWin: false
+      }
+    };
+
+    if (this.selectedTeam === 'blue') {
+      gameData.team_blue.isWin = true;
+      gameData.team_red.isWin = false;
+    } else if (this.selectedTeam === 'red') {
+      gameData.team_blue.isWin = false;
+      gameData.team_red.isWin = true;
+    }
+
+    console.log(gameData)
+
+    this.CommonService.addGame(gameData).subscribe(
+      (res) => {
+        console.log(res);
+        //this.startNewGame(); // Optionally reset game state after successful submission
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
   
 }

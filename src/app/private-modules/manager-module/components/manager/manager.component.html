@@ -31,37 +31,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-        <tr class="even-row">
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-        <tr>
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-        <tr class="even-row">
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
+        <tr *ngFor="let player of players; let i = index" [ngClass]="{ 'even-row': i % 2 === 1 }">
+          <td class="text-left white-font">{{ player.name }}</td>
+          <td>{{ player.GPW }}</td>
+          <td>{{ player.GPL }}</td>
+          <td>{{ player.GBW }}</td>
+          <td>{{ player.GBL }}</td>
+          <td class="white-font">{{ player.RANK }}</td>
         </tr>
       </tbody>
     </table>

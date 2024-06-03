@@ -164,19 +164,19 @@
 }
 
 .disabled {
-    color: rgba($white-color, 0.5);
+    color: rgba($white-color, 0.5) !important;
 
     svg {
         path {
-            fill: rgba($white-color, 0.5);
+            fill: rgba($white-color, 0.5) !important;
         }
     }
 }
 
 .checked {
-    background-color: rgba($primary-color, 0.1);
-    border: 1px solid transparent;
-    color: $primary-color;
+    background-color: rgba($primary-color, 0.1) !important;
+    border: 1px solid transparent !important;
+    color: $primary-color !important;
 
     svg {
         path {

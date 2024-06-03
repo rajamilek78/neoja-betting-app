@@ -2,35 +2,97 @@
 
 
 .home-panel {
+  background-image: url(../../../../assets/images/welcome-screen-background-image.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   width: 100%;
   padding: 2.4rem 0rem;
 }
 
 h1 {
+  color: $orange-color;
   font-family: $font-montreal;
-  font-size: 4.8rem;
+  font-size: 9rem;
   font-weight: 500;
-  line-height: 5.76rem;
+  line-height: 10.8rem;
+  padding: 12.5rem 0rem 15.3rem 0rem;
+
+  span {
+    display: block;
+    color: $white-color !important;
+  }
 }
 
 .card-1 {
   display: block;
   height: 54.4rem;
   position: relative;
+  border-radius: 2.4rem;
+  border: 1px solid $primary-color;
 
   .score-feed {
     position: absolute;
     bottom: 0;
     left: 0;
     right: -1.3rem;
+    margin-bottom: 2.4rem;
 
     h2 {
       font-family: $font-bebas;
       font-weight: 400;
-      font-size: 8rem;
-      line-height: 9.6rem;
-      color: $white-color;
+      font-size: 6rem;
+      line-height: 7.2rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.card-2 {
+  display: block;
+  height: 54.4rem;
+  position: relative;
+  border-radius: 2.4rem;
+  border: 1px solid $pink-color;
+
+  .score-feed {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: -1.3rem;
+    margin-bottom: 2.4rem;
+
+    h2 {
+      font-family: $font-bebas;
+      font-weight: 400;
+      font-size: 6rem;
+      line-height: 7.2rem;
+      color: $pink-color;
+    }
+  }
+}
+
+.card-3 {
+  display: block;
+  height: 54.4rem;
+  position: relative;
+  border-radius: 2.4rem;
+  border: 1px solid $yellow-color;
+
+  .score-feed {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: -1.3rem;
+    margin-bottom: 2.4rem;
+
+    h2 {
+      font-family: $font-bebas;
+      font-weight: 400;
+      font-size: 6rem;
+      line-height: 7.2rem;
+      color: $yellow-color;
     }
   }
 }
@@ -43,17 +105,17 @@ h1 {
   border-radius: 2.4rem;
 }
 
-// .bg-img-1 {
-  //   background-image: url('../../../../assets/images/scorefeed-image.png');
-  // }
+.bg-img-1 {
+  background-image: url('../../../../assets/images/operator-image.png');
+}
 
-  // .bg-img-2 {
-  //   background-image: url('../../../../assets/images/highscore-image.png');
-  // }
+.bg-img-2 {
+  background-image: url('../../../../assets/images/ranking-image.png');
+}
 
-  // .bg-img-3 {
-  //   background-image: url('../../../../assets/images/manager-image.png');
-  // }
+.bg-img-3 {
+  background-image: url('../../../../assets/images/manager-image.png');
+}
 
 .arrow-icon {
   width: 5.5rem;

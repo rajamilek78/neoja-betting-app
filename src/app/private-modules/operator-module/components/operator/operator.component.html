@@ -135,6 +135,15 @@
             >
               <input type="text" value="  {{ player.name }}" />
             </div>
+            <div class="no-player-selected" *ngIf="blueTeamPlayers.length <= 0">
+              <div>
+                <img
+                  src="../../../../../assets/images/blue-team-person-icon.svg"
+                  alt=""
+                />
+              </div>
+              <div><span>Select player for blue team</span></div>
+            </div>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 PR-0 pl-1">
@@ -157,6 +166,15 @@
               cdkDrag
             >
               <input type="text" value="  {{ player.name }}" />
+            </div>
+            <div class="no-player-selected" *ngIf="redTeamplayers.length <= 0">
+              <div>
+                <img
+                  src="../../../../../assets/images/red-team-person-icon.svg"
+                  alt=""
+                />
+              </div>
+              <div><span>Select player for red team</span></div>
             </div>
           </div>
         </div>
@@ -190,6 +208,15 @@
               cdkDrag
             >
               <input type="text" value="  {{ player.name }}" />
+            </div>
+            <div class="no-player-selected" *ngIf="blueTeamBatter.length <= 0">
+              <div>
+                <img
+                  src="../../../../../assets/images/blue-team-person-icon.svg"
+                  alt=""
+                />
+              </div>
+              <div><span>Select bet for blue team</span></div>
             </div>
           </div>
           <div class="win-btn">
@@ -243,7 +270,17 @@
             >
               <input type="text" value="{{ player.name }}" />
             </div>
+            <div class="no-player-selected" *ngIf="redTeamBatter.length <= 0">
+              <div>
+                <img
+                  src="../../../../../assets/images/red-team-person-icon.svg"
+                  alt=""
+                />
+              </div>
+              <div><span>Select bet for red team</span></div>
+            </div>
           </div>
+
           <div class="win-btn">
             <button
             [ngClass]="{'checked': selectedTeam === 'red', 'disabled': selectedTeam === 'blue'}"
@@ -280,65 +317,5 @@
         <button type="submit" class="btn primary-btn" (click)="submitGame()">SUBMIT GAME</button>
       </div>
     </div>
-    <!-- <div class="col-lg-9 col-md-9 PLR-0 operator__right">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
-          <h6>TEAM VS TEAM</h6>
-        </div>
-      </div>
-      <div class="row bg-gray MB-2-half">
-        <div class="col-lg-6 col-md-6 PLR-0 pr-1 border-dash">
-          <div class="no-player-selected">
-            <div>
-              <img
-                src="../../../../../assets/images/blue-team-person-icon.svg"
-                alt=""
-              />
-            </div>
-            <div><span>Select player for blue team</span></div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 PLR-0 pl-1">
-          <div class="no-player-selected">
-            <div>
-              <img
-                src="../../../../../assets/images/red-team-person-icon.svg"
-                alt=""
-              />
-            </div>
-            <div><span>Select player for red team</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
-          <h6>BETTERS</h6>
-        </div>
-      </div>
-      <div class="row MB-2-half">
-        <div class="col-lg-6 col-md-6 PL-0 pr-1 border-dash">
-          <div class="no-player-selected example-list-blue">
-            <div>
-              <img
-                src="../../../../../assets/images/blue-team-person-icon.svg"
-                alt=""
-              />
-            </div>
-            <div><span>Select bet for blue team</span></div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6 PR-0 pl-1">
-          <div class="no-player-selected example-list-red">
-            <div>
-              <img
-                src="../../../../../assets/images/red-team-person-icon.svg"
-                alt=""
-              />
-            </div>
-            <div><span>Select bet for red team</span></div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </div>

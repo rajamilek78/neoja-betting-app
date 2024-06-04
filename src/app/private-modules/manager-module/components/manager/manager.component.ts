@@ -47,10 +47,11 @@ export class ManagerComponent {
     );
   
   }
-  
+
   openSendEmailDialogue() {
     const dialogueRef = this.dialog.open(SendEmailDialogueComponent, {
       width: '450px',
+      data: { players: this.players }
     });
   }
 
@@ -65,4 +66,9 @@ export class ManagerComponent {
       width: '450px',
     });
   }
+
+  onBackToMenu = () => {
+    this.router.navigate(['']);
+  };
+  
 }

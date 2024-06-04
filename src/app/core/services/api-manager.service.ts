@@ -186,11 +186,6 @@ export class APIManager extends HttpHelperService {
       this.Authorized_HttpOptionsWithKey, showToast, showLoader);
   }
 
-  putApis = (url, body = {}, showToast = true, showLoader = true, header = this.Authorized_HttpOptionsWithKey): Observable<any> => {
-    return this.httpHelperMethod(
-      HttpMethodsTypeEnum.PUT, url, body,
-      header, showToast, showLoader);
-  }
 
   deleteApis = (url, params = {}): Observable<any> => {
     return this.httpHelperMethod(

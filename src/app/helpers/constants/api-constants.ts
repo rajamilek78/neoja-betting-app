@@ -18,8 +18,6 @@ export class API_ENDPOINTS{
 
     //Player add
     public static PLAYER_ADD = `${API_URL}/player/add-player`;
-    //Player add
-    public static PLAYER_EDit = `${API_URL}/player/edit-player`;
 
      //chnage game rule
      public static UPSERT_GAME_RULE = `${API_URL}/game-rule/upsert-rule`;

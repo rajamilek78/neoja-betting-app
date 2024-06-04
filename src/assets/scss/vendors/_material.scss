@@ -43,7 +43,13 @@ textarea {
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
-  // background-color: transparent !important;
+  background-color: transparent !important;
+}
+
+
+
+.cdk-global-overlay-wrapper {
+  background: rgba($dark-blue-color, 0.65);
 }
 
 //Checkbox

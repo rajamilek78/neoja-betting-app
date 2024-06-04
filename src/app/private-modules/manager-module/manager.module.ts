@@ -12,7 +12,7 @@ import {
 } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [managerModuleComponents],
+  declarations: [...managerModuleComponents],
   imports: [CommonModule, ManagerRoutingModule, CdkDropList, CdkDrag],
 })
 export class ManagerModule {}

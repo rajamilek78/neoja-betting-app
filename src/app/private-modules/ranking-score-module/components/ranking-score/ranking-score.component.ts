@@ -1,15 +1,24 @@
 import { Component } from '@angular/core';
 import { CommonService } from '@app/core';
 import { HighscoreService } from '@app/core/services/highscore.service';
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-ranking-score',
   templateUrl: './ranking-score.component.html',
-  styleUrl: './ranking-score.component.scss'
+  styleUrl: './ranking-score.component.scss',
 })
 export class RankingScoreComponent {
   players: any[] = [];
-  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService,) {}
+  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService,private renderer: Renderer2) {
+    this.renderer.setStyle(
+      document.body,
+      'background',
+      'url("../../../../../assets/images/ranking-background-img.png")'
+    );
+    this.renderer.setStyle(document.body, 'background-size', 'cover');
+    this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
+  }
 
   ngOnInit(): void {
     this.initialize();
@@ -40,5 +49,4 @@ export class RankingScoreComponent {
       console.log('Event emitted by server', this.players);
     });
   };
-
 }

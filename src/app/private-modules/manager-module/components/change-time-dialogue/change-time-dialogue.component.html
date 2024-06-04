@@ -6,11 +6,11 @@
     /></a>
   </div>
   <div class="modal__body">
-    <input type="text" value="120" />
+    <input type="text" value="120" [(ngModel)]="gameTimer"  />
   </div>
   <div class="modal__footer">
     <div class="pr-2">
-      <button class="primary-btn btn">SAVE</button>
+      <button class="primary-btn btn" (click)="save()">SAVE</button>
     </div>
     <div class="pl-2">
       <button class="secondary-btn btn" (click)="close()">CANCEL</button>

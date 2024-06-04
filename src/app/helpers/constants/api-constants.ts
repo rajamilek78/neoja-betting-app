@@ -14,9 +14,13 @@ export class API_ENDPOINTS{
 
     // Game add
     public static GAME_ADD = `${API_URL}/bet/save-bet`;
+    public static PLAYER_EDit = `${API_URL}/player/edit-player`;
 
     //Player add
     public static PLAYER_ADD = `${API_URL}/player/add-player`;
+
+     //chnage game rule
+     public static UPSERT_GAME_RULE = `${API_URL}/game-rule/upsert-rule`;
 
     //Player get all
     public static PLAYER_ALL = `${API_URL}/player/get-all-players`;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CommonService } from '@app/core';
 
 @Component({
   selector: 'app-change-time-dialogue',
@@ -7,9 +8,26 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './change-time-dialogue.component.scss',
 })
 export class ChangeTimeDialogueComponent {
-  constructor(private dialogue: MatDialogRef<ChangeTimeDialogueComponent>) {}
+  gameTimer!: number;
+  constructor(private dialogue: MatDialogRef<ChangeTimeDialogueComponent>, private CommonService: CommonService) {}
 
   close() {
     this.dialogue.close();
+  }
+
+
+  save() {
+    const params = {
+      GAME_TIMER: this.gameTimer
+    };
+
+    this.CommonService.upsertGameRule(params).subscribe(
+      (res) => {
+        this.close();
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 }

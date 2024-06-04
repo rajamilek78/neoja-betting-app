@@ -41,4 +41,13 @@ export class CommonService {
     return this.apiManager.getApis(API_ENDPOINTS.GET_GAME_RULES, {}, true)
   }
 
+  upsertGameRule(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPSERT_GAME_RULE}`,params, true)
+  }
+
+  editPlayer(path : string,params:any){
+    return this.apiManager.putApis(`${API_ENDPOINTS.PLAYER_EDit}/${path}`,params, true)
+  }
+
+
 }

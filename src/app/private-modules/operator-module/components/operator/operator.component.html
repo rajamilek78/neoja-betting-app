@@ -31,7 +31,7 @@
         (cdkDropListDropped)="drop($event)"
       >
         
-        <div class="example-box" *ngFor="let player of teamPlayer" cdkDrag>
+        <div class="example-box" *ngFor="let player of teamPlayer; let i = index" cdkDrag>
           <div class="drag-icon">
             <svg
               width="24"
@@ -46,9 +46,9 @@
               />
             </svg>
           </div>
-          <input type="text" value=" {{ player.name }}" />
+          <input  type="text" [value]="player.name" (blur)="editPlayer(i,$event,player.name)" [readOnly]="!isEditable"/>
           <a class="edit-btn">
-            <img src="../../../../../assets/images/edit-icon.svg" alt=""
+            <img (click)="isEditable = true" src="../../../../../assets/images/edit-icon.svg" alt=""
           /></a>
           <a class="close-btn">
             <svg
@@ -66,41 +66,19 @@
           </a>
         </div>
       </div>
-     <form [formGroup]="playersForm">
-            <div formArrayName="players">
-              <div
-                *ngFor="let player of players.controls; let i = index"
-                [formGroupName]="i"
-              >
+     <form [formGroup]="playerForm">
+            <div>
+              <div>
                 <input
                   type="text"
                   placeholder="ENTER PLAYER NAME"
-                  formControlName="name"
-                  (blur)="savePlayerName(i)"
-                />
-                <!-- [readonly]="!player.get('isEditable')?.value" -->
-                 <!-- <a class="edit-btn" (click)="editPlayer(i)">
-                <img src="../../../../../assets/images/edit-icon.svg" alt=""
-              /></a>
-              <a class="close-btn" (click)="deletePlayer(i)">
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5.83073 16.3341L4.66406 15.1675L9.33073 10.5008L4.66406 5.83415L5.83073 4.66748L10.4974 9.33415L15.1641 4.66748L16.3307 5.83415L11.6641 10.5008L16.3307 15.1675L15.1641 16.3341L10.4974 11.6675L5.83073 16.3341Z"
-                    fill="#E8EAED"
-                  />
-                </svg>
-              </a> -->
+                  formControlName="newPlayer"
+                  (blur)="addPlayer()"/>
               </div>
             </div>
     
             <div class="add-btn">
-              <button (click)="addPlayer()">
+              <button>
                 <img src="../../../../../assets/images/add-icon.svg" alt="" />
                 <span>Add PLAYER</span>
               </button>

@@ -35,6 +35,9 @@ export class CommonService {
   editPlayer(path : string,params:any){
     return this.apiManager.putApis(`${API_ENDPOINTS.PLAYER_EDit}/${path}`,params, true)
   }
+  deletePlayer(path : string){
+    return this.apiManager.deleteApis(`${API_ENDPOINTS.PLAYER_EDit}/${path}`, true)
+  }
 
   addGame(params:any){
     return this.apiManager.postApis(`${API_ENDPOINTS.GAME_ADD}`,params, true)

@@ -85,6 +85,20 @@ export class OperatorComponent implements OnInit {
       console.log('Player name cannot be empty');
     }
   }
+
+  deletePlayer(index: number, oldName: string) {
+    this.CommonService.deletePlayer(oldName).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        // Remove the player from the teamPlayer array
+        this.teamPlayer.splice(index, 1);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+  
   
   
 

@@ -39,6 +39,7 @@ export class ManagerComponent {
   resetDatabase(){
     this.CommonService.resetDatabase().subscribe(
       (res) => {
+        this.getAllplayer();
         console.log(res)
       },
       (err) => {
@@ -70,5 +71,5 @@ export class ManagerComponent {
   onBackToMenu = () => {
     this.router.navigate(['']);
   };
-  
+
 }

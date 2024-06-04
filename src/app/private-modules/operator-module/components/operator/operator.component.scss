@@ -41,7 +41,7 @@
             line-height: 3.3rem;
             border: 1px solid rgba($white-color, 0.1);
             border-radius: 1rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.6rem;
             padding: 1.6rem 1.6rem 1.6rem 3.5rem !important;
             width: 100%;
             text-transform: uppercase;
@@ -93,7 +93,7 @@
 
 
         .add-btn {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.6rem;
 
             button {
                 background-color: transparent;
@@ -174,13 +174,13 @@
 }
 
 .checked {
-    background-color: rgba($primary-color, 0.1) !important;
+    background-color: rgba($green-color, 0.1) !important;
     border: 1px solid transparent !important;
-    color: $primary-color !important;
+    color: $green-color !important;
 
     svg {
         path {
-            fill: $primary-color !important;
+            fill: $green-color !important;
         }
     }
 }
@@ -287,18 +287,18 @@
 
 .example-list-red {
     border-radius: 1rem;
-    padding: 1.6rem;
+    padding: 2.4rem;
     background-color: rgba($red-color, 0.1);
 }
 
 .example-list-blue {
     border-radius: 1rem;
-    padding: 1.6rem;
+    padding: 2.4rem;
     background-color: rgba($blue-color, 0.1);
 }
 
 .example-list-team {
-    padding: 1.6rem;
+    padding: 2.4rem;
 }
 
 .no-player-selected {

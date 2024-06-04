@@ -156,7 +156,7 @@ export class OperatorComponent implements OnInit {
   }
 
   submitBets() {
-    this.timeLeft
+    this.timeLeft = 0
     this.isDragDropDisabled = true;
   }
 

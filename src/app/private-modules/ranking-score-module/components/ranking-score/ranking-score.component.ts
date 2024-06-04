@@ -4,6 +4,7 @@ import { HighscoreService } from '@app/core/services/highscore.service';
 import { Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SendEmailDialogueComponent } from '@app/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ranking-score',
@@ -13,7 +14,7 @@ import { SendEmailDialogueComponent } from '@app/core';
 export class RankingScoreComponent {
   players: any[] = [];
   fourthTo15Players: any[] = [];
-  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService, private renderer: Renderer2, private dialog: MatDialog) {
+  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService, private renderer: Renderer2, private dialog: MatDialog, private router: Router) {
   
     this.renderer.setStyle(
       document.body,
@@ -61,4 +62,8 @@ export class RankingScoreComponent {
       width: '450px',
     });
   }
+
+  onBackToMenu = () => {
+    this.router.navigate(['']);
+  };
 }

@@ -6,6 +6,7 @@ import { HttpInterceptors } from "./http-interceptors/index-Interceptor";
 import { coreComponents } from './components/component-export';
 import { SnackBarService } from './services/snackbar.service';
 import { utilityDirectives } from '@app/utility/directives/directive-export';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [...coreComponents],
   providers : [
@@ -18,7 +19,8 @@ import { utilityDirectives } from '@app/utility/directives/directive-export';
   ],
   imports: [
     CommonModule,
-    UtilityModule
+    UtilityModule,
+    FormsModule
   ],
   exports: [...coreComponents,UtilityModule]
 })

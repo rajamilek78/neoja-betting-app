@@ -167,6 +167,11 @@ export class APIManager extends HttpHelperService {
       HttpMethodsTypeEnum.POST, url, body,
       header, showToast, showLoader);
   }
+  putApis = (url, body = {}, showToast = true, showLoader = true, header = this.Authorized_HttpOptionsWithKey): Observable<any> => {
+    return this.httpHelperMethod(
+      HttpMethodsTypeEnum.PUT, url, body,
+      header, showToast, showLoader);
+  }
 
   postMultiPartApis = (url, params = {}, headers, fileArray, showToast = true, showLoader = true): Observable<any> => {
     return this.httpHelperMethod(
@@ -181,11 +186,6 @@ export class APIManager extends HttpHelperService {
       this.Authorized_HttpOptionsWithKey, showToast, showLoader);
   }
 
-  putApis = (url, body = {}, showToast = true, showLoader = true, header = this.Authorized_HttpOptionsWithKey): Observable<any> => {
-    return this.httpHelperMethod(
-      HttpMethodsTypeEnum.PUT, url, body,
-      header, showToast, showLoader);
-  }
 
   deleteApis = (url, params = {}): Observable<any> => {
     return this.httpHelperMethod(

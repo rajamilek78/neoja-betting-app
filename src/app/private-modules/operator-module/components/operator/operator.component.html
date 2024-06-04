@@ -10,10 +10,12 @@
         <span
           ><img src="../../../../../assets/images/timer-icon.svg" alt=""
         /></span>
-        <small>{{timeLeft}}</small>
+        <small>{{ timeLeft }}</small>
       </div>
       <div>
-        <button type="button" class="btn primary-btn" (click)="startNewGame()">START NEW GAME</button>
+        <button type="button" class="btn primary-btn" (click)="startNewGame()">
+          START NEW GAME
+        </button>
       </div>
     </div>
   </div>
@@ -24,33 +26,83 @@
         #playersList="cdkDropList"
         [cdkDropListData]="teamPlayer"
         class="example-list"
-        [cdkDropListConnectedTo]="[blueTeamList,
-        redTeamList,
-        blueTeamBatterList,
-        redTeamBatterList]"
+        [cdkDropListConnectedTo]="[
+          blueTeamList,
+          redTeamList,
+          blueTeamBatterList,
+          redTeamBatterList
+        ]"
         (cdkDropListDropped)="drop($event)"
       >
-        
-        <div class="example-box" *ngFor="let player of teamPlayer; let i = index" cdkDrag>
-          <div class="drag-icon">
-            <svg
-              width="24"
-              height="25"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 20.5C8.45 20.5 7.97917 20.3042 7.5875 19.9125C7.19583 19.5208 7 19.05 7 18.5C7 17.95 7.19583 17.4792 7.5875 17.0875C7.97917 16.6958 8.45 16.5 9 16.5C9.55 16.5 10.0208 16.6958 10.4125 17.0875C10.8042 17.4792 11 17.95 11 18.5C11 19.05 10.8042 19.5208 10.4125 19.9125C10.0208 20.3042 9.55 20.5 9 20.5ZM15 20.5C14.45 20.5 13.9792 20.3042 13.5875 19.9125C13.1958 19.5208 13 19.05 13 18.5C13 17.95 13.1958 17.4792 13.5875 17.0875C13.9792 16.6958 14.45 16.5 15 16.5C15.55 16.5 16.0208 16.6958 16.4125 17.0875C16.8042 17.4792 17 17.95 17 18.5C17 19.05 16.8042 19.5208 16.4125 19.9125C16.0208 20.3042 15.55 20.5 15 20.5ZM9 14.5C8.45 14.5 7.97917 14.3042 7.5875 13.9125C7.19583 13.5208 7 13.05 7 12.5C7 11.95 7.19583 11.4792 7.5875 11.0875C7.97917 10.6958 8.45 10.5 9 10.5C9.55 10.5 10.0208 10.6958 10.4125 11.0875C10.8042 11.4792 11 11.95 11 12.5C11 13.05 10.8042 13.5208 10.4125 13.9125C10.0208 14.3042 9.55 14.5 9 14.5ZM15 14.5C14.45 14.5 13.9792 14.3042 13.5875 13.9125C13.1958 13.5208 13 13.05 13 12.5C13 11.95 13.1958 11.4792 13.5875 11.0875C13.9792 10.6958 14.45 10.5 15 10.5C15.55 10.5 16.0208 10.6958 16.4125 11.0875C16.8042 11.4792 17 11.95 17 12.5C17 13.05 16.8042 13.5208 16.4125 13.9125C16.0208 14.3042 15.55 14.5 15 14.5ZM9 8.5C8.45 8.5 7.97917 8.30417 7.5875 7.9125C7.19583 7.52083 7 7.05 7 6.5C7 5.95 7.19583 5.47917 7.5875 5.0875C7.97917 4.69583 8.45 4.5 9 4.5C9.55 4.5 10.0208 4.69583 10.4125 5.0875C10.8042 5.47917 11 5.95 11 6.5C11 7.05 10.8042 7.52083 10.4125 7.9125C10.0208 8.30417 9.55 8.5 9 8.5ZM15 8.5C14.45 8.5 13.9792 8.30417 13.5875 7.9125C13.1958 7.52083 13 7.05 13 6.5C13 5.95 13.1958 5.47917 13.5875 5.0875C13.9792 4.69583 14.45 4.5 15 4.5C15.55 4.5 16.0208 4.69583 16.4125 5.0875C16.8042 5.47917 17 5.95 17 6.5C17 7.05 16.8042 7.52083 16.4125 7.9125C16.0208 8.30417 15.55 8.5 15 8.5Z"
-                fill="white"
-              />
-            </svg>
+        <div
+          class="example-box"
+          *ngFor="let player of teamPlayer; let i = index"
+          cdkDrag
+        >
+        <span class="player-name" *ngIf="!isEditable[i]"
+            >{{ player.name }}
+            <a class="edit-btn">
+              <img
+                (click)="isEditable[i] = true"
+                src="../../../../../assets/images/edit-icon.svg"
+                alt=""
+            /></a>
+            <a class="close-btn" (click)="deletePlayer(i,player.name)">
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.83073 16.3341L4.66406 15.1675L9.33073 10.5008L4.66406 5.83415L5.83073 4.66748L10.4974 9.33415L15.1641 4.66748L16.3307 5.83415L11.6641 10.5008L16.3307 15.1675L15.1641 16.3341L10.4974 11.6675L5.83073 16.3341Z"
+                  fill="#E8EAED"
+                />
+              </svg>
+            </a>
+            <div class="drag-icon">
+              <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 20.5C8.45 20.5 7.97917 20.3042 7.5875 19.9125C7.19583 19.5208 7 19.05 7 18.5C7 17.95 7.19583 17.4792 7.5875 17.0875C7.97917 16.6958 8.45 16.5 9 16.5C9.55 16.5 10.0208 16.6958 10.4125 17.0875C10.8042 17.4792 11 17.95 11 18.5C11 19.05 10.8042 19.5208 10.4125 19.9125C10.0208 20.3042 9.55 20.5 9 20.5ZM15 20.5C14.45 20.5 13.9792 20.3042 13.5875 19.9125C13.1958 19.5208 13 19.05 13 18.5C13 17.95 13.1958 17.4792 13.5875 17.0875C13.9792 16.6958 14.45 16.5 15 16.5C15.55 16.5 16.0208 16.6958 16.4125 17.0875C16.8042 17.4792 17 17.95 17 18.5C17 19.05 16.8042 19.5208 16.4125 19.9125C16.0208 20.3042 15.55 20.5 15 20.5ZM9 14.5C8.45 14.5 7.97917 14.3042 7.5875 13.9125C7.19583 13.5208 7 13.05 7 12.5C7 11.95 7.19583 11.4792 7.5875 11.0875C7.97917 10.6958 8.45 10.5 9 10.5C9.55 10.5 10.0208 10.6958 10.4125 11.0875C10.8042 11.4792 11 11.95 11 12.5C11 13.05 10.8042 13.5208 10.4125 13.9125C10.0208 14.3042 9.55 14.5 9 14.5ZM15 14.5C14.45 14.5 13.9792 14.3042 13.5875 13.9125C13.1958 13.5208 13 13.05 13 12.5C13 11.95 13.1958 11.4792 13.5875 11.0875C13.9792 10.6958 14.45 10.5 15 10.5C15.55 10.5 16.0208 10.6958 16.4125 11.0875C16.8042 11.4792 17 11.95 17 12.5C17 13.05 16.8042 13.5208 16.4125 13.9125C16.0208 14.3042 15.55 14.5 15 14.5ZM9 8.5C8.45 8.5 7.97917 8.30417 7.5875 7.9125C7.19583 7.52083 7 7.05 7 6.5C7 5.95 7.19583 5.47917 7.5875 5.0875C7.97917 4.69583 8.45 4.5 9 4.5C9.55 4.5 10.0208 4.69583 10.4125 5.0875C10.8042 5.47917 11 5.95 11 6.5C11 7.05 10.8042 7.52083 10.4125 7.9125C10.0208 8.30417 9.55 8.5 9 8.5ZM15 8.5C14.45 8.5 13.9792 8.30417 13.5875 7.9125C13.1958 7.52083 13 7.05 13 6.5C13 5.95 13.1958 5.47917 13.5875 5.0875C13.9792 4.69583 14.45 4.5 15 4.5C15.55 4.5 16.0208 4.69583 16.4125 5.0875C16.8042 5.47917 17 5.95 17 6.5C17 7.05 16.8042 7.52083 16.4125 7.9125C16.0208 8.30417 15.55 8.5 15 8.5Z"
+                  fill="white"
+                />
+              </svg>
+              </div
+          ></span>
+          <input *ngIf="isEditable[i]"
+            type="text"
+            [value]="player.name"
+            (blur)="editPlayer(i, $event, player.name);isEditable[i]=false"
+          />
+        </div>
+      </div>
+      <form [formGroup]="playerForm">
+        <div>
+          <div>
+            <input
+              type="text"
+              placeholder="ENTER PLAYER NAME"
+              formControlName="newPlayer"
+              (blur)="addPlayer()"
+            />
           </div>
-          <input  type="text" [value]="player.name" (blur)="editPlayer(i,$event,player.name)" [readOnly]="!isEditable"/>
-          <a class="edit-btn">
-            <img (click)="isEditable = true" src="../../../../../assets/images/edit-icon.svg" alt=""
-          /></a>
-          <a class="close-btn">
+        </div>
+
+        <div class="add-btn">
+          <button>
+            <img src="../../../../../assets/images/add-icon.svg" alt="" />
+            <span>Add PLAYER</span>
+          </button>
+        </div>
+        <div class="remove-btn">
+          <button>
             <svg
               width="21"
               height="21"
@@ -63,44 +115,10 @@
                 fill="#E8EAED"
               />
             </svg>
-          </a>
+            <span>REMOVE PLAYERS</span>
+          </button>
         </div>
-      </div>
-     <form [formGroup]="playerForm">
-            <div>
-              <div>
-                <input
-                  type="text"
-                  placeholder="ENTER PLAYER NAME"
-                  formControlName="newPlayer"
-                  (blur)="addPlayer()"/>
-              </div>
-            </div>
-    
-            <div class="add-btn">
-              <button>
-                <img src="../../../../../assets/images/add-icon.svg" alt="" />
-                <span>Add PLAYER</span>
-              </button>
-            </div>
-            <div class="remove-btn">
-              <button>
-                <svg
-                  width="21"
-                  height="21"
-                  viewBox="0 0 21 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5.83073 16.3341L4.66406 15.1675L9.33073 10.5008L4.66406 5.83415L5.83073 4.66748L10.4974 9.33415L15.1641 4.66748L16.3307 5.83415L11.6641 10.5008L16.3307 15.1675L15.1641 16.3341L10.4974 11.6675L5.83073 16.3341Z"
-                    fill="#E8EAED"
-                  />
-                </svg>
-                <span>REMOVE PLAYERS</span>
-              </button>
-            </div>
-          </form>
+      </form>
     </div>
     <div class="col-lg-9 col-md-9 PLR-0 operator__right">
       <div class="row">
@@ -176,7 +194,13 @@
         </div>
       </div>
       <div class="MB-2-half">
-        <button class="btn primary-btn" *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0" (click)="startTimer()">SUBMIT GAME PLAYERS</button>
+        <button
+          class="btn primary-btn"
+          *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0"
+          (click)="startTimer()"
+        >
+          SUBMIT GAME PLAYERS
+        </button>
       </div>
       <div class="row">
         <div class="col-lg-12 col-md-12 PLR-0 text-center MB-2-half">
@@ -217,8 +241,11 @@
           </div>
           <div class="win-btn">
             <button
-            [ngClass]="{'checked': selectedTeam === 'blue', 'disabled': selectedTeam === 'red'}"
-            (click)="selectTeam('blue')"
+              [ngClass]="{
+                checked: selectedTeam === 'blue',
+                disabled: selectedTeam === 'red'
+              }"
+              (click)="selectTeam('blue')"
             >
               <svg
                 width="24"
@@ -279,8 +306,11 @@
 
           <div class="win-btn">
             <button
-            [ngClass]="{'checked': selectedTeam === 'red', 'disabled': selectedTeam === 'blue'}"
-            (click)="selectTeam('red')"
+              [ngClass]="{
+                checked: selectedTeam === 'red',
+                disabled: selectedTeam === 'blue'
+              }"
+              (click)="selectTeam('red')"
             >
               <svg
                 width="24"
@@ -309,8 +339,22 @@
         </div>
       </div>
       <div class="mt-1">
-        <button type="submit" class="btn primary-btn mr-1" *ngIf="blueTeamBatter.length > 0 && redTeamBatter.length > 0" (click)="submitBets()">SUBMIT BETS</button>
-        <button type="submit" class="btn primary-btn" *ngIf="selectedTeam" (click)="submitGame()">SUBMIT GAME</button>
+        <button
+          type="submit"
+          class="btn primary-btn mr-1"
+          *ngIf="blueTeamBatter.length > 0 && redTeamBatter.length > 0"
+          (click)="submitBets()"
+        >
+          SUBMIT BETS
+        </button>
+        <button
+          type="submit"
+          class="btn primary-btn"
+          *ngIf="selectedTeam"
+          (click)="submitGame()"
+        >
+          SUBMIT GAME
+        </button>
       </div>
     </div>
   </div>

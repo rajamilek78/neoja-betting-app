@@ -144,6 +144,7 @@
           >
             <div
               class="example-box"
+              [cdkDragDisabled]="draggable == 'teamBlueAndRedPlayers'"
               *ngFor="let player of blueTeamPlayers"
               cdkDrag
             >
@@ -176,6 +177,7 @@
           >
             <div
               class="example-box"
+              [cdkDragDisabled]="draggable == 'teamBlueAndRedPlayers'"
               *ngFor="let player of redTeamplayers"
               cdkDrag
             >
@@ -196,7 +198,8 @@
       <div class="MB-2-half">
         <button
           class="btn primary-btn"
-          *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0"
+          [disabled]="draggable == 'teamBlueAndRedPlayers'"
+          *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0 "
           (click)="startTimer()"
         >
           SUBMIT GAME PLAYERS
@@ -215,9 +218,7 @@
             [cdkDropListData]="blueTeamBatter"
             [cdkDropListConnectedTo]="[
               playersList,
-              redTeamList,
-              blueTeamList,
-              redTeamBatterList
+              redTeamBatterList,
             ]"
             class="example-list-blue"
             (cdkDropListDropped)="drop($event)"
@@ -279,9 +280,7 @@
             [cdkDropListData]="redTeamBatter"
             [cdkDropListConnectedTo]="[
               playersList,
-              blueTeamList,
               blueTeamBatterList,
-              redTeamList
             ]"
             class="example-list-red"
             (cdkDropListDropped)="drop($event)"
@@ -350,7 +349,7 @@
         <button
           type="submit"
           class="btn primary-btn"
-          *ngIf="selectedTeam"
+          *ngIf="selectedTeam && isBetSubmited"
           (click)="submitGame()"
         >
           SUBMIT GAME

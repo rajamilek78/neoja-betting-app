@@ -26,7 +26,9 @@ export class OperatorComponent implements OnInit {
   interval: any;
   isDragDropDisabled: boolean = false;
   selectedTeam!: string;
+  isBetSubmited : boolean = false;
   isEditable: boolean[] = [];
+  draggable : string = "";
 
   constructor(private fb: FormBuilder, private CommonService: CommonService) {
     this.playerForm = this.fb.group({
@@ -138,6 +140,9 @@ export class OperatorComponent implements OnInit {
   }
 
   startTimer() {
+    console.log("method called");
+    
+    this.draggable = "teamBlueAndRedPlayers"
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
@@ -158,6 +163,7 @@ export class OperatorComponent implements OnInit {
   submitBets() {
     this.timeLeft = 0
     this.isDragDropDisabled = true;
+    this.isBetSubmited = true;
   }
 
   selectTeam(team: string) {
@@ -192,6 +198,7 @@ export class OperatorComponent implements OnInit {
     this.CommonService.addGame(gameData).subscribe(
       (res) => {
         console.log(res);
+        this.selectedTeam = "";
         //this.startNewGame(); // Optionally reset game state after successful submission
       },
       (err) => {

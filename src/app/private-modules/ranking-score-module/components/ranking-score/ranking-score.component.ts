@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonService } from '@app/core';
 import { HighscoreService } from '@app/core/services/highscore.service';
 import { Renderer2 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { SendEmailDialogueComponent } from '@app/core';
 
 @Component({
   selector: 'app-ranking-score',
@@ -11,7 +13,8 @@ import { Renderer2 } from '@angular/core';
 export class RankingScoreComponent {
   players: any[] = [];
   fourthTo15Players: any[] = [];
-  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService,private renderer: Renderer2) {
+  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService, private renderer: Renderer2, private dialog: MatDialog) {
+  
     this.renderer.setStyle(
       document.body,
       'background',
@@ -53,4 +56,9 @@ export class RankingScoreComponent {
       console.log('Event emitted by server', this.players);
     });
   };
+  openSendEmailDialogue() {
+    const dialogueRef = this.dialog.open(SendEmailDialogueComponent, {
+      width: '450px',
+    });
+  }
 }

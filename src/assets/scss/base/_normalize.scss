@@ -91,6 +91,14 @@ a {
   padding-left: 2.4rem !important;
 }
 
+.pl-2 {
+  padding-left: 0.8rem;
+}
+
+.pr-2 {
+  padding-right: 0.8rem;
+}
+
 .pr-1 {
   padding-right: 2.4rem !important;
 }
@@ -262,5 +270,70 @@ img {
 
   @include respond ('tab-port') {
     margin: 2.4rem 0rem 3.2rem 0rem;
+  }
+}
+
+.modal {
+  background-color: $dark-blue-color;
+  padding: 2.4rem;
+  border-radius: 1.2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3.9rem;
+
+    h5 {
+      font-family: $font-bebas;
+      color: $white-color;
+      font-size: 2.6rem;
+      font-weight: 400;
+      line-height: 3.1rem;
+    }
+
+    a {
+      margin-top: -0.7rem;
+      width: 2.4rem;
+    }
+  }
+
+  &__body {
+    margin-bottom: 3.2rem;
+
+    input {
+      background-color: $dark-blue-color;
+      font-family: $font-bebas;
+      color: $white-color;
+      font-weight: 400;
+      font-size: 2.8rem;
+      line-height: 3.3rem;
+      border: 1px solid rgba($white-color, 0.1);
+      border-radius: 1rem;
+      padding: 1.6rem 2rem;
+      width: 100%;
+
+      &::placeholder {
+        font-family: $font-bebas;
+        color: rgba($white-color, 0.25);
+        font-weight: 400;
+        font-size: 2.8rem;
+        line-height: 3.3rem;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      width: 50%;
+
+      button {
+        width: 100%;
+      }
+    }
   }
 }

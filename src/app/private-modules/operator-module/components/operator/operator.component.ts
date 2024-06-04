@@ -22,7 +22,7 @@ export class OperatorComponent implements OnInit {
   blueTeamBatter: { name: string }[] = [];
   redTeamBatter: { name: string }[] = [];
   playersForm: FormGroup;
-  timeLeft: number = 120;
+  timeLeft!: number;
   interval: any;
   isDragDropDisabled: boolean = false;
   selectedTeam!: string;
@@ -34,6 +34,18 @@ export class OperatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getGameRules();
+  }
+
+  getGameRules(){
+    this.CommonService.getGameRules().subscribe(
+      (res) => {
+        this.timeLeft = res.GAME_TIMER;
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   
@@ -162,7 +174,6 @@ export class OperatorComponent implements OnInit {
     this.CommonService.addGame(gameData).subscribe(
       (res) => {
         console.log(res);
-        //this.startNewGame(); // Optionally reset game state after successful submission
       },
       (err) => {
         console.error(err);

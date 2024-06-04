@@ -331,8 +331,8 @@
         </div>
       </div>
       <div class="MT-2-half">
-        <button type="submit" class="btn primary-btn" (click)="submitBets()">SUBMIT BETS</button>
-        <button type="submit" class="btn primary-btn" (click)="submitGame()">SUBMIT GAME</button>
+        <button type="submit" class="btn primary-btn mr-1" *ngIf="blueTeamBatter.length > 0 && redTeamBatter.length > 0" (click)="submitBets()">SUBMIT BETS</button>
+        <button type="submit" class="btn primary-btn" *ngIf="selectedTeam" (click)="submitGame()">SUBMIT GAME</button>
       </div>
     </div>
   </div>

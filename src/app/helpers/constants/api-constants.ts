@@ -18,8 +18,14 @@ export class API_ENDPOINTS{
     //Player add
     public static PLAYER_ADD = `${API_URL}/player/add-player`;
 
-    //Player add
+    //Player get all
     public static PLAYER_ALL = `${API_URL}/player/get-all-players`;
+
+    //Player top
+    public static PLAYER_TOP = `${API_URL}/player/get-top-players`;
+
+    //Get start timer
+    public static GET_GAME_RULES = `${API_URL}/game-rule/get-rule`;
 
     //Reset teams
 
@@ -32,7 +38,7 @@ export class API_ENDPOINTS{
     public static ALLTEAMDATA = `${API_URL}/team/get-all-teams`;
 
     //ResetDatabase
-    public static RESET_DATABASE = `${API_URL}/bat/reset-bet`;
+    public static RESET_DATABASE = `${API_URL}/bet/reset-bet`;
 
     //Companies
     public static GET_ALL_COMPANIES = `${COMPANY_URL}/get-companies/all`;

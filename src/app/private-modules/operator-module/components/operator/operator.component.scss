@@ -174,13 +174,13 @@
 }
 
 .checked {
-    background-color: rgba($primary-color, 0.1) !important;
+    background-color: rgba($green-color, 0.1) !important;
     border: 1px solid transparent !important;
-    color: $primary-color !important;
+    color: $green-color !important;
 
     svg {
         path {
-            fill: $primary-color !important;
+            fill: $green-color !important;
         }
     }
 }

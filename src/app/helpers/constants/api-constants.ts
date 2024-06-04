@@ -31,6 +31,8 @@ export class API_ENDPOINTS{
     //All team
     public static ALLTEAMDATA = `${API_URL}/team/get-all-teams`;
 
+    //ResetDatabase
+    public static RESET_DATABASE = `${API_URL}/bat/reset-bet`;
 
     //Companies
     public static GET_ALL_COMPANIES = `${COMPANY_URL}/get-companies/all`;

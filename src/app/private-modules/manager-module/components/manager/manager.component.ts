@@ -29,4 +29,18 @@ export class ManagerComponent {
     );
   
   }
+
+  
+  resetDatabase(){
+    this.CommonService.resetDatabase().subscribe(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  
+  }
+
 }

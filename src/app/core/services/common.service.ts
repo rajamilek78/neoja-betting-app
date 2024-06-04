@@ -41,4 +41,8 @@ export class CommonService {
     return this.apiManager.getApis(API_ENDPOINTS.PLAYER_ALL, {}, true)
   }
 
+  resetDatabase(){
+    return this.apiManager.postApis(`${API_ENDPOINTS.RESET_DATABASE}`, true)
+  }
+
 }

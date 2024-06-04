@@ -18,16 +18,16 @@ export class HighscoreService {
     this.socket = io(this.baseurl);
   }
 
-  getHighScoreData(): Observable<any[]> {
-    return this.apiManager.getApis(API_ENDPOINTS.HIGHSCORE, {}, true)
-  }
+  // getHighScoreData(): Observable<any[]> {
+  //   return this.apiManager.getApis(API_ENDPOINTS.HIGHSCORE, {}, true)
+  // }
 
-  getAllTeamData(): Observable<any[]> {
-    return this.apiManager.getApis(API_ENDPOINTS.ALLTEAMDATA, {}, true)
-  }
-  resetTeam(data: any){
-    return this.apiManager.postApis(`${API_ENDPOINTS.RESET_TEAMS}`,data, true)
-  }
+  // getAllTeamData(): Observable<any[]> {
+  //   return this.apiManager.getApis(API_ENDPOINTS.ALLTEAMDATA, {}, true)
+  // }
+  // resetTeam(data: any){
+  //   return this.apiManager.postApis(`${API_ENDPOINTS.RESET_TEAMS}`,data, true)
+  // }
 
 
   getSocket(): any {
@@ -36,7 +36,7 @@ export class HighscoreService {
 
   listenForScoreUpdates(): Observable<any> {
     return new Observable<any>((observer) => {
-      this.socket.on('updateScores', (newData: any) => {
+      this.socket.on('player-updated', (newData: any) => {
         observer.next(newData);
       });
     });

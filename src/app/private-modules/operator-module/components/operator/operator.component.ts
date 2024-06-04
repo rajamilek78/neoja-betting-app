@@ -46,6 +46,7 @@ export class OperatorComponent implements OnInit {
     this.players.push(
       this.fb.group({
         name: ['', Validators.required],
+        //isEditable: [true]
       })
     );
   }
@@ -58,6 +59,7 @@ export class OperatorComponent implements OnInit {
       if (!this.teamPlayer.some((p) => p.name === playerName)) {
         this.teamPlayer.push(playerObj);
       }
+      //player.get('isEditable')!.setValue(false);
       player.get('name')!.reset();
 
       this.CommonService.addPlayers({ name: playerName }).subscribe(
@@ -70,6 +72,16 @@ export class OperatorComponent implements OnInit {
       );
     
     }
+  }
+
+
+  editPlayer(index: number) {
+    const player = this.players.at(index);
+    //player.get('isEditable')!.setValue(true);
+  }
+
+  deletePlayer(index: number) {
+    this.players.removeAt(index);
   }
 
   drop(event: CdkDragDrop<{ name: string }[]>) {

@@ -17,6 +17,8 @@ export class API_ENDPOINTS{
 
     //Player add
     public static PLAYER_ADD = `${API_URL}/player/add-player`;
+    //Player add
+    public static PLAYER_EDit = `${API_URL}/player/edit-player`;
 
     //Player add
     public static PLAYER_ALL = `${API_URL}/player/get-all-players`;

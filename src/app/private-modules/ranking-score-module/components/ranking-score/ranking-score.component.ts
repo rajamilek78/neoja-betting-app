@@ -1,4 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { SendEmailDialogueComponent } from '@app/core';
 
 @Component({
   selector: 'app-ranking-score',
@@ -6,7 +8,7 @@ import { Component, Renderer2 } from '@angular/core';
   styleUrl: './ranking-score.component.scss',
 })
 export class RankingScoreComponent {
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private dialog: MatDialog) {
     this.renderer.setStyle(
       document.body,
       'background',
@@ -14,5 +16,11 @@ export class RankingScoreComponent {
     );
     this.renderer.setStyle(document.body, 'background-size', 'cover');
     this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
+  }
+
+  openSendEmailDialogue() {
+    const dialogueRef = this.dialog.open(SendEmailDialogueComponent, {
+      width: '450px',
+    });
   }
 }

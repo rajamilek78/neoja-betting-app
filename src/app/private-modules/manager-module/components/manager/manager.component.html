@@ -5,15 +5,33 @@
       class="col-lg-8 col-md-8 col-sm-8 PLR-0 text-right flex justify-end align-center"
     >
       <div class="mr-1">
-        <button type="button" class="btn secondary-btn">Change time</button>
+        <button
+          type="button"
+          class="btn secondary-btn"
+          (click)="openChangeTimeDialogue()"
+        >
+          Change time
+        </button>
       </div>
       <div class="mr-1">
-        <button type="button" class="btn secondary-btn">Change score</button>
+        <button
+          type="button"
+          class="btn secondary-btn"
+          (click)="openChangeScoreDialogue()"
+        >
+          Change score
+        </button>
       </div>
       <div class="mr-1">
-        <button type="button" class="btn secondary-btn">SEND EMAIL</button>
+        <button
+          type="button"
+          class="btn secondary-btn"
+          (click)="openSendEmailDialogue()"
+        >
+          SEND EMAIL
+        </button>
       </div>
-      <div class="mr-1">
+      <div>
         <button type="button" class="btn primary-btn">RESET DATABASE</button>
       </div>
     </div>

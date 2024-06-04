@@ -49,6 +49,10 @@
         img {
             width: 8.5rem;
         }
+
+        .flex-column {
+            width: 80%;
+        }
     }
 
     .position-two {
@@ -92,6 +96,10 @@
         img {
             width: 8.5rem;
         }
+
+        .flex-column {
+            width: 80%;
+        }
     }
 
     .position-three {
@@ -132,6 +140,10 @@
 
         img {
             width: 8.5rem;
+        }
+
+        .flex-column {
+            width: 60%;
         }
     }
 
@@ -196,13 +208,15 @@
 
     .ranking-score {
         position: relative;
+        width: 40%;
+        text-align: right;
 
         span {
             color: $body-color;
             font-family: $font-bebas;
             position: absolute;
             top: 1.5rem;
-            right: 2.4rem;
+            right: 2.25rem;
             font-size: 4.8rem;
             font-weight: 400;
             line-height: 5.7rem;

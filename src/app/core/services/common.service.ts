@@ -24,7 +24,7 @@ export class CommonService {
     return this.apiManager.putApis(`${API_ENDPOINTS.PLAYER_EDit}/${path}`,params, true)
   }
   deletePlayer(path : string){
-    return this.apiManager.deleteApis(`${API_ENDPOINTS.PLAYER_EDit}/${path}`, true)
+    return this.apiManager.deleteApis(`${API_ENDPOINTS.PLAYER_DELETE}/${path}`)
   }
 
   addGame(params:any){

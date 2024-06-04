@@ -26,7 +26,7 @@ export class OperatorComponent implements OnInit {
   interval: any;
   isDragDropDisabled: boolean = false;
   selectedTeam!: string;
-  isEditable: boolean = false;
+  isEditable: boolean[] = [];
 
   constructor(private fb: FormBuilder, private CommonService: CommonService) {
     this.playerForm = this.fb.group({
@@ -84,6 +84,19 @@ export class OperatorComponent implements OnInit {
       // Handle the case when the input field is empty
       console.log('Player name cannot be empty');
     }
+  }
+  
+  deletePlayer(index: number, name: string) {
+    this.CommonService.deletePlayer(name).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        // Remove the player from the teamPlayer array
+        this.teamPlayer.splice(index, 1);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
   
   

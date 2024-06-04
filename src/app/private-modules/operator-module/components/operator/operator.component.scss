@@ -30,7 +30,7 @@
         padding-right: 3.2rem !important;
         overflow-y: auto;
 
-        input {
+        input,.player-name {
             background-color: transparent;
             position: relative;
             display: inline-block;
@@ -68,10 +68,14 @@
             }
         }
 
+        .player-name{
+            cursor: grab;
+        }
+
         .edit-btn {
             position: absolute;
-            top: 2.2rem;
-            right: 8.3rem;
+            top: 1.9rem;
+            right: 5rem;
 
             img {
                 width: 2.1rem !important;
@@ -80,8 +84,8 @@
 
         .close-btn {
             position: absolute;
-            top: 2.2rem;
-            right: 5rem;
+            top: 1.9rem;
+            right: 2rem;
 
             svg {
 
@@ -214,8 +218,8 @@
 
     .edit-btn {
         position: absolute;
-        top: 2.2rem;
-        right: 8.3rem;
+        top: 1.9rem;
+        right: 5rem;
 
         img {
             width: 2.1rem !important;
@@ -224,8 +228,8 @@
 
     .close-btn {
         position: absolute;
-        top: 2.2rem;
-        right: 5rem;
+        top: 1.9rem;
+        right: 2rem;
 
         svg {
 

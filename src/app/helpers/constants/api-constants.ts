@@ -15,6 +15,7 @@ export class API_ENDPOINTS{
     // Game add
     public static GAME_ADD = `${API_URL}/bet/save-bet`;
     public static PLAYER_EDit = `${API_URL}/player/edit-player`;
+    public static PLAYER_DELETE = `${API_URL}/player/delete-player`;
 
     //Player add
     public static PLAYER_ADD = `${API_URL}/player/add-player`;

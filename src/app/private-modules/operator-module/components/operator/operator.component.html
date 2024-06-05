@@ -203,7 +203,7 @@
           [ngClass]="{
             'disabled-btn':isGamePlayerSubmited
           }"
-          *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0 "
+          *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0 && !isGamePlayerSubmited"
           (click)="startTimer()"
         >
           SUBMIT GAME PLAYERS
@@ -347,7 +347,7 @@
         <button
           type="submit"
           class="btn primary-btn mr-1"
-          *ngIf="blueTeamBatter.length > 0 && redTeamBatter.length > 0"
+          *ngIf="blueTeamBatter.length > 0 && redTeamBatter.length > 0 && !isBetSubmited"
           (click)="submitBets()"
         >
           SUBMIT BETS
@@ -355,6 +355,10 @@
         <button
           type="submit"
           class="btn primary-btn"
+          [disabled]="isGameSubmited"
+          [ngClass]="{
+            'disabled-btn':isGameSubmited
+          }"
           *ngIf="selectedTeam && isBetSubmited"
           (click)="submitGame()"
         >

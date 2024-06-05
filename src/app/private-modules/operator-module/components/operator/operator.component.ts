@@ -31,6 +31,7 @@ export class OperatorComponent implements OnInit {
   draggable : string = "";
   maxPlayers: number = 4;
   isGamePlayerSubmited : boolean = false;
+  isGameSubmited: boolean = false;
 
   constructor(private fb: FormBuilder, private CommonService: CommonService) {
     this.playerForm = this.fb.group({
@@ -259,7 +260,8 @@ export class OperatorComponent implements OnInit {
     this.CommonService.addGame(gameData).subscribe(
       (res) => {
         console.log(res);
-        this.selectedTeam = "";
+        // this.selectedTeam = "";
+        this.isGameSubmited = true;
         //this.startNewGame(); // Optionally reset game state after successful submission
       },
       (err) => {

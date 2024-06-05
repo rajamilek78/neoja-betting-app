@@ -29,7 +29,6 @@ export class OperatorComponent implements OnInit {
   isBetSubmited : boolean = false;
   isEditable: boolean[] = [];
   draggable : string = "";
-  maxPlayers: number = 4;
   isGamePlayerSubmited : boolean = false;
   isGameSubmited: boolean = false;
 
@@ -147,7 +146,7 @@ export class OperatorComponent implements OnInit {
     }
 
     // Prevent adding more than 4 players
-    if (event.container.id === 'blueTeamList' && this.blueTeamPlayers.length >= this.maxPlayers) {
+    if (event.container.id === 'blueTeamList' && this.blueTeamPlayers.length >= 4) {
       console.log('Cannot add more than 4 players to the Blue Team');
       return;
     }
@@ -172,7 +171,7 @@ export class OperatorComponent implements OnInit {
       return;
     }
     // Prevent adding more than 4 players to red team
-    if (event.container.id === 'redTeamBatter' && this.redTeamplayers.length >= this.maxPlayers) {
+    if (event.container.id === 'redTeamBatter' && this.redTeamplayers.length >= 4) {
       console.log('Cannot add more than 4 players to the Red Team');
       return;
     }

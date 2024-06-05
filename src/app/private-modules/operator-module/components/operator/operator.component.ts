@@ -230,6 +230,8 @@ export class OperatorComponent implements OnInit {
     this.selectedTeam = "";
     this.loadPlayersFromLocalStorage();
     this.isGamePlayerSubmited=false;
+    clearInterval(this.interval);
+    this.getTimmer()
   }
 
   submitBets() {

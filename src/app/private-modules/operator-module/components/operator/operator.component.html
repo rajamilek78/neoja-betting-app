@@ -149,7 +149,8 @@
               *ngFor="let player of blueTeamPlayers"
               cdkDrag
             >
-              <input type="text" value="  {{ player.name }}" />
+              <input type="text" value="  {{ player.name }}" readonly/>
+              <!-- <span class="player-name">{{player.name}}</span> -->
             </div>
             <div class="no-player-selected" *ngIf="blueTeamPlayers.length <= 0">
               <div>
@@ -183,7 +184,7 @@
               *ngFor="let player of redTeamplayers"
               cdkDrag
             >
-              <input type="text" value="  {{ player.name }}" />
+              <input type="text" value="  {{ player.name }}" readonly/>
             </div>
             <div class="no-player-selected" *ngIf="redTeamplayers.length <= 0">
               <div>
@@ -200,7 +201,7 @@
       <div class="MB-2-half">
         <button
           class="btn primary-btn"
-          [disabled]="draggable == 'teamBlueAndRedPlayers'"
+          [disabled]="isGamePlayerSubmited"
           *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0 "
           (click)="startTimer()"
         >
@@ -230,7 +231,7 @@
               *ngFor="let player of blueTeamBatter"
               cdkDrag
             >
-              <input type="text" value="  {{ player.name }}" />
+              <input type="text" value="  {{ player.name }}" readonly/>
             </div>
             <div class="no-player-selected" *ngIf="blueTeamBatter.length <= 0">
               <div>

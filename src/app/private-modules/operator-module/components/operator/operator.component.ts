@@ -30,6 +30,7 @@ export class OperatorComponent implements OnInit {
   isEditable: boolean[] = [];
   draggable : string = "";
   maxPlayers: number = 4;
+  isGamePlayerSubmited : boolean = false;
 
   constructor(private fb: FormBuilder, private CommonService: CommonService) {
     this.playerForm = this.fb.group({
@@ -175,6 +176,7 @@ export class OperatorComponent implements OnInit {
   }
 
   startTimer() {
+    this.isGamePlayerSubmited = true;
     console.log("method called");
     
     this.draggable = "teamBlueAndRedPlayers"

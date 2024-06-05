@@ -121,6 +121,8 @@ export class OperatorComponent implements OnInit {
         console.log(res);
         // Remove the player from the teamPlayer array
         this.teamPlayer.splice(index, 1);
+        this.savePlayersToLocalStorage();
+
       },
       error: (err: any) => {
         console.log(err);

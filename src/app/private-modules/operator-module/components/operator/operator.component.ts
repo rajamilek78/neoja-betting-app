@@ -254,7 +254,7 @@ export class OperatorComponent implements OnInit {
         console.log(res)
       },
       (err) => {
-        console.error(err);
+        console.error(err); 
       }
     );
   }

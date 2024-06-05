@@ -145,7 +145,6 @@
           >
             <div
               class="example-box"
-              [cdkDragDisabled]="draggable == 'teamBlueAndRedPlayers'"
               *ngFor="let player of blueTeamPlayers"
               cdkDrag
             >
@@ -180,7 +179,6 @@
           >
             <div
               class="example-box"
-              [cdkDragDisabled]="draggable == 'teamBlueAndRedPlayers'"
               *ngFor="let player of redTeamplayers"
               cdkDrag
             >
@@ -202,6 +200,9 @@
         <button
           class="btn primary-btn"
           [disabled]="isGamePlayerSubmited"
+          [ngClass]="{
+            'disabled-btn':isGamePlayerSubmited
+          }"
           *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0 "
           (click)="startTimer()"
         >

@@ -223,3 +223,30 @@
         }
     }
 }
+
+.no-data-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+        width: 28rem;
+    }
+
+    b {
+        font-family: $font-montreal;
+        color: $dark-gray-color;
+        font-size: 3.2rem;
+        line-height: 3.8rem;
+        font-weight: 500;
+    }
+
+    small {
+        font-family: $font-montreal;
+        color: $dark-gray-color;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        font-weight: 500;
+    }
+}

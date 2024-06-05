@@ -239,6 +239,8 @@ export class OperatorComponent implements OnInit {
   }
 
   selectTeam(team: string) {
+    console.log("method called to win");
+    
     this.selectedTeam = team;
     console.log(this.selectedTeam);
   }

@@ -36,10 +36,11 @@
       >
         <div
           class="example-box"
+          [cdkDragDisabled]="isEditable[i]"
           *ngFor="let player of teamPlayer; let i = index"
           cdkDrag
         >
-        <span class="player-name" *ngIf="!isEditable[i]"
+          <span class="player-name" *ngIf="!isEditable[i]"
             >{{ player.name }}
             <a class="edit-btn">
               <img
@@ -47,7 +48,7 @@
                 src="../../../../../assets/images/edit-icon.svg"
                 alt=""
             /></a>
-            <a class="close-btn" (click)="deletePlayer(i,player.name)">
+            <a class="close-btn" (click)="deletePlayer(i, player.name)">
               <svg
                 width="21"
                 height="21"
@@ -73,13 +74,14 @@
                   d="M9 20.5C8.45 20.5 7.97917 20.3042 7.5875 19.9125C7.19583 19.5208 7 19.05 7 18.5C7 17.95 7.19583 17.4792 7.5875 17.0875C7.97917 16.6958 8.45 16.5 9 16.5C9.55 16.5 10.0208 16.6958 10.4125 17.0875C10.8042 17.4792 11 17.95 11 18.5C11 19.05 10.8042 19.5208 10.4125 19.9125C10.0208 20.3042 9.55 20.5 9 20.5ZM15 20.5C14.45 20.5 13.9792 20.3042 13.5875 19.9125C13.1958 19.5208 13 19.05 13 18.5C13 17.95 13.1958 17.4792 13.5875 17.0875C13.9792 16.6958 14.45 16.5 15 16.5C15.55 16.5 16.0208 16.6958 16.4125 17.0875C16.8042 17.4792 17 17.95 17 18.5C17 19.05 16.8042 19.5208 16.4125 19.9125C16.0208 20.3042 15.55 20.5 15 20.5ZM9 14.5C8.45 14.5 7.97917 14.3042 7.5875 13.9125C7.19583 13.5208 7 13.05 7 12.5C7 11.95 7.19583 11.4792 7.5875 11.0875C7.97917 10.6958 8.45 10.5 9 10.5C9.55 10.5 10.0208 10.6958 10.4125 11.0875C10.8042 11.4792 11 11.95 11 12.5C11 13.05 10.8042 13.5208 10.4125 13.9125C10.0208 14.3042 9.55 14.5 9 14.5ZM15 14.5C14.45 14.5 13.9792 14.3042 13.5875 13.9125C13.1958 13.5208 13 13.05 13 12.5C13 11.95 13.1958 11.4792 13.5875 11.0875C13.9792 10.6958 14.45 10.5 15 10.5C15.55 10.5 16.0208 10.6958 16.4125 11.0875C16.8042 11.4792 17 11.95 17 12.5C17 13.05 16.8042 13.5208 16.4125 13.9125C16.0208 14.3042 15.55 14.5 15 14.5ZM9 8.5C8.45 8.5 7.97917 8.30417 7.5875 7.9125C7.19583 7.52083 7 7.05 7 6.5C7 5.95 7.19583 5.47917 7.5875 5.0875C7.97917 4.69583 8.45 4.5 9 4.5C9.55 4.5 10.0208 4.69583 10.4125 5.0875C10.8042 5.47917 11 5.95 11 6.5C11 7.05 10.8042 7.52083 10.4125 7.9125C10.0208 8.30417 9.55 8.5 9 8.5ZM15 8.5C14.45 8.5 13.9792 8.30417 13.5875 7.9125C13.1958 7.52083 13 7.05 13 6.5C13 5.95 13.1958 5.47917 13.5875 5.0875C13.9792 4.69583 14.45 4.5 15 4.5C15.55 4.5 16.0208 4.69583 16.4125 5.0875C16.8042 5.47917 17 5.95 17 6.5C17 7.05 16.8042 7.52083 16.4125 7.9125C16.0208 8.30417 15.55 8.5 15 8.5Z"
                   fill="white"
                 />
-              </svg>
-              </div
+              </svg></div
           ></span>
-          <input *ngIf="isEditable[i]"
+          <input
+            *ngIf="isEditable[i]"
             type="text"
+            class="player-name"
             [value]="player.name"
-            (blur)="editPlayer(i, $event, player.name);isEditable[i]=false"
+            (blur)="editPlayer(i, $event, player.name); isEditable[i] = false"
           />
         </div>
       </div>
@@ -148,7 +150,7 @@
               *ngFor="let player of blueTeamPlayers"
               cdkDrag
             >
-              <input type="text" value="  {{ player.name }}" readonly/>
+              <input type="text" value="  {{ player.name }}" readonly />
               <!-- <span class="player-name">{{player.name}}</span> -->
             </div>
             <div class="no-player-selected" *ngIf="blueTeamPlayers.length <= 0">
@@ -182,7 +184,7 @@
               *ngFor="let player of redTeamplayers"
               cdkDrag
             >
-              <input type="text" value="  {{ player.name }}" readonly/>
+              <input type="text" value="  {{ player.name }}" readonly />
             </div>
             <div class="no-player-selected" *ngIf="redTeamplayers.length <= 0">
               <div>
@@ -201,9 +203,13 @@
           class="btn primary-btn"
           [disabled]="isGamePlayerSubmited"
           [ngClass]="{
-            'disabled-btn':isGamePlayerSubmited
+            'disabled-btn': isGamePlayerSubmited
           }"
-          *ngIf="blueTeamPlayers.length > 0 && redTeamplayers.length > 0 && !isGamePlayerSubmited"
+          *ngIf="
+            blueTeamPlayers.length > 0 &&
+            redTeamplayers.length > 0 &&
+            !isGamePlayerSubmited
+          "
           (click)="startTimer()"
         >
           SUBMIT GAME PLAYERS
@@ -221,10 +227,7 @@
             #blueTeamBatterList="cdkDropList"
             id="blueTeamBatter"
             [cdkDropListData]="blueTeamBatter"
-            [cdkDropListConnectedTo]="[
-              playersList,
-              redTeamBatterList,
-            ]"
+            [cdkDropListConnectedTo]="[playersList, redTeamBatterList]"
             class="example-list-blue"
             (cdkDropListDropped)="drop($event)"
           >
@@ -233,7 +236,7 @@
               *ngFor="let player of blueTeamBatter"
               cdkDrag
             >
-              <input type="text" value="  {{ player.name }}" readonly/>
+              <input type="text" value="  {{ player.name }}" readonly />
             </div>
             <div class="no-player-selected" *ngIf="blueTeamBatter.length <= 0">
               <div>
@@ -284,10 +287,7 @@
             #redTeamBatterList="cdkDropList"
             id="redTeamBatter"
             [cdkDropListData]="redTeamBatter"
-            [cdkDropListConnectedTo]="[
-              playersList,
-              blueTeamBatterList,
-            ]"
+            [cdkDropListConnectedTo]="[playersList, blueTeamBatterList]"
             class="example-list-red"
             (cdkDropListDropped)="drop($event)"
           >
@@ -296,7 +296,7 @@
               *ngFor="let player of redTeamBatter"
               cdkDrag
             >
-              <input type="text" value="{{ player.name }}" readonly/>
+              <input type="text" value="{{ player.name }}" readonly />
             </div>
             <div class="no-player-selected" *ngIf="redTeamBatter.length <= 0">
               <div>
@@ -347,7 +347,11 @@
         <button
           type="submit"
           class="btn primary-btn mr-1"
-          *ngIf="blueTeamBatter.length > 0 && redTeamBatter.length > 0 && !isBetSubmited"
+          *ngIf="
+            blueTeamBatter.length > 0 &&
+            redTeamBatter.length > 0 &&
+            !isBetSubmited
+          "
           (click)="submitBets()"
         >
           SUBMIT BETS
@@ -357,7 +361,7 @@
           class="btn primary-btn"
           [disabled]="isGameSubmited"
           [ngClass]="{
-            'disabled-btn':isGameSubmited
+            'disabled-btn': isGameSubmited
           }"
           *ngIf="selectedTeam && isBetSubmited"
           (click)="submitGame()"

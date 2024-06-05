@@ -229,6 +229,7 @@ export class OperatorComponent implements OnInit {
     this.redTeamBatter = [];
     this.selectedTeam = "";
     this.loadPlayersFromLocalStorage();
+    this.isGamePlayerSubmited=false;
   }
 
   submitBets() {

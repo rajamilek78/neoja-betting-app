@@ -296,7 +296,7 @@
               *ngFor="let player of redTeamBatter"
               cdkDrag
             >
-              <input type="text" value="{{ player.name }}" />
+              <input type="text" value="{{ player.name }}" readonly/>
             </div>
             <div class="no-player-selected" *ngIf="redTeamBatter.length <= 0">
               <div>

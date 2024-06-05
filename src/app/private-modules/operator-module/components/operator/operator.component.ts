@@ -184,7 +184,7 @@ export class OperatorComponent implements OnInit {
       return;
     }
     // Prevent adding more than 4 players to red team
-    if (event.container.id === 'redTeamBatter' && this.redTeamplayers.length >= 4) {
+    if (event.container.id === 'redTeamList' && this.redTeamplayers.length >= 4) {
       console.log('Cannot add more than 4 players to the Red Team');
       return;
     }

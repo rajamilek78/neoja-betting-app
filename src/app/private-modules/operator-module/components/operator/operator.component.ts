@@ -151,8 +151,27 @@ export class OperatorComponent implements OnInit {
       return;
     }
   
+    if (event.container.id === 'blueTeamList' && this.isGamePlayerSubmited) {
+      console.log('can not drag player in blueteam');
+      return;
+    }
+
+    if (event.container.id === 'redTeamList' && this.isGamePlayerSubmited) {
+      console.log('can not drag player in redteam');
+      return;
+    }
+  
+    if (event.container.id === 'blueTeamBatter' && !this.isGamePlayerSubmited) {
+      console.log('can not drag player in blueteambetter');
+      return;
+    }
+
+    if (event.container.id === 'redTeamBatter' && !this.isGamePlayerSubmited) {
+      console.log('can not drag player in redteambetter');
+      return;
+    }
     // Prevent adding more than 4 players to red team
-    if (event.container.id === 'redTeamList' && this.redTeamplayers.length >= this.maxPlayers) {
+    if (event.container.id === 'redTeamBatter' && this.redTeamplayers.length >= this.maxPlayers) {
       console.log('Cannot add more than 4 players to the Red Team');
       return;
     }
@@ -207,6 +226,10 @@ export class OperatorComponent implements OnInit {
   selectTeam(team: string) {
     this.selectedTeam = team;
     console.log(this.selectedTeam);
+  }
+
+  removePlayers(){
+    this.teamPlayer = [];
   }
 
   submitGame() {

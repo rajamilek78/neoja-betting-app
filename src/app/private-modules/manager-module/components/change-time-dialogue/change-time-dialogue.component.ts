@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CommonService } from '@app/core';
 
@@ -7,9 +7,26 @@ import { CommonService } from '@app/core';
   templateUrl: './change-time-dialogue.component.html',
   styleUrl: './change-time-dialogue.component.scss',
 })
-export class ChangeTimeDialogueComponent {
+export class ChangeTimeDialogueComponent implements OnInit {
   gameTimer!: number;
   constructor(private dialogue: MatDialogRef<ChangeTimeDialogueComponent>, private CommonService: CommonService) {}
+
+  ngOnInit(): void {
+    this.getTimmer();
+  }
+
+  
+    getTimmer() {
+      this.CommonService.getGameRules().subscribe(
+        (res) => {
+          this.gameTimer = res.GAME_TIMER
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    }
+  
 
   close() {
     this.dialogue.close();

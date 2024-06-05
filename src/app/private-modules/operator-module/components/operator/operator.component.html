@@ -6,7 +6,7 @@
     <div
       class="col-lg-6 col-md-6 col-sm-6 PLR-0 text-right flex justify-end align-center"
     >
-      <div class="timer-display">
+      <div class="timer-display" *ngIf="isGamePlayerSubmited">
         <span
           ><img src="../../../../../assets/images/timer-icon.svg" alt=""
         /></span>
@@ -42,13 +42,13 @@
         >
           <span class="player-name" *ngIf="!isEditable[i]"
             >{{ player.name }}
-            <a class="edit-btn">
+            <a class="edit-btn" matTooltip="Edit">
               <img
                 (click)="isEditable[i] = true"
                 src="../../../../../assets/images/edit-icon.svg"
                 alt=""
             /></a>
-            <a class="close-btn" (click)="deletePlayer(i, player.name)">
+            <a class="close-btn" (click)="deletePlayer(i, player.name)" matTooltip="Delete">
               <svg
                 width="21"
                 height="21"
@@ -97,12 +97,12 @@
           </div>
         </div>
 
-        <div class="add-btn">
+        <!-- <div class="add-btn">
           <button>
             <img src="../../../../../assets/images/add-icon.svg" alt="" />
             <span>Add PLAYER</span>
           </button>
-        </div>
+        </div> -->
         <div class="remove-btn">
           <button (click)="removePlayers()">
             <svg
@@ -248,7 +248,7 @@
               <div><span>Select bet for blue team</span></div>
             </div>
           </div>
-          <div class="win-btn">
+          <div class="win-btn" *ngIf="isGamePlayerSubmited">
             <button
               [ngClass]="{
                 checked: selectedTeam === 'blue',
@@ -309,7 +309,7 @@
             </div>
           </div>
 
-          <div class="win-btn">
+          <div class="win-btn" *ngIf="isGamePlayerSubmited">
             <button
               [ngClass]="{
                 checked: selectedTeam === 'red',

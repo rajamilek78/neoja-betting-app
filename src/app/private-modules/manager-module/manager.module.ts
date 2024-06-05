@@ -11,9 +11,10 @@ import {
   CdkDropList,
 } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '@app/material';
 
 @NgModule({
   declarations: [...managerModuleComponents],
-  imports: [CommonModule, ManagerRoutingModule, CdkDropList, CdkDrag, FormsModule],
+  imports: [CommonModule, ManagerRoutingModule, CdkDropList, CdkDrag, FormsModule, MaterialModule],
 })
 export class ManagerModule {}

@@ -248,7 +248,15 @@ export class OperatorComponent implements OnInit {
   }
 
   removePlayers(){
-    this.teamPlayer = [];
+    this.CommonService.resetDatabase().subscribe(
+      (res) => {
+        this.teamPlayer = [];
+        console.log(res)
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   submitGame() {

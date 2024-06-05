@@ -14,6 +14,26 @@ export class ChangeScoreDialogueComponent {
   GBL!: number;
   constructor(private dialogue: MatDialogRef<ChangeScoreDialogueComponent>, private CommonService: CommonService) {}
 
+
+  ngOnInit(): void {
+    this.getScore();
+  }
+
+  
+    getScore() {
+      this.CommonService.getGameRules().subscribe(
+        (res) => {
+          this.GPW = res.GPW
+          this.GPL = res.GPL
+          this.GBW = res.GBW
+          this.GBL = res.GBL
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    }
+
   close() {
     this.dialogue.close();
   }

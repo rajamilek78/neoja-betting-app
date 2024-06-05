@@ -11,7 +11,7 @@ import { SnackBarComponent } from '../components';
 
 export class SnackBarService {
 
-    private durationInSeconds = 0.1;
+    private durationInSeconds = 3;
     private snackBarMessageBody: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
     constructor(private _snackBar: MatSnackBar) {

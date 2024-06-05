@@ -62,6 +62,7 @@ export class OperatorComponent implements OnInit {
           next : (res:any)=>{
             console.log(res);
             this.teamPlayer.push(payload);
+            this.savePlayersToLocalStorage();
             },
             error : (err:any)=>{
               console.log(err);
@@ -87,6 +88,7 @@ export class OperatorComponent implements OnInit {
           next : (res:any)=>{
             console.log(res);
             this.teamPlayer[index].name = newName;
+            this.savePlayersToLocalStorage();
             
           },
           error : (err :any)=>{
@@ -100,6 +102,17 @@ export class OperatorComponent implements OnInit {
     } else {
       // Handle the case when the input field is empty
       console.log('Player name cannot be empty');
+    }
+  }
+
+  savePlayersToLocalStorage() {
+    localStorage.setItem('teamPlayers', JSON.stringify(this.teamPlayer));
+  }
+
+  loadPlayersFromLocalStorage() {
+    const storedPlayers = localStorage.getItem('teamPlayers');
+    if (storedPlayers) {
+      this.teamPlayer = JSON.parse(storedPlayers);
     }
   }
   
@@ -216,6 +229,7 @@ export class OperatorComponent implements OnInit {
     this.blueTeamBatter = [];
     this.redTeamBatter = [];
     this.selectedTeam = "";
+    this.loadPlayersFromLocalStorage();
   }
 
   submitBets() {

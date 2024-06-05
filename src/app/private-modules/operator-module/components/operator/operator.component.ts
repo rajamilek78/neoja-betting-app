@@ -29,6 +29,7 @@ export class OperatorComponent implements OnInit {
   isBetSubmited : boolean = false;
   isEditable: boolean[] = [];
   draggable : string = "";
+  maxPlayers: number = 4;
 
   constructor(private fb: FormBuilder, private CommonService: CommonService) {
     this.playerForm = this.fb.group({
@@ -116,8 +117,42 @@ export class OperatorComponent implements OnInit {
   
 
  
+  // drop(event: CdkDragDrop<{ name: string }[]>) {
+  //   if (this.isDragDropDisabled) {
+  //     return;
+  //   }
+
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     );
+  //   } else {
+  //     transferArrayItem(
+  //       event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     );
+  //   }
+  //   console.log(this.blueTeamPlayers);
+  //   console.log(this.redTeamplayers);
+  // }
   drop(event: CdkDragDrop<{ name: string }[]>) {
     if (this.isDragDropDisabled) {
+      return;
+    }
+
+    // Prevent adding more than 4 players
+    if (event.container.id === 'blueTeamList' && this.blueTeamPlayers.length >= this.maxPlayers) {
+      console.log('Cannot add more than 4 players to the Blue Team');
+      return;
+    }
+  
+    // Prevent adding more than 4 players to red team
+    if (event.container.id === 'redTeamList' && this.redTeamplayers.length >= this.maxPlayers) {
+      console.log('Cannot add more than 4 players to the Red Team');
       return;
     }
 
@@ -158,6 +193,7 @@ export class OperatorComponent implements OnInit {
     this.redTeamplayers = [];
     this.blueTeamBatter = [];
     this.redTeamBatter = [];
+    this.selectedTeam = "";
   }
 
   submitBets() {

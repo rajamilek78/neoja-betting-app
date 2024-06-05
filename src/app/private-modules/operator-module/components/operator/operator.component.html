@@ -132,6 +132,7 @@
           <div
             cdkDropList
             #blueTeamList="cdkDropList"
+            id="blueTeamList"
             [cdkDropListData]="blueTeamPlayers"
             [cdkDropListConnectedTo]="[
               playersList,
@@ -166,6 +167,7 @@
             cdkDropList
             #redTeamList="cdkDropList"
             [cdkDropListData]="redTeamplayers"
+            id="redTeamList"
             [cdkDropListConnectedTo]="[
               playersList,
               blueTeamList,

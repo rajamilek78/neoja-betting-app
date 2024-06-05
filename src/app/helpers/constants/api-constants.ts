@@ -17,6 +17,9 @@ export class API_ENDPOINTS{
     public static PLAYER_EDit = `${API_URL}/player/edit-player`;
     public static PLAYER_DELETE = `${API_URL}/player/delete-player`;
 
+    //send Email
+    public static SEND_EMAIL = `${API_URL}/player/send-email`;
+
     //Player add
     public static PLAYER_ADD = `${API_URL}/player/add-player`;
 

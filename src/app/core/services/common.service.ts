@@ -51,5 +51,8 @@ export class CommonService {
     return this.apiManager.postApis(`${API_ENDPOINTS.UPSERT_GAME_RULE}`,params, true)
   }
 
+  sendEmail(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.SEND_EMAIL}`,params, true)
+  }
 
 }

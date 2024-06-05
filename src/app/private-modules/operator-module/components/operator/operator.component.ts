@@ -81,9 +81,9 @@ export class OperatorComponent implements OnInit {
     // Check if newName is not empty
     if (newName && newName !== '') {
       // Update the name of the player at the given index
-      const payload = { name : newName}
+      const payload = { currentName : oldName,newName : newName}
       if(oldName){
-        this.CommonService.editPlayer(oldName,payload).subscribe({
+        this.CommonService.editPlayer(payload).subscribe({
           next : (res:any)=>{
             console.log(res);
             this.teamPlayer[index].name = newName;

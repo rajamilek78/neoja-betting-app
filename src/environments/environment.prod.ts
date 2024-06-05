@@ -2,6 +2,6 @@ export const environment = {
   production: true,
   demo: false,
   dev: false,
-  // apiUrl: 'http://192.168.35.222:8282',
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'http://172.20.10.2:8282',
+  // apiUrl: 'http://localhost:3000',
 };

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -16,6 +16,7 @@ import { CommonService } from '@app/core';
   styleUrl: './operator.component.scss',
 })
 export class OperatorComponent implements OnInit {
+  @ViewChild('playerInput') playerInput! : ElementRef;
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
   redTeamplayers: { name: string }[] = [];
@@ -51,6 +52,13 @@ export class OperatorComponent implements OnInit {
       }
     );
   }
+  editAndFocus(i: number) {
+    this.isEditable[i] = true;
+    setTimeout(() => {
+      this.playerInput.nativeElement.focus();
+    }, 0);
+  }
+  
 
   addPlayer() {
     if (this.playerForm) {

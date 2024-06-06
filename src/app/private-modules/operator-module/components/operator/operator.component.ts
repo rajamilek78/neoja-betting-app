@@ -82,7 +82,16 @@ export class OperatorComponent implements OnInit {
             console.log(res);
             this.teamPlayer.push(payload);
             this.savePlayersToLocalStorage();
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            setTimeout(() => {
+              const playerList = document.querySelector('.operator__scroll');
+              if (playerList) {
+                const lastPlayer = playerList.lastElementChild;
+
+                if (lastPlayer) {
+                  lastPlayer.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }, 0);
           },
           error: (err: any) => {
             this.snackbarService.setSnackBarMessage(err.error.message);

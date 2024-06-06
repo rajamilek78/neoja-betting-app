@@ -182,9 +182,9 @@ export class OperatorComponent implements OnInit {
   //   console.log(this.redTeamplayers);
   // }
   drop(event: CdkDragDrop<{ name: string }[]>) {
-    if (this.isDragDropDisabled) {
-      return;
-    }
+    // if (this.isDragDropDisabled) {
+    //   return;
+    // }
 
     // Prevent adding more than 4 players
     if (

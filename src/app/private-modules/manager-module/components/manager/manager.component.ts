@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonService, SnackBarService } from '@app/core';
+import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeScoreDialogueComponent } from '../change-score-dialogue/change-score-dialogue.component';
 import { ChangeTimeDialogueComponent } from '../change-time-dialogue/change-time-dialogue.component';
 import { SendEmailDialogueComponent } from '../../../../core/components/send-email-dialogue/send-email-dialogue.component';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-manager',
@@ -13,11 +14,14 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class ManagerComponent {
   players: any[] = [];
+  isLoading = false;
+  private loaderSubscriber$!: Subscription;
   constructor(
     private CommonService: CommonService,
     private dialog: MatDialog,
     private router: Router,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
+    private sharedService: SharedService,
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +61,21 @@ export class ManagerComponent {
         console.error(err);
       }
     );
+  }
+
+  
+  ngOnDestroy() {
+    if (this.loaderSubscriber$) {
+      this.loaderSubscriber$.unsubscribe();
+    }
+  }
+
+  subscribeIsLoading() {
+    this.loaderSubscriber$ = this.sharedService
+      .getLoader()
+      .subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      });
   }
 
   openSendEmailDialogue() {

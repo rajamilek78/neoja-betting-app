@@ -224,17 +224,17 @@
         }
     }
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0rem;
-        left: 0rem;
-        height: 100vh;
-        width: 100%;
-        background-image: url(../../../../../assets/images/ranking-background-img.png);
-        object-fit: contain;
-        z-index: -1;
-    }
+    // &::before {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0rem;
+    //     left: 0rem;
+    //     height: 100vh;
+    //     width: 100%;
+    //     background-image: url(../../../../../assets/images/ranking-background-img.png);
+    //     object-fit: contain;
+    //     z-index: -1;
+    // }
 }
 
 
@@ -251,7 +251,7 @@
 
     b {
         font-family: $font-montreal;
-        color: $dark-gray-color;
+        color: $white-color;
         font-size: 3.2rem;
         line-height: 3.8rem;
         font-weight: 500;
@@ -259,7 +259,7 @@
 
     small {
         font-family: $font-montreal;
-        color: $dark-gray-color;
+        color: $white-color;
         font-size: 1.6rem;
         line-height: 1.9rem;
         font-weight: 500;

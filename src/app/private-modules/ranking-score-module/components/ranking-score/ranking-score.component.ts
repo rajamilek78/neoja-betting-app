@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonService, SnackBarService } from '@app/core';
+import { CommonService, SharedService, SnackBarService } from '@app/core';
 import { HighscoreService } from '@app/core/services/highscore.service';
 import { Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SendEmailDialogueComponent } from '@app/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ranking-score',
@@ -14,13 +15,16 @@ import { NavigationEnd, Router } from '@angular/router';
 export class RankingScoreComponent {
   players: any[] = [];
   fourthTo15Players: any[] = [];
+  isLoading = false;
+  private loaderSubscriber$!: Subscription;
   constructor(
     private CommonService: CommonService,
     private highscoreService: HighscoreService,
     private renderer: Renderer2,
     private dialog: MatDialog,
     private router: Router,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
+    private sharedService: SharedService,
   ) {
     //     this.renderer.setStyle(document.body,
     //   'background',
@@ -58,6 +62,20 @@ export class RankingScoreComponent {
         console.error(err);
       }
     );
+  }
+
+  ngOnDestroy() {
+    if (this.loaderSubscriber$) {
+      this.loaderSubscriber$.unsubscribe();
+    }
+  }
+
+  subscribeIsLoading() {
+    this.loaderSubscriber$ = this.sharedService
+      .getLoader()
+      .subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      });
   }
 
   getSocetData = () => {

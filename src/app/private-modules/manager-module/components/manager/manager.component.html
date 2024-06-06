@@ -66,7 +66,7 @@
       </tbody>
     </table>
   </div>
-  <div class="no-data-table" *ngIf="players.length == 0">
+  <div class="no-data-table" *ngIf="players.length == 0 && isLoading">
     <div>
       <img src="../../../../../assets/images/no-data-image.png" alt="" />
     </div>

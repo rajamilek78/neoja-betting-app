@@ -8,7 +8,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { CommonService } from '@app/core';
+import { CommonService, SnackBarService } from '@app/core';
 
 @Component({
   selector: 'app-operator',
@@ -33,7 +33,7 @@ export class OperatorComponent implements OnInit {
   isGamePlayerSubmited : boolean = false;
   isGameSubmited: boolean = false;
 
-  constructor(private fb: FormBuilder, private CommonService: CommonService) {
+  constructor(private fb: FormBuilder, private CommonService: CommonService, private snackbarService: SnackBarService) {
     this.playerForm = this.fb.group({
       newPlayer: [''],
     });
@@ -48,6 +48,7 @@ export class OperatorComponent implements OnInit {
         this.timeLeft = res.GAME_TIMER
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );
@@ -72,6 +73,7 @@ export class OperatorComponent implements OnInit {
             this.savePlayersToLocalStorage();
             },
             error : (err:any)=>{
+              this.snackbarService.setSnackBarMessage(err.error.message);
               console.log(err);
              }
         })
@@ -99,6 +101,7 @@ export class OperatorComponent implements OnInit {
             
           },
           error : (err :any)=>{
+            this.snackbarService.setSnackBarMessage(err.error.message);
             console.log(err);
             
           }
@@ -133,6 +136,7 @@ export class OperatorComponent implements OnInit {
 
       },
       error: (err: any) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.log(err);
       }
     });
@@ -261,9 +265,11 @@ export class OperatorComponent implements OnInit {
     this.CommonService.resetDatabase().subscribe(
       (res) => {
         this.teamPlayer = [];
+        localStorage.removeItem('teamPlayers');
         console.log(res)
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err); 
       }
     );
@@ -301,6 +307,7 @@ export class OperatorComponent implements OnInit {
         //this.startNewGame(); // Optionally reset game state after successful submission
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );

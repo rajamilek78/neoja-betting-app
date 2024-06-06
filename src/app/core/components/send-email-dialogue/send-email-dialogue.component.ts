@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CommonService } from '@app/core/services';
+import { CommonService, SnackBarService } from '@app/core/services';
 
 @Component({
   selector: 'app-send-email-dialogue',
@@ -13,7 +13,8 @@ export class SendEmailDialogueComponent {
   constructor(
     private dialogRef: MatDialogRef<SendEmailDialogueComponent>,
     private CommonService: CommonService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackbarService: SnackBarService
   ) {}
 
   close() {
@@ -34,6 +35,7 @@ export class SendEmailDialogueComponent {
         this.close();
       },
       (error) => {
+        this.snackbarService.setSnackBarMessage(error.error.message);
         console.error(error);
       }
     );

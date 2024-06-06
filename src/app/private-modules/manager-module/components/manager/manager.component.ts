@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonService } from '@app/core';
+import { CommonService, SnackBarService } from '@app/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeScoreDialogueComponent } from '../change-score-dialogue/change-score-dialogue.component';
 import { ChangeTimeDialogueComponent } from '../change-time-dialogue/change-time-dialogue.component';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ManagerComponent {
   players: any[] = [];
-  constructor(private CommonService: CommonService, private dialog: MatDialog, private router: Router) {}
+  constructor(private CommonService: CommonService, private dialog: MatDialog, private router: Router,private snackbarService: SnackBarService) {}
 
   ngOnInit(): void {
     this.initialize();
@@ -29,6 +29,7 @@ export class ManagerComponent {
         this.players = res
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );
@@ -43,6 +44,7 @@ export class ManagerComponent {
         console.log(res)
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );

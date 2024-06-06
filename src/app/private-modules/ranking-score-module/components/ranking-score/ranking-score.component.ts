@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonService } from '@app/core';
+import { CommonService, SnackBarService } from '@app/core';
 import { HighscoreService } from '@app/core/services/highscore.service';
 import { Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class RankingScoreComponent {
   players: any[] = [];
   fourthTo15Players: any[] = [];
-  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService, private renderer: Renderer2, private dialog: MatDialog, private router: Router) {
+  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService, private renderer: Renderer2, private dialog: MatDialog, private router: Router,private snackbarService: SnackBarService) {
   
     this.renderer.setStyle(
       document.body,
@@ -43,6 +43,7 @@ export class RankingScoreComponent {
         //console.log(this.players)
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );

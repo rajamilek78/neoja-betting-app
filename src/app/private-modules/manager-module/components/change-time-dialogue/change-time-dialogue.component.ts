@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CommonService } from '@app/core';
+import { CommonService, SnackBarService } from '@app/core';
 
 @Component({
   selector: 'app-change-time-dialogue',
@@ -9,7 +9,7 @@ import { CommonService } from '@app/core';
 })
 export class ChangeTimeDialogueComponent implements OnInit {
   gameTimer!: number;
-  constructor(private dialogue: MatDialogRef<ChangeTimeDialogueComponent>, private CommonService: CommonService) {}
+  constructor(private dialogue: MatDialogRef<ChangeTimeDialogueComponent>, private CommonService: CommonService, private snackbarService: SnackBarService) {}
 
   ngOnInit(): void {
     this.getTimmer();
@@ -22,6 +22,7 @@ export class ChangeTimeDialogueComponent implements OnInit {
           this.gameTimer = res.GAME_TIMER
         },
         (err) => {
+          this.snackbarService.setSnackBarMessage(err.error.message);
           console.error(err);
         }
       );
@@ -43,6 +44,7 @@ export class ChangeTimeDialogueComponent implements OnInit {
         this.close();
       },
       (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );

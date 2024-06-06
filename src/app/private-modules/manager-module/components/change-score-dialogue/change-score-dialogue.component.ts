@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CommonService } from '@app/core';
+import { CommonService, SnackBarService } from '@app/core';
 
 @Component({
   selector: 'app-change-score-dialogue',
@@ -12,7 +12,7 @@ export class ChangeScoreDialogueComponent {
   GPL!: number;
   GBW!: number;
   GBL!: number;
-  constructor(private dialogue: MatDialogRef<ChangeScoreDialogueComponent>, private CommonService: CommonService) {}
+  constructor(private dialogue: MatDialogRef<ChangeScoreDialogueComponent>, private CommonService: CommonService,private snackbarService: SnackBarService) {}
 
 
   ngOnInit(): void {
@@ -29,6 +29,7 @@ export class ChangeScoreDialogueComponent {
           this.GBL = res.GBL
         },
         (err) => {
+          this.snackbarService.setSnackBarMessage(err.error.message);
           console.error(err);
         }
       );
@@ -52,6 +53,7 @@ export class ChangeScoreDialogueComponent {
         this.dialogue.close();
       },
       (error) => {
+        this.snackbarService.setSnackBarMessage(error.error.message);
         console.error(error);
       }
     );

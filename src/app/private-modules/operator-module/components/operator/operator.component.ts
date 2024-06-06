@@ -82,6 +82,7 @@ export class OperatorComponent implements OnInit {
             console.log(res);
             this.teamPlayer.push(payload);
             this.savePlayersToLocalStorage();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
           },
           error: (err: any) => {
             this.snackbarService.setSnackBarMessage(err.error.message);
@@ -269,25 +270,27 @@ export class OperatorComponent implements OnInit {
 
     this.selectedTeam = team;
     console.log(this.selectedTeam);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 
   removePlayers() {
-    this.CommonService.resetDatabase().subscribe(
-      (res) => {
-        this.blueTeamPlayers = [];
-        this.redTeamplayers = [];
-        this.blueTeamBatter = [];
-        this.redTeamBatter = [];
-        this.selectedTeam = '';
-        this.teamPlayer = [];
-        localStorage.removeItem('teamPlayers');
-        console.log(res);
-      },
-      (err) => {
-        this.snackbarService.setSnackBarMessage(err.error.message);
-        console.error(err);
-      }
-    );
+    this.blueTeamPlayers = [];
+    this.redTeamplayers = [];
+    this.blueTeamBatter = [];
+    this.redTeamBatter = [];
+    this.selectedTeam = '';
+    this.teamPlayer = [];
+    localStorage.removeItem('teamPlayers');
+    // this.CommonService.resetDatabase().subscribe(
+    //   (res) => {
+      
+    //     console.log(res);
+    //   },
+    //   (err) => {
+    //     this.snackbarService.setSnackBarMessage(err.error.message);
+    //     console.error(err);
+    //   }
+    // );
   }
 
   submitGame() {

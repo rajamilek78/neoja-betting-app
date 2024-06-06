@@ -274,6 +274,11 @@ export class OperatorComponent implements OnInit {
   removePlayers() {
     this.CommonService.resetDatabase().subscribe(
       (res) => {
+        this.blueTeamPlayers = [];
+        this.redTeamplayers = [];
+        this.blueTeamBatter = [];
+        this.redTeamBatter = [];
+        this.selectedTeam = '';
         this.teamPlayer = [];
         localStorage.removeItem('teamPlayers');
         console.log(res);

@@ -1,8 +1,8 @@
 @import "../../../../../assets/scss/abstracts/abstracts";
 
 .operator {
-    
-    padding: 12rem 2.4rem 2.4rem 2.4rem;
+
+    padding: 2.4rem;
 
     .timer-display {
         display: flex;
@@ -28,7 +28,7 @@
     &__scroll {
         padding-right: 2.5rem !important;
         overflow-y: auto;
-        height: 50vh;
+        height: calc(100vh - 34.5rem);
 
         &::-webkit-scrollbar {
             width: 8px;
@@ -47,7 +47,8 @@
     }
 
     &__left {
-        position: relative;
+        position: sticky;
+        top: 0;
         padding-right: 1rem !important;
 
 
@@ -92,7 +93,7 @@
         .edit-btn {
             position: absolute;
             top: 0rem;
-            right: 5rem;
+            right: 3rem;
 
             img {
                 width: 2.1rem !important;
@@ -102,7 +103,7 @@
         .close-btn {
             position: absolute;
             top: 0rem;
-            right: 2rem;
+            right: 0rem;
 
             svg {
 
@@ -221,9 +222,11 @@
 }
 
 .example-box {
+    display: flex !important;
+    align-items: center;
     overflow-y: hidden;
     margin-bottom: 1.2rem;
-    background-color: transparent;
+    background-color: $body-color;
     position: relative;
     display: inline-block;
     font-family: $font-bebas;
@@ -265,7 +268,7 @@
     .edit-btn {
         position: absolute;
         top: 0rem;
-        right: 5rem;
+        right: 3rem;
 
         img {
             width: 2.1rem !important;
@@ -275,7 +278,7 @@
     .close-btn {
         position: absolute;
         top: 0rem;
-        right: 2rem;
+        right: 0rem;
 
         svg {
 

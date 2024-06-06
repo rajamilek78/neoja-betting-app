@@ -106,7 +106,7 @@
           </div>
         </form>
       </div>
-      <div class="remove-btn">
+      <div class="remove-btn" *ngIf="teamPlayer.length != 0">
         <button (click)="removePlayers()">
           <svg
             width="21"
@@ -148,6 +148,9 @@
             (cdkDropListDropped)="drop($event)"
           >
             <div
+              [ngClass]="{
+                cursur: isGamePlayerSubmited
+              }"
               class="example-box"
               *ngFor="let player of blueTeamPlayers"
               [cdkDragDisabled]="isGamePlayerSubmited"
@@ -204,6 +207,9 @@
             (cdkDropListDropped)="drop($event)"
           >
             <div
+              [ngClass]="{
+                cursur: isGamePlayerSubmited
+              }"
               class="example-box"
               *ngFor="let player of redTeamplayers"
               [cdkDragDisabled]="isGamePlayerSubmited"
@@ -278,6 +284,9 @@
             (cdkDropListDropped)="drop($event)"
           >
             <div
+              [ngClass]="{
+                cursur: isBetSubmited
+              }"
               class="example-box"
               *ngFor="let player of blueTeamBatter"
               [cdkDragDisabled]="isBetSubmited"
@@ -360,6 +369,9 @@
             (cdkDropListDropped)="drop($event)"
           >
             <div
+              [ngClass]="{
+                cursur: isBetSubmited
+              }"
               class="example-box"
               *ngFor="let player of redTeamBatter"
               [cdkDragDisabled]="isBetSubmited"
@@ -438,7 +450,7 @@
           type="submit"
           class="btn primary-btn mr-1"
           *ngIf="
-            blueTeamBatter.length > 0 &&
+            blueTeamBatter.length > 0 ||
             redTeamBatter.length > 0 &&
             !isBetSubmited
           "

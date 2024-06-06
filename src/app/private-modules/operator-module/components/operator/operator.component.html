@@ -437,6 +437,7 @@
         <button
           type="submit"
           class="btn primary-btn mr-1"
+          [disabled]="isBetSubmited"
           *ngIf="
             blueTeamBatter.length > 0 ||
             redTeamBatter.length > 0 &&

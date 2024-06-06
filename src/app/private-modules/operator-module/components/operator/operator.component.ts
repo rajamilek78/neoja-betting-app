@@ -182,9 +182,9 @@ export class OperatorComponent implements OnInit {
   //   console.log(this.redTeamplayers);
   // }
   drop(event: CdkDragDrop<{ name: string }[]>) {
-    if (this.isDragDropDisabled) {
-      return;
-    }
+    // if (this.isDragDropDisabled) {
+    //   return;
+    // }
 
     // Prevent adding more than 4 players
     if (
@@ -230,12 +230,16 @@ export class OperatorComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      // transferArrayItem(
+      //   event.previousContainer.data,
+      //   event.container.data,
+      //   event.previousIndex,
+      //   event.currentIndex
+      // );
+      const itemCopy = { ...event.previousContainer.data[event.previousIndex] };
+
+        // Add the copy to the target array
+        event.container.data.splice(event.currentIndex, 0, itemCopy);
     }
     console.log(this.blueTeamPlayers);
     console.log(this.redTeamplayers);
@@ -264,6 +268,7 @@ export class OperatorComponent implements OnInit {
     this.selectedTeam = '';
     this.loadPlayersFromLocalStorage();
     this.isGamePlayerSubmited = false;
+    this.isBetSubmited = false;
     clearInterval(this.interval);
     this.getTimmer();
   }

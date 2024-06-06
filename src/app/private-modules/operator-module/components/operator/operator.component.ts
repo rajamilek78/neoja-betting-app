@@ -230,16 +230,16 @@ export class OperatorComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      // transferArrayItem(
-      //   event.previousContainer.data,
-      //   event.container.data,
-      //   event.previousIndex,
-      //   event.currentIndex
-      // );
-      const itemCopy = { ...event.previousContainer.data[event.previousIndex] };
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      // const itemCopy = { ...event.previousContainer.data[event.previousIndex] };
 
-        // Add the copy to the target array
-        event.container.data.splice(event.currentIndex, 0, itemCopy);
+      //   // Add the copy to the target array
+      //   event.container.data.splice(event.currentIndex, 0, itemCopy);
     }
     console.log(this.blueTeamPlayers);
     console.log(this.redTeamplayers);

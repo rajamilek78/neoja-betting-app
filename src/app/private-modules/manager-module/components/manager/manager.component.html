@@ -25,6 +25,7 @@
       <div class="mr-1">
         <button
           type="button"
+          [disabled]="players.length == 0"
           class="btn secondary-btn"
           (click)="openSendEmailDialogue()"
         >
@@ -32,7 +33,7 @@
         </button>
       </div>
       <div>
-        <button type="button" class="btn primary-btn" (click)="resetDatabase()">RESET DATABASE</button>
+        <button type="button" class="btn primary-btn" [disabled]="players.length == 0" (click)="resetDatabase()">RESET DATABASE</button>
       </div>
     </div>
   </div>

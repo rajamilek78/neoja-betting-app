@@ -33,7 +33,9 @@
         </button>
       </div>
       <div>
-        <button type="button" class="btn primary-btn" [disabled]="players.length == 0" (click)="resetDatabase()">RESET DATABASE</button>
+        <button type="button" class="btn primary-btn" (click)="resetDatabase()">
+          RESET DATABASE
+        </button>
       </div>
     </div>
   </div>
@@ -50,10 +52,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let player of players; let i = index" [ngClass]="{ 'even-row': i % 2 === 1 }">
+        <tr
+          *ngFor="let player of players; let i = index"
+          [ngClass]="{ 'even-row': i % 2 === 1 }"
+        >
           <td class="text-left white-font">{{ player.name }}</td>
           <td>{{ player.GPW }}</td>
-          <td>{{ player.GPL }}</td> 
+          <td>{{ player.GPL }}</td>
           <td>{{ player.GBW }}</td>
           <td>{{ player.GBL }}</td>
           <td class="white-font">{{ player.RANK }}</td>
@@ -63,10 +68,7 @@
   </div>
   <div class="no-data-table" *ngIf="players.length == 0">
     <div>
-      <img
-        src="../../../../../assets/images/no-data-manager-screen.png"
-        alt=""
-      />
+      <img src="../../../../../assets/images/no-data-image.png" alt="" />
     </div>
     <div class="mt-1"><b>No player data available</b></div>
     <div class="MT-1-half">
@@ -79,7 +81,11 @@
   <div class="row mt-1">
     <div class="col-lg-12 col-md-12 col-sm-12 PLR-0">
       <div>
-        <button type="button" class="btn secondary-btn" (click)="onBackToMenu()">
+        <button
+          type="button"
+          class="btn secondary-btn"
+          (click)="onBackToMenu()"
+        >
           back to main menu
         </button>
       </div>

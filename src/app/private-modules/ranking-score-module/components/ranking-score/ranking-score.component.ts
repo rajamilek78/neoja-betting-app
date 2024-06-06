@@ -22,12 +22,12 @@ export class RankingScoreComponent {
     private router: Router,
     private snackbarService: SnackBarService
   ) {
-    this.renderer.setStyle(document.body,
-  'background',
-  'url("../../../../../assets/images/ranking-background-img.png")'
-);
-this.renderer.setStyle(document.body, 'background-size', 'cover');
-this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
+    //     this.renderer.setStyle(document.body,
+    //   'background',
+    //   'url("../../../../../assets/images/ranking-background-img.png")'
+    // );
+    // this.renderer.setStyle(document.body, 'background-size', 'cover');
+    // this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
   }
 
   ngOnInit(): void {

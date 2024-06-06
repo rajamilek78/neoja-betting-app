@@ -3,7 +3,7 @@
 
 .ranking {
     position: relative;
-    padding: 2.4rem;
+    padding: 12rem 2.4rem 2.4rem 2.4rem;
 
     .width-100 {
         div {
@@ -223,18 +223,6 @@
             line-height: 5.7rem;
         }
     }
-
-    // &::before {
-    //     content: '';
-    //     position: absolute;
-    //     top: 0rem;
-    //     left: 0rem;
-    //     height: 100vh;
-    //     width: 100%;
-    //     background-image: url(../../../../../assets/images/ranking-background-img.png);
-    //     object-fit: contain;
-    //     z-index: -1;
-    // }
 }
 
 
@@ -263,5 +251,19 @@
         font-size: 1.6rem;
         line-height: 1.9rem;
         font-weight: 500;
+    }
+}
+
+.ranking-img {
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        height: 100vh;
+        width: 100%;
+        background-image: url(../../../../../assets/images/ranking-background-img.png);
+        object-fit: contain;
+        z-index: -1;
     }
 }

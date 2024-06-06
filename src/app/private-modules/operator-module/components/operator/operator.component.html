@@ -106,7 +106,7 @@
           </div>
         </form>
       </div>
-      <div class="remove-btn">
+      <div class="remove-btn" *ngIf="teamPlayer.length != 0">
         <button (click)="removePlayers()">
           <svg
             width="21"
@@ -450,7 +450,7 @@
           type="submit"
           class="btn primary-btn mr-1"
           *ngIf="
-            blueTeamBatter.length > 0 &&
+            blueTeamBatter.length > 0 ||
             redTeamBatter.length > 0 &&
             !isBetSubmited
           "

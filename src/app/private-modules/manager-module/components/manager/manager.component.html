@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="manager-table">
+  <div class="manager-table" *ngIf="players.length > 0">
     <table>
       <thead>
         <tr>
@@ -60,7 +60,7 @@
       </tbody>
     </table>
   </div>
-  <div class="no-data-table">
+  <div class="no-data-table" *ngIf="players.length == 0">
     <div>
       <img
         src="../../../../../assets/images/no-data-manager-screen.png"

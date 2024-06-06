@@ -150,6 +150,7 @@
             <div
               class="example-box"
               *ngFor="let player of blueTeamPlayers"
+              [cdkDragDisabled]="isGamePlayerSubmited"
               cdkDrag
             >
               <input
@@ -205,6 +206,7 @@
             <div
               class="example-box"
               *ngFor="let player of redTeamplayers"
+              [cdkDragDisabled]="isGamePlayerSubmited"
               cdkDrag
             >
               <input
@@ -278,6 +280,7 @@
             <div
               class="example-box"
               *ngFor="let player of blueTeamBatter"
+              [cdkDragDisabled]="isBetSubmited"
               cdkDrag
             >
               <input
@@ -359,6 +362,7 @@
             <div
               class="example-box"
               *ngFor="let player of redTeamBatter"
+              [cdkDragDisabled]="isBetSubmited"
               cdkDrag
             >
               <input

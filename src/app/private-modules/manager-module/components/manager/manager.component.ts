@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChangeScoreDialogueComponent } from '../change-score-dialogue/change-score-dialogue.component';
 import { ChangeTimeDialogueComponent } from '../change-time-dialogue/change-time-dialogue.component';
 import { SendEmailDialogueComponent } from '../../../../core/components/send-email-dialogue/send-email-dialogue.component';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-manager',
@@ -13,48 +13,56 @@ import { Router } from '@angular/router';
 })
 export class ManagerComponent {
   players: any[] = [];
-  constructor(private CommonService: CommonService, private dialog: MatDialog, private router: Router,private snackbarService: SnackBarService) {}
+  constructor(
+    private CommonService: CommonService,
+    private dialog: MatDialog,
+    private router: Router,
+    private snackbarService: SnackBarService
+  ) {}
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.initialize();
   }
 
   initialize = () => {
-    this.getAllplayer()
+    this.getAllplayer();
   };
 
-  getAllplayer(){
+  getAllplayer() {
     this.CommonService.getAllPlayer().subscribe(
       (res) => {
-        this.players = res
+        this.players = res;
       },
       (err) => {
         this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );
-  
   }
 
-  
-  resetDatabase(){
+  resetDatabase() {
     this.CommonService.resetDatabase().subscribe(
       (res) => {
         this.getAllplayer();
-        console.log(res)
+        console.log(res);
       },
       (err) => {
         this.snackbarService.setSnackBarMessage(err.error.message);
         console.error(err);
       }
     );
-  
   }
 
   openSendEmailDialogue() {
     const dialogueRef = this.dialog.open(SendEmailDialogueComponent, {
       width: '450px',
-      data: { players: this.players }
+      data: { players: this.players },
     });
   }
 
@@ -73,5 +81,4 @@ export class ManagerComponent {
   onBackToMenu = () => {
     this.router.navigate(['']);
   };
-
 }

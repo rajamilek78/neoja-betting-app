@@ -9,6 +9,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CommonService, SnackBarService } from '@app/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-operator',
@@ -16,7 +17,7 @@ import { CommonService, SnackBarService } from '@app/core';
   styleUrl: './operator.component.scss',
 })
 export class OperatorComponent implements OnInit {
-  @ViewChild('playerInput') playerInput! : ElementRef;
+  @ViewChild('playerInput') playerInput!: ElementRef;
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
   redTeamplayers: { name: string }[] = [];
@@ -27,25 +28,36 @@ export class OperatorComponent implements OnInit {
   interval: any;
   isDragDropDisabled: boolean = false;
   selectedTeam!: string;
-  isBetSubmited : boolean = false;
+  isBetSubmited: boolean = false;
   isEditable: boolean[] = [];
-  draggable : string = "";
-  isGamePlayerSubmited : boolean = false;
+  draggable: string = '';
+  isGamePlayerSubmited: boolean = false;
   isGameSubmited: boolean = false;
 
-  constructor(private fb: FormBuilder, private CommonService: CommonService, private snackbarService: SnackBarService) {
+  constructor(
+    private fb: FormBuilder,
+    private CommonService: CommonService,
+    private snackbarService: SnackBarService,
+    private router: Router
+  ) {
     this.playerForm = this.fb.group({
       newPlayer: [''],
     });
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.getTimmer();
   }
   getTimmer() {
     this.CommonService.getGameRules().subscribe(
       (res) => {
-        this.timeLeft = res.GAME_TIMER
+        this.timeLeft = res.GAME_TIMER;
       },
       (err) => {
         this.snackbarService.setSnackBarMessage(err.error.message);
@@ -59,56 +71,52 @@ export class OperatorComponent implements OnInit {
       this.playerInput.nativeElement.focus();
     }, 0);
   }
-  
 
   addPlayer() {
     if (this.playerForm) {
       const newPlayer = this.playerForm?.get('newPlayer')?.value;
       if (newPlayer && newPlayer !== '') {
-        const payload = { name : newPlayer };
+        const payload = { name: newPlayer };
         this.CommonService.addPlayers(payload).subscribe({
-          next : (res:any)=>{
+          next: (res: any) => {
             console.log(res);
             this.teamPlayer.push(payload);
             this.savePlayersToLocalStorage();
-            },
-            error : (err:any)=>{
-              this.snackbarService.setSnackBarMessage(err.error.message);
-              console.log(err);
-             }
-        })
+          },
+          error: (err: any) => {
+            this.snackbarService.setSnackBarMessage(err.error.message);
+            console.log(err);
+          },
+        });
         this.playerForm.reset();
       } else {
         console.log('Player name cannot be empty');
       }
     }
   }
-  
-  editPlayer(index: number, event: Event,oldName? : string) {
+
+  editPlayer(index: number, event: Event, oldName?: string) {
     const target = event.target as HTMLInputElement;
     const newName = target.value;
-  
+
     // Check if newName is not empty
     if (newName && newName !== '') {
       // Update the name of the player at the given index
-      const payload = { currentName : oldName,newName : newName}
-      if(oldName){
+      const payload = { currentName: oldName, newName: newName };
+      if (oldName) {
         this.CommonService.editPlayer(payload).subscribe({
-          next : (res:any)=>{
+          next: (res: any) => {
             console.log(res);
             this.teamPlayer[index].name = newName;
             this.savePlayersToLocalStorage();
-            
           },
-          error : (err :any)=>{
+          error: (err: any) => {
             this.snackbarService.setSnackBarMessage(err.error.message);
             console.log(err);
-            
-          }
-        })
+          },
+        });
       }
       console.log(this.teamPlayer);
-      
     } else {
       // Handle the case when the input field is empty
       console.log('Player name cannot be empty');
@@ -125,7 +133,7 @@ export class OperatorComponent implements OnInit {
       this.teamPlayer = JSON.parse(storedPlayers);
     }
   }
-  
+
   deletePlayer(index: number, name: string) {
     this.CommonService.deletePlayer(name).subscribe({
       next: (res: any) => {
@@ -133,18 +141,14 @@ export class OperatorComponent implements OnInit {
         // Remove the player from the teamPlayer array
         this.teamPlayer.splice(index, 1);
         this.savePlayersToLocalStorage();
-
       },
       error: (err: any) => {
         this.snackbarService.setSnackBarMessage(err.error.message);
         console.log(err);
-      }
+      },
     });
   }
-  
-  
 
- 
   // drop(event: CdkDragDrop<{ name: string }[]>) {
   //   if (this.isDragDropDisabled) {
   //     return;
@@ -173,11 +177,14 @@ export class OperatorComponent implements OnInit {
     }
 
     // Prevent adding more than 4 players
-    if (event.container.id === 'blueTeamList' && this.blueTeamPlayers.length >= 4) {
+    if (
+      event.container.id === 'blueTeamList' &&
+      this.blueTeamPlayers.length >= 4
+    ) {
       console.log('Cannot add more than 4 players to the Blue Team');
       return;
     }
-  
+
     if (event.container.id === 'blueTeamList' && this.isGamePlayerSubmited) {
       console.log('can not drag player in blueteam');
       return;
@@ -187,7 +194,7 @@ export class OperatorComponent implements OnInit {
       console.log('can not drag player in redteam');
       return;
     }
-  
+
     if (event.container.id === 'blueTeamBatter' && !this.isGamePlayerSubmited) {
       console.log('can not drag player in blueteambetter');
       return;
@@ -198,7 +205,10 @@ export class OperatorComponent implements OnInit {
       return;
     }
     // Prevent adding more than 4 players to red team
-    if (event.container.id === 'redTeamList' && this.redTeamplayers.length >= 4) {
+    if (
+      event.container.id === 'redTeamList' &&
+      this.redTeamplayers.length >= 4
+    ) {
       console.log('Cannot add more than 4 players to the Red Team');
       return;
     }
@@ -223,9 +233,9 @@ export class OperatorComponent implements OnInit {
 
   startTimer() {
     this.isGamePlayerSubmited = true;
-    console.log("method called");
-    
-    this.draggable = "teamBlueAndRedPlayers"
+    console.log('method called');
+
+    this.draggable = 'teamBlueAndRedPlayers';
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
@@ -241,36 +251,36 @@ export class OperatorComponent implements OnInit {
     this.redTeamplayers = [];
     this.blueTeamBatter = [];
     this.redTeamBatter = [];
-    this.selectedTeam = "";
+    this.selectedTeam = '';
     this.loadPlayersFromLocalStorage();
-    this.isGamePlayerSubmited=false;
+    this.isGamePlayerSubmited = false;
     clearInterval(this.interval);
-    this.getTimmer()
+    this.getTimmer();
   }
 
   submitBets() {
-    this.timeLeft = 0
+    this.timeLeft = 0;
     this.isDragDropDisabled = true;
     this.isBetSubmited = true;
   }
 
   selectTeam(team: string) {
-    console.log("method called to win");
-    
+    console.log('method called to win');
+
     this.selectedTeam = team;
     console.log(this.selectedTeam);
   }
 
-  removePlayers(){
+  removePlayers() {
     this.CommonService.resetDatabase().subscribe(
       (res) => {
         this.teamPlayer = [];
         localStorage.removeItem('teamPlayers');
-        console.log(res)
+        console.log(res);
       },
       (err) => {
         this.snackbarService.setSnackBarMessage(err.error.message);
-        console.error(err); 
+        console.error(err);
       }
     );
   }

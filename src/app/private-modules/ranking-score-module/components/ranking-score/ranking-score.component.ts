@@ -4,7 +4,7 @@ import { HighscoreService } from '@app/core/services/highscore.service';
 import { Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SendEmailDialogueComponent } from '@app/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ranking-score',
@@ -14,8 +14,14 @@ import { Router } from '@angular/router';
 export class RankingScoreComponent {
   players: any[] = [];
   fourthTo15Players: any[] = [];
-  constructor(private CommonService: CommonService,  private highscoreService: HighscoreService, private renderer: Renderer2, private dialog: MatDialog, private router: Router,private snackbarService: SnackBarService) {
-  
+  constructor(
+    private CommonService: CommonService,
+    private highscoreService: HighscoreService,
+    private renderer: Renderer2,
+    private dialog: MatDialog,
+    private router: Router,
+    private snackbarService: SnackBarService
+  ) {
     this.renderer.setStyle(
       document.body,
       'background',
@@ -26,6 +32,12 @@ export class RankingScoreComponent {
   }
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.initialize();
   }
 
@@ -34,12 +46,12 @@ export class RankingScoreComponent {
     this.getSocetData();
   };
 
-  getAllplayer(){
+  getAllplayer() {
     this.CommonService.getTopPlayers().subscribe(
       (res) => {
         this.players = res.slice(0, 15);
         this.fourthTo15Players = res.slice(3, 15);
-        console.log(this.fourthTo15Players)
+        console.log(this.fourthTo15Players);
         //console.log(this.players)
       },
       (err) => {
@@ -47,14 +59,13 @@ export class RankingScoreComponent {
         console.error(err);
       }
     );
-  
   }
 
   getSocetData = () => {
     this.highscoreService.listenForScoreUpdates().subscribe((newData) => {
       this.players = newData.slice(0, 15);
       this.fourthTo15Players = newData.slice(3, 15);
-      console.log(this.players)
+      console.log(this.players);
       console.log('Event emitted by server', this.players);
     });
   };

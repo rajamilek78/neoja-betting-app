@@ -17,6 +17,7 @@ export class SnackBarComponent implements OnInit {
 
   ngOnInit() {
     this.body = this.data;
+    console.log(this.data)
   }
 
   onCloseClick = () => {

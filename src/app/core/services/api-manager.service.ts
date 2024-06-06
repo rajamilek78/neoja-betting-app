@@ -25,7 +25,7 @@ export class APIManager extends HttpHelperService {
         this.userDetail = this.sharedService.getUser();
         if (this.userDetail) {
           //this.clubID = this.userDetail?.club_id;
-          this.session_id = this.userDetail?.session_id;
+          // this.session_id = this.userDetail?.session_id;
         }
       });
   }
@@ -63,7 +63,7 @@ export class APIManager extends HttpHelperService {
     const authToken = this.sharedService.getToken();
     const httpHeaders = {
       Authorization: `${authToken}`,
-      'API-Key': `${AppConstant.API_KEY}`,
+      // 'API-Key': `${AppConstant.API_KEY}`,
     };
   
     // Check if session_id is available before adding it to the headers
@@ -167,6 +167,11 @@ export class APIManager extends HttpHelperService {
       HttpMethodsTypeEnum.POST, url, body,
       header, showToast, showLoader);
   }
+  putApis = (url, body = {}, showToast = true, showLoader = true, header = this.Authorized_HttpOptionsWithKey): Observable<any> => {
+    return this.httpHelperMethod(
+      HttpMethodsTypeEnum.PUT, url, body,
+      header, showToast, showLoader);
+  }
 
   postMultiPartApis = (url, params = {}, headers, fileArray, showToast = true, showLoader = true): Observable<any> => {
     return this.httpHelperMethod(
@@ -180,6 +185,7 @@ export class APIManager extends HttpHelperService {
       methodType, url, params,
       this.Authorized_HttpOptionsWithKey, showToast, showLoader);
   }
+
 
   deleteApis = (url, params = {}): Observable<any> => {
     return this.httpHelperMethod(

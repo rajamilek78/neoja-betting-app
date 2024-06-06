@@ -14,7 +14,7 @@ const routes: Routes = [
       import('./private-modules/manager-module/manager.module').then(
         (m) => m.ManagerModule
       ),
-    // canActivate: [AppAuthGuard]
+    canActivate: [AppAuthGuard]
   },
 
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
       import(
         './private-modules/ranking-score-module/ranking-score.module'
       ).then((m) => m.RankingScoreModule),
-    // canActivate: [AppAuthGuard]
+    canActivate: [AppAuthGuard]
   },
 
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
       import('./private-modules/operator-module/operator.module').then(
         (m) => m.OperatorModule
       ),
-    // canActivate: [AppAuthGuard]
+    canActivate: [AppAuthGuard]
   },
 
   {

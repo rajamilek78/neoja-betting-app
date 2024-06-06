@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService, SnackBarService } from '@app/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeScoreDialogueComponent } from '../change-score-dialogue/change-score-dialogue.component';
 import { ChangeTimeDialogueComponent } from '../change-time-dialogue/change-time-dialogue.component';
@@ -11,10 +12,49 @@ import { Router } from '@angular/router';
   styleUrl: './manager.component.scss',
 })
 export class ManagerComponent {
-  constructor(private dialog: MatDialog, private router: Router) {}
+  players: any[] = [];
+  constructor(private CommonService: CommonService, private dialog: MatDialog, private router: Router,private snackbarService: SnackBarService) {}
+
+  ngOnInit(): void {
+    this.initialize();
+  }
+
+  initialize = () => {
+    this.getAllplayer()
+  };
+
+  getAllplayer(){
+    this.CommonService.getAllPlayer().subscribe(
+      (res) => {
+        this.players = res
+      },
+      (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
+        console.error(err);
+      }
+    );
+  
+  }
+
+  
+  resetDatabase(){
+    this.CommonService.resetDatabase().subscribe(
+      (res) => {
+        this.getAllplayer();
+        console.log(res)
+      },
+      (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
+        console.error(err);
+      }
+    );
+  
+  }
+
   openSendEmailDialogue() {
     const dialogueRef = this.dialog.open(SendEmailDialogueComponent, {
       width: '450px',
+      data: { players: this.players }
     });
   }
 
@@ -29,4 +69,9 @@ export class ManagerComponent {
       width: '450px',
     });
   }
+
+  onBackToMenu = () => {
+    this.router.navigate(['']);
+  };
+
 }

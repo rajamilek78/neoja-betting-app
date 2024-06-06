@@ -30,7 +30,7 @@
         padding-right: 3.2rem !important;
         overflow-y: auto;
 
-        input {
+        input,.player-name {
             background-color: transparent;
             position: relative;
             display: inline-block;
@@ -68,10 +68,14 @@
             }
         }
 
+        .player-name{
+            cursor: grab;
+        }
+
         .edit-btn {
             position: absolute;
-            top: 2.2rem;
-            right: 8.3rem;
+            top: 1.9rem;
+            right: 5rem;
 
             img {
                 width: 2.1rem !important;
@@ -80,8 +84,8 @@
 
         .close-btn {
             position: absolute;
-            top: 2.2rem;
-            right: 5rem;
+            top: 1.9rem;
+            right: 2rem;
 
             svg {
 
@@ -174,13 +178,13 @@
 }
 
 .checked {
-    background-color: rgba($primary-color, 0.1) !important;
+    background-color: rgba($green-color, 0.1) !important;
     border: 1px solid transparent !important;
-    color: $primary-color !important;
+    color: $green-color !important;
 
     svg {
         path {
-            fill: $primary-color;
+            fill: $green-color !important;
         }
     }
 }
@@ -214,8 +218,8 @@
 
     .edit-btn {
         position: absolute;
-        top: 2.2rem;
-        right: 8.3rem;
+        top: 1.9rem;
+        right: 5rem;
 
         img {
             width: 2.1rem !important;
@@ -224,8 +228,8 @@
 
     .close-btn {
         position: absolute;
-        top: 2.2rem;
-        right: 5rem;
+        top: 1.9rem;
+        right: 2rem;
 
         svg {
 
@@ -320,3 +324,7 @@
 .MT-2-half {
     margin-top: 3.7rem !important;
 }
+
+.highlight {
+    background-color: yellow; /* Change to your preferred highlight color */
+  }

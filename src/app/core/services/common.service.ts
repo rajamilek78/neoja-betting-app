@@ -17,17 +17,42 @@ export class CommonService {
     private apiManager: APIManager) {
   }
 
-  getAllCompanies(): Observable<any> {
-    return this.apiManager.getApis(API_ENDPOINTS.GET_ALL_COMPANIES, {}, true)
+  addPlayers(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.PLAYER_ADD}`,params, true)
+  }
+  editPlayer(params:any){
+    return this.apiManager.putApis(`${API_ENDPOINTS.PLAYER_EDit}`,params, true)
+  }
+  deletePlayer(path : string){
+    return this.apiManager.deleteApis(`${API_ENDPOINTS.PLAYER_DELETE}?name=${path}`)
   }
 
-  getAllClubsNew(path: string): Observable<any> {
-    return this.apiManager.getApis(`${API_ENDPOINTS.GET_CLUBS}/${path}`, {}, true)
+  addGame(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.GAME_ADD}`,params, true)
   }
 
-  addTeam(params: any){
-    return this.apiManager.postApis(`${API_ENDPOINTS.TEAM_ADD}`,params, true)
+  getAllPlayer(): Observable<any> {
+    return this.apiManager.getApis(API_ENDPOINTS.PLAYER_ALL, {}, true)
   }
 
+  getTopPlayers(): Observable<any> {
+    return this.apiManager.getApis(API_ENDPOINTS.PLAYER_TOP, {}, true)
+  }
+
+  resetDatabase(){
+    return this.apiManager.postApis(`${API_ENDPOINTS.RESET_DATABASE}`,{}, true)
+  }
+
+  getGameRules(): Observable<any> {
+    return this.apiManager.getApis(API_ENDPOINTS.GET_GAME_RULES, {}, true)
+  }
+
+  upsertGameRule(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.UPSERT_GAME_RULE}`,params, true)
+  }
+
+  sendEmail(params:any){
+    return this.apiManager.postApis(`${API_ENDPOINTS.SEND_EMAIL}`,params, true)
+  }
 
 }

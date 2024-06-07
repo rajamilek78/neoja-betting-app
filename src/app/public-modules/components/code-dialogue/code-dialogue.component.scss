@@ -30,6 +30,7 @@
         letter-spacing: 2rem !important;
         color: $white-color;
         border: none;
+        border: 1px solid rgba($white-color, 0.1);
 
         &::placeholder {
             font-family: $font-bebas;

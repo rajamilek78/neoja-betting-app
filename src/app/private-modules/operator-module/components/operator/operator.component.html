@@ -21,7 +21,7 @@
   </div>
   <div class="row mt-1">
     <div class="col-lg-3 col-md-3 PLR-0 operator__left">
-      <div id="playerList">
+      <div id="playerList" class="operator__scroll">
         <div
           cdkDropList
           #playersList="cdkDropList"
@@ -452,10 +452,7 @@
           [ngClass]="{
             'disabled-btn': isBetSubmited
           }"
-          *ngIf="
-            blueTeamBatter.length > 0 ||
-            redTeamBatter.length > 0 
-          "
+          *ngIf="blueTeamBatter.length > 0 || redTeamBatter.length > 0"
           (click)="submitBets()"
         >
           SUBMIT BETS

@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 export class RankingScoreComponent {
   players: any[] = [];
   fourthTo15Players: any[] = [];
-  isLoading = false;
+  isLoading = true;
   private loaderSubscriber$!: Subscription;
   constructor(
     private CommonService: CommonService,
@@ -45,6 +45,7 @@ export class RankingScoreComponent {
   }
 
   initialize = () => {
+    this.subscribeIsLoading();
     this.getAllplayer();
     this.getSocetData();
   };

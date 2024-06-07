@@ -83,12 +83,12 @@ onWindowScroll() {
   if (document.body.scrollTop > 200 ||     
   document.documentElement.scrollTop > 200) {
     document.getElementById('playerList')!.classList.add('scroll-length');
-    document.getElementById('playerList')!.classList.remove('operator__scroll');
+    // document.getElementById('playerList')!.classList.remove('operator__scroll');
     //document.getElementById('').classList.add('green');
   }
   else{
     document.getElementById('playerList')!.classList.remove('scroll-length');
-    document.getElementById('playerList')!.classList.add('operator__scroll');
+    //document.getElementById('playerList')!.classList.add('operator__scroll');
   }
 }
 

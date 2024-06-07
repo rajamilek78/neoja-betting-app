@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class ManagerComponent {
   players: any[] = [];
-  isLoading = false;
+  isLoading = true;
   private loaderSubscriber$!: Subscription;
   constructor(
     private CommonService: CommonService,
@@ -25,6 +25,8 @@ export class ManagerComponent {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.isLoading)
+    this.subscribeIsLoading();
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -41,6 +43,8 @@ export class ManagerComponent {
   getAllplayer() {
     this.CommonService.getAllPlayer().subscribe(
       (res) => {
+        console.log(this.isLoading)
+        console.log(res.length)
         this.players = res;
       },
       (err) => {
@@ -53,6 +57,7 @@ export class ManagerComponent {
   resetDatabase() {
     this.CommonService.resetDatabase().subscribe(
       (res) => {
+        localStorage.clear();
         this.getAllplayer();
         console.log(res);
       },
@@ -75,6 +80,7 @@ export class ManagerComponent {
       .getLoader()
       .subscribe((isLoading) => {
         this.isLoading = isLoading;
+        console.log(isLoading)
       });
   }
 

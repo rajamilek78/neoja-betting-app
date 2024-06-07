@@ -21,7 +21,7 @@
   </div>
   <div class="row mt-1">
     <div class="col-lg-3 col-md-3 PLR-0 operator__left">
-      <div id="playerList">
+      <div id="playerList" class="operator__scroll">
         <div
           cdkDropList
           #playersList="cdkDropList"
@@ -331,6 +331,7 @@
                 checked: selectedTeam === 'blue',
                 disabled: selectedTeam === 'red'
               }"
+              [disabled]="isGameSubmited"
               (click)="selectTeam('blue')"
             >
               <svg
@@ -354,6 +355,7 @@
               [value]="'blue'"
               class="radio"
               (change)="selectTeam('blue')"
+              [disabled]="isGameSubmited"
               [checked]="selectedTeam === 'blue'"
             />
           </div>
@@ -417,6 +419,7 @@
                 checked: selectedTeam === 'red',
                 disabled: selectedTeam === 'blue'
               }"
+               [disabled]="isGameSubmited"
               (click)="selectTeam('red')"
             >
               <svg
@@ -439,6 +442,7 @@
               name="winningTeam"
               [value]="'red'"
               class="radio"
+              [disabled]="isGameSubmited"
               (change)="selectTeam('red')"
               [checked]="selectedTeam === 'red'"
             />
@@ -452,10 +456,7 @@
           [ngClass]="{
             'disabled-btn': isBetSubmited
           }"
-          *ngIf="
-            blueTeamBatter.length > 0 ||
-            redTeamBatter.length > 0 
-          "
+          *ngIf="(blueTeamBatter.length > 0 || redTeamBatter.length > 0) && !isBetSubmited"
           (click)="submitBets()"
         >
           SUBMIT BETS
@@ -463,7 +464,6 @@
         <button
           type="submit"
           class="btn primary-btn"
-          [disabled]="isGameSubmited"
           [ngClass]="{
             'disabled-btn': isGameSubmited
           }"

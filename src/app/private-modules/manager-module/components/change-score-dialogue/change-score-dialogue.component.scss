@@ -21,6 +21,10 @@
         height: 5.2rem;
         border-top-right-radius: 0rem;
         border-bottom-right-radius: 0rem;
+
+        &:focus {
+            outline: none !important;
+        }
     }
 
     .tag {

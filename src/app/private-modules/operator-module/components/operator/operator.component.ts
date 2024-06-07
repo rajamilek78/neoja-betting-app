@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -20,7 +27,7 @@ import { DOCUMENT } from '@angular/common';
 export class OperatorComponent implements OnInit {
   isWindowScrolledToBottom: boolean = false;
   @ViewChild('playerInput') playerInput!: ElementRef;
-  coppyteamPlayer:{name:string}[]=[];
+  coppyteamPlayer: { name: string }[] = [];
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
   redTeamplayers: { name: string }[] = [];
@@ -76,6 +83,7 @@ export class OperatorComponent implements OnInit {
     }, 0);
   }
 
+<<<<<<< HEAD
 
 
 @HostListener('window:scroll', [])
@@ -91,6 +99,22 @@ onWindowScroll() {
     //document.getElementById('playerList')!.classList.add('operator__scroll');
   }
 }
+=======
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
+    ) {
+      document.getElementById('playerList')!.classList.add('scroll-length');
+      // document.getElementById('playerList')!.classList.remove('operator__scroll');
+      //document.getElementById('').classList.add('green');
+    } else {
+      document.getElementById('playerList')!.classList.remove('scroll-length');
+      // document.getElementById('playerList')!.classList.add('operator__scroll');
+    }
+  }
+>>>>>>> 5cb9e6cc11ac05710c83c3b0fba01d017bbd612b
 
   // ngAfterViewInit() {
   //   const playerList = document.getElementById('operatorScroll');
@@ -124,24 +148,24 @@ onWindowScroll() {
             this.coppyteamPlayer.push(payload);
             this.savePlayersToLocalStorage();
             setTimeout(() => {
-              const operatorScroll = document.querySelector('.operator__scroll');
+              const operatorScroll =
+                document.querySelector('.operator__scroll');
               const scrollLength = document.querySelector('.scroll-length');
               let playerList;
-              
+
               if (operatorScroll) {
                 playerList = operatorScroll;
               } else if (scrollLength) {
                 playerList = scrollLength;
               }
-              
+
               if (playerList) {
                 const lastPlayer = playerList.lastElementChild;
-              
+
                 if (lastPlayer) {
                   // Scroll to the last player
                   lastPlayer.scrollIntoView({ behavior: 'smooth' });
                 }
-              
               }
             }, 0);
           },
@@ -170,7 +194,7 @@ onWindowScroll() {
           next: (res: any) => {
             console.log(res);
             this.teamPlayer[index].name = newName;
-            this.coppyteamPlayer[index].name = newName
+            this.coppyteamPlayer[index].name = newName;
             this.savePlayersToLocalStorage();
           },
           error: (err: any) => {
@@ -316,7 +340,7 @@ onWindowScroll() {
 
   startNewGame() {
     this.loadPlayersFromLocalStorage();
-    this.isDragDropDisabled = false
+    this.isDragDropDisabled = false;
     this.blueTeamPlayers = [];
     this.redTeamplayers = [];
     this.blueTeamBatter = [];
@@ -352,7 +376,7 @@ onWindowScroll() {
     localStorage.removeItem('teamPlayers');
     // this.CommonService.resetDatabase().subscribe(
     //   (res) => {
-      
+
     //     console.log(res);
     //   },
     //   (err) => {

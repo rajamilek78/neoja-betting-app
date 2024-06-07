@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -10,6 +10,7 @@ import {
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CommonService, SnackBarService } from '@app/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-operator',
@@ -17,7 +18,9 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './operator.component.scss',
 })
 export class OperatorComponent implements OnInit {
+  isWindowScrolledToBottom: boolean = false;
   @ViewChild('playerInput') playerInput!: ElementRef;
+  coppyteamPlayer:{name:string}[]=[];
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
   redTeamplayers: { name: string }[] = [];
@@ -38,7 +41,8 @@ export class OperatorComponent implements OnInit {
     private fb: FormBuilder,
     private CommonService: CommonService,
     private snackbarService: SnackBarService,
-    private router: Router
+    private router: Router,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.playerForm = this.fb.group({
       newPlayer: [''],
@@ -72,6 +76,42 @@ export class OperatorComponent implements OnInit {
     }, 0);
   }
 
+
+
+@HostListener('window:scroll', [])
+onWindowScroll() {
+  if (document.body.scrollTop > 200 ||     
+  document.documentElement.scrollTop > 200) {
+    document.getElementById('playerList')!.classList.add('scroll-length');
+    document.getElementById('playerList')!.classList.remove('operator__scroll');
+    //document.getElementById('').classList.add('green');
+  }
+  else{
+    document.getElementById('playerList')!.classList.remove('scroll-length');
+    document.getElementById('playerList')!.classList.add('operator__scroll');
+  }
+}
+
+  // ngAfterViewInit() {
+  //   const playerList = document.getElementById('operatorScroll');
+  //   if (playerList) {
+  //     playerList.addEventListener('scroll', this.onScroll);
+  //   }
+  // }
+
+  // onScroll = (event: Event) => {
+  //   const element = event.target as HTMLElement;
+  //   const atBottom = element.scrollHeight - element.scrollTop === element.clientHeight;
+
+  //   if (atBottom) {
+  //     element.classList.remove('operator__scroll');
+  //     element.classList.add('scroll-length');
+  //   } else {
+  //     element.classList.add('operator__scroll');
+  //     element.classList.remove('scroll-length');
+  //   }
+  // };
+
   addPlayer() {
     if (this.playerForm) {
       const newPlayer = this.playerForm?.get('newPlayer')?.value;
@@ -81,15 +121,27 @@ export class OperatorComponent implements OnInit {
           next: (res: any) => {
             console.log(res);
             this.teamPlayer.push(payload);
+            this.coppyteamPlayer.push(payload);
             this.savePlayersToLocalStorage();
             setTimeout(() => {
-              const playerList = document.querySelector('.operator__scroll');
+              const operatorScroll = document.querySelector('.operator__scroll');
+              const scrollLength = document.querySelector('.scroll-length');
+              let playerList;
+              
+              if (operatorScroll) {
+                playerList = operatorScroll;
+              } else if (scrollLength) {
+                playerList = scrollLength;
+              }
+              
               if (playerList) {
                 const lastPlayer = playerList.lastElementChild;
-
+              
                 if (lastPlayer) {
+                  // Scroll to the last player
                   lastPlayer.scrollIntoView({ behavior: 'smooth' });
                 }
+              
               }
             }, 0);
           },
@@ -118,6 +170,7 @@ export class OperatorComponent implements OnInit {
           next: (res: any) => {
             console.log(res);
             this.teamPlayer[index].name = newName;
+            this.coppyteamPlayer[index].name = newName
             this.savePlayersToLocalStorage();
           },
           error: (err: any) => {
@@ -134,7 +187,7 @@ export class OperatorComponent implements OnInit {
   }
 
   savePlayersToLocalStorage() {
-    localStorage.setItem('teamPlayers', JSON.stringify(this.teamPlayer));
+    localStorage.setItem('teamPlayers', JSON.stringify(this.coppyteamPlayer));
   }
 
   loadPlayersFromLocalStorage() {
@@ -150,6 +203,7 @@ export class OperatorComponent implements OnInit {
         console.log(res);
         // Remove the player from the teamPlayer array
         this.teamPlayer.splice(index, 1);
+        this.coppyteamPlayer.splice(index, 1);
         this.savePlayersToLocalStorage();
       },
       error: (err: any) => {
@@ -182,9 +236,9 @@ export class OperatorComponent implements OnInit {
   //   console.log(this.redTeamplayers);
   // }
   drop(event: CdkDragDrop<{ name: string }[]>) {
-    // if (this.isDragDropDisabled) {
-    //   return;
-    // }
+    if (this.isDragDropDisabled) {
+      return;
+    }
 
     // Prevent adding more than 4 players
     if (
@@ -261,12 +315,13 @@ export class OperatorComponent implements OnInit {
   }
 
   startNewGame() {
+    this.loadPlayersFromLocalStorage();
+    this.isDragDropDisabled = false
     this.blueTeamPlayers = [];
     this.redTeamplayers = [];
     this.blueTeamBatter = [];
     this.redTeamBatter = [];
     this.selectedTeam = '';
-    this.loadPlayersFromLocalStorage();
     this.isGamePlayerSubmited = false;
     this.isBetSubmited = false;
     clearInterval(this.interval);

@@ -28,6 +28,8 @@
     &__scroll {
         padding-right: 2.5rem !important;
         overflow-y: auto;
+        position: sticky;
+        top: 0;
         height: calc(100vh - 34.5rem);
 
         &::-webkit-scrollbar {
@@ -47,8 +49,7 @@
     }
 
     &__left {
-        position: sticky;
-        top: 0;
+        position: relative;
         padding-right: 1rem !important;
 
 
@@ -435,4 +436,28 @@
             fill: $white-color;
         }
     }
+}
+
+.scroll-length{
+    padding-right: 2.5rem !important;
+        overflow-y: auto;
+        position: sticky;
+        top: 0;
+        height: calc(100vh - 13.5rem);
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba($gray-color, 0.75);
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $gray-color;
+            border-radius: 10px;
+        }
+
 }

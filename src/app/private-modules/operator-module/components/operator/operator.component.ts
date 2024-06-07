@@ -83,7 +83,6 @@ export class OperatorComponent implements OnInit {
     }, 0);
   }
 
-<<<<<<< HEAD
 
 
 @HostListener('window:scroll', [])
@@ -99,22 +98,6 @@ onWindowScroll() {
     //document.getElementById('playerList')!.classList.add('operator__scroll');
   }
 }
-=======
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    if (
-      document.body.scrollTop > 200 ||
-      document.documentElement.scrollTop > 200
-    ) {
-      document.getElementById('playerList')!.classList.add('scroll-length');
-      // document.getElementById('playerList')!.classList.remove('operator__scroll');
-      //document.getElementById('').classList.add('green');
-    } else {
-      document.getElementById('playerList')!.classList.remove('scroll-length');
-      // document.getElementById('playerList')!.classList.add('operator__scroll');
-    }
-  }
->>>>>>> 5cb9e6cc11ac05710c83c3b0fba01d017bbd612b
 
   // ngAfterViewInit() {
   //   const playerList = document.getElementById('operatorScroll');

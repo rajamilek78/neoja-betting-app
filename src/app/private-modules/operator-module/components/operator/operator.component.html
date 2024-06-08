@@ -92,7 +92,7 @@
             </div>
           </div>
         </div>
-        <form [formGroup]="playerForm">
+        <form [formGroup]="playerForm" (ngSubmit)="addPlayer()">
           <div>
             <div>
               <input
@@ -101,6 +101,7 @@
                 class="player-input"
                 formControlName="newPlayer"
                 (blur)="addPlayer()"
+                #newPlayerInput
               />
             </div>
           </div>
@@ -331,7 +332,7 @@
                 checked: selectedTeam === 'blue',
                 disabled: selectedTeam === 'red'
               }"
-              [disabled]="isGameSubmited"
+              [disabled]="isGameSubmited || !isBetSubmited"
               (click)="selectTeam('blue')"
             >
               <svg
@@ -355,7 +356,7 @@
               [value]="'blue'"
               class="radio"
               (change)="selectTeam('blue')"
-              [disabled]="isGameSubmited"
+              [disabled]="isGameSubmited || !isBetSubmited"
               [checked]="selectedTeam === 'blue'"
             />
           </div>
@@ -419,7 +420,7 @@
                 checked: selectedTeam === 'red',
                 disabled: selectedTeam === 'blue'
               }"
-               [disabled]="isGameSubmited"
+               [disabled]="isGameSubmited || !isBetSubmited"
               (click)="selectTeam('red')"
             >
               <svg
@@ -442,7 +443,7 @@
               name="winningTeam"
               [value]="'red'"
               class="radio"
-              [disabled]="isGameSubmited"
+              [disabled]="isGameSubmited || !isBetSubmited"
               (change)="selectTeam('red')"
               [checked]="selectedTeam === 'red'"
             />
@@ -456,6 +457,7 @@
           [ngClass]="{
             'disabled-btn': isBetSubmited
           }"
+          [disabled]="isBetSubmited"
           *ngIf="blueTeamBatter.length > 0 || redTeamBatter.length > 0"
           (click)="submitBets()"
         >
@@ -467,6 +469,7 @@
           [ngClass]="{
             'disabled-btn': isGameSubmited
           }"
+          [disabled]="isGameSubmited"
           *ngIf="selectedTeam && isBetSubmited"
           (click)="submitGame()"
         >

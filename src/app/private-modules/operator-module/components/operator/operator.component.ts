@@ -27,6 +27,7 @@ import { DOCUMENT } from '@angular/common';
 export class OperatorComponent implements OnInit {
   isWindowScrolledToBottom: boolean = false;
   @ViewChild('playerInput') playerInput!: ElementRef;
+  @ViewChild('newPlayerInput') newPlayerInput!: ElementRef;
   coppyteamPlayer: { name: string }[] = [];
   teamPlayer: { name: string }[] = [];
   blueTeamPlayers: { name: string }[] = [];
@@ -76,6 +77,7 @@ export class OperatorComponent implements OnInit {
       }
     );
   }
+
   editAndFocus(i: number) {
     this.isEditable[i] = true;
     setTimeout(() => {
@@ -87,8 +89,8 @@ export class OperatorComponent implements OnInit {
 
 @HostListener('window:scroll', [])
 onWindowScroll() {
-  if (document.body.scrollTop > 200 ||     
-  document.documentElement.scrollTop > 200) {
+  if (document.body.scrollTop > 100 ||     
+  document.documentElement.scrollTop > 100) {
     document.getElementById('playerList')!.classList.add('scroll-length');
     // document.getElementById('playerList')!.classList.remove('operator__scroll');
     //document.getElementById('').classList.add('green');
@@ -126,6 +128,7 @@ onWindowScroll() {
         const payload = { name: newPlayer };
         this.CommonService.addPlayers(payload).subscribe({
           next: (res: any) => {
+            this.focusInput();
             console.log(res);
             this.teamPlayer.push(payload);
             this.coppyteamPlayer.push(payload);
@@ -164,10 +167,44 @@ onWindowScroll() {
     }
   }
 
+  private focusInput() {
+    if (this.newPlayerInput) {
+      this.newPlayerInput.nativeElement.focus();
+    }
+  }
+
+  // editPlayer(index: number, event: Event, oldName?: string) {
+  //   const target = event.target as HTMLInputElement;
+  //   const newName = target.value;
+
+  //   // Check if newName is not empty
+  //   if (newName && newName !== '') {
+  //     // Update the name of the player at the given index
+  //     const payload = { currentName: oldName, newName: newName };
+  //     if (oldName) {
+  //       this.CommonService.editPlayer(payload).subscribe({
+  //         next: (res: any) => {
+  //           console.log(res);
+  //           this.teamPlayer[index].name = newName;
+  //           this.coppyteamPlayer[index].name = newName;
+  //           this.savePlayersToLocalStorage();
+  //         },
+  //         error: (err: any) => {
+  //           this.snackbarService.setSnackBarMessage(err.error.message);
+  //           console.log(err);
+  //         },
+  //       });
+  //     }
+  //     console.log(this.teamPlayer);
+  //   } else {
+  //     // Handle the case when the input field is empty
+  //     console.log('Player name cannot be empty');
+  //   }
+  // }
   editPlayer(index: number, event: Event, oldName?: string) {
     const target = event.target as HTMLInputElement;
     const newName = target.value;
-
+  
     // Check if newName is not empty
     if (newName && newName !== '') {
       // Update the name of the player at the given index
@@ -176,8 +213,15 @@ onWindowScroll() {
         this.CommonService.editPlayer(payload).subscribe({
           next: (res: any) => {
             console.log(res);
-            this.teamPlayer[index].name = newName;
-            this.coppyteamPlayer[index].name = newName;
+            const playerIndexInTeamPlayer = this.teamPlayer.findIndex(player => player.name === oldName);
+            const playerIndexInCoppyteamPlayer = this.coppyteamPlayer.findIndex(player => player.name === oldName);
+  
+            if (playerIndexInTeamPlayer !== -1) {
+              this.teamPlayer[playerIndexInTeamPlayer].name = newName;
+            }
+            if (playerIndexInCoppyteamPlayer !== -1) {
+              this.coppyteamPlayer[playerIndexInCoppyteamPlayer].name = newName;
+            }
             this.savePlayersToLocalStorage();
           },
           error: (err: any) => {
@@ -195,22 +239,53 @@ onWindowScroll() {
 
   savePlayersToLocalStorage() {
     localStorage.setItem('teamPlayers', JSON.stringify(this.coppyteamPlayer));
+    console.log(this.coppyteamPlayer, "savelocal")
   }
 
   loadPlayersFromLocalStorage() {
     const storedPlayers = localStorage.getItem('teamPlayers');
     if (storedPlayers) {
       this.teamPlayer = JSON.parse(storedPlayers);
+      this.coppyteamPlayer = [...this.teamPlayer];
+      console.log(this.teamPlayer, "loadlocal")
     }
   }
+
+  // deletePlayer(index: number, name: string) {
+  //   this.CommonService.deletePlayer(name).subscribe({
+  //     next: (res: any) => {
+  //       console.log(res);
+  //       // Remove the player from the teamPlayer array
+  //       this.teamPlayer.splice(index, 1);
+  //       this.coppyteamPlayer.splice(index, 1);
+  //       console.log(this.coppyteamPlayer,"delete local")
+  //       this.savePlayersToLocalStorage();
+  //     },
+  //     error: (err: any) => {
+  //       this.snackbarService.setSnackBarMessage(err.error.message);
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
   deletePlayer(index: number, name: string) {
     this.CommonService.deletePlayer(name).subscribe({
       next: (res: any) => {
         console.log(res);
-        // Remove the player from the teamPlayer array
-        this.teamPlayer.splice(index, 1);
-        this.coppyteamPlayer.splice(index, 1);
+  
+        // Find the correct index in both arrays
+        const playerIndexInTeamPlayer = this.teamPlayer.findIndex(player => player.name === name);
+        const playerIndexInCoppyteamPlayer = this.coppyteamPlayer.findIndex(player => player.name === name);
+  
+        // Remove the player from the arrays if the indices are valid
+        if (playerIndexInTeamPlayer !== -1) {
+          this.teamPlayer.splice(playerIndexInTeamPlayer, 1);
+        }
+        if (playerIndexInCoppyteamPlayer !== -1) {
+          this.coppyteamPlayer.splice(playerIndexInCoppyteamPlayer, 1);
+        }
+  
+        console.log(this.coppyteamPlayer, "delete local");
         this.savePlayersToLocalStorage();
       },
       error: (err: any) => {
@@ -219,6 +294,7 @@ onWindowScroll() {
       },
     });
   }
+  
 
   // drop(event: CdkDragDrop<{ name: string }[]>) {
   //   if (this.isDragDropDisabled) {
@@ -330,6 +406,7 @@ onWindowScroll() {
     this.redTeamBatter = [];
     this.selectedTeam = '';
     this.isGamePlayerSubmited = false;
+    this.isGameSubmited = false
     this.isBetSubmited = false;
     clearInterval(this.interval);
     this.getTimmer();

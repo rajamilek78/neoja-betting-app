@@ -31,9 +31,9 @@ html {
     font-size: 9px;
   }
 
-  @include respond("phone") {
-    font-size: 8px;
-  }
+  // @include respond("phone") {
+  //   font-size: 8px;
+  // }
 }
 
 body {

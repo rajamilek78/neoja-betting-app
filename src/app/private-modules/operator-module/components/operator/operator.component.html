@@ -1,10 +1,10 @@
 <div class="page-panel operator">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 PLR-0 title">
+    <div class="col-lg-6 col-md-6 PLR-0 title">
       <h5>Players</h5>
     </div>
     <div
-      class="col-lg-6 col-md-6 col-sm-6 PLR-0 text-right flex justify-end align-center"
+      class="col-lg-6 col-md-6 PLR-0 text-right flex justify-end align-center"
     >
       <div class="timer-display" *ngIf="isGamePlayerSubmited">
         <span
@@ -420,7 +420,7 @@
                 checked: selectedTeam === 'red',
                 disabled: selectedTeam === 'blue'
               }"
-               [disabled]="isGameSubmited || !isBetSubmited"
+              [disabled]="isGameSubmited || !isBetSubmited"
               (click)="selectTeam('red')"
             >
               <svg

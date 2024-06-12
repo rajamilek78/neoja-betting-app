@@ -57,6 +57,10 @@
                 color: rgba($white-color, 0.5);
             }
         }
+
+        @include respond ("tab-port") {
+            overflow-x: scroll;
+        }
     }
 }
 

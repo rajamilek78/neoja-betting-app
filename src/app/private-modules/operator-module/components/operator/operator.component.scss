@@ -46,6 +46,10 @@
             background-color: $gray-color;
             border-radius: 10px;
         }
+
+        @include respond ("tab-port") {
+            height: calc(100vh - 38.5rem);
+        }
     }
 
     &__left {
@@ -181,6 +185,10 @@
                 &:focus {
                     outline: none !important;
                 }
+            }
+
+            @include respond ("tab-port") {
+                width: 41%;
             }
         }
     }
@@ -390,6 +398,14 @@
         left: 50%;
         height: 100%;
         border: 1px dashed rgba($white-color, 0.1);
+
+        @include respond ("tab-port") {
+            display: none;
+        }
+    }
+
+    @include respond ("tab-port") {
+        flex-wrap: wrap !important;
     }
 }
 
@@ -440,4 +456,19 @@
 
 .scroll-length {
     height: calc(100vh - 13.5rem) !important;
+}
+
+@include respond ("tab-port") {
+    .row {
+        flex-wrap: nowrap;
+    }
+
+    .pr-1 {
+        padding-right: 0rem !important;
+    }
+
+    .pl-1 {
+        padding-left: 0rem !important;
+        padding-top: 2.4rem !important;
+    }
 }

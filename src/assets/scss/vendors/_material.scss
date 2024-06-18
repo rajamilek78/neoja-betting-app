@@ -46,11 +46,22 @@ textarea {
   background-color: transparent !important;
 }
 
-
-
-.cdk-global-overlay-wrapper {
-  background: rgba($dark-blue-color, 0.65);
+app-code-dialogue,
+app-change-time-dialogue,
+app-change-score-dialogue,
+app-send-email-dialogue {
+  .cdk-global-overlay-wrapper {
+    background: rgba($dark-blue-color, 0.65) !important;
+  }
 }
+
+
+// .cdk-global-overlay-wrapper {
+//   background: rgba($dark-blue-color, 0.65);
+// }
+
+
+
 
 //Checkbox
 // .mat-mdc-checkbox label {

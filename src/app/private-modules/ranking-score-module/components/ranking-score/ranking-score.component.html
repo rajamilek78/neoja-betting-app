@@ -1,10 +1,10 @@
-<div class="page-panel ranking">
+<div class="page-panel ranking ranking-img">
   <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4 PLR-0 title"><h5>Ranking</h5></div>
+    <div class="col-lg-4 col-md-4 PLR-0 title"><h5>Ranking</h5></div>
     <div
-      class="col-lg-8 col-md-8 col-sm-8 PLR-0 text-right flex justify-end align-center"
+      class="col-lg-8 col-md-8 PLR-0 text-right flex justify-end align-center"
     >
-      <div class="mr-1">
+      <!-- <div class="mr-1">
         <button
           type="button"
           class="btn primary-btn"
@@ -12,124 +12,148 @@
         >
           send email
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
-  <div class="row mt-1 flex justify-center align-end">
-    <div class="col-lg-4 col-md-4 col-sm-4 PLR-0">
-      <div class="position-two mr-3">
-        <div class="flex justify-start align-start flex-column">
-          <div class="MB-2-half"><strong>jay</strong></div>
-          <div class="flex justify-start align-start width-100">
-            <div><b>4</b><small>Gpw</small></div>
-            <div><b>5</b><small>GpL</small></div>
-            <div><b>5</b><small>GBw</small></div>
-            <div><b>5</b><small>GBL</small></div>
+  <div *ngIf="players.length > 0">
+    <div class="row mt-1 flex justify-center align-end">
+      <div class="col-lg-4 col-md-4 PLR-0 box-2">
+        <div class="position-two mr-3">
+          <div class="flex justify-start align-start flex-column">
+            <div class="MB-2-half">
+              <strong>{{ players[1]?.name }}</strong>
+            </div>
+            <div class="flex justify-start align-start width-100">
+              <div>
+                <b>{{ players[1]?.GPW }}</b
+                ><small>GPW</small>
+              </div>
+              <div>
+                <b>{{ players[1]?.GPL }}</b
+                ><small>GPL</small>
+              </div>
+              <div>
+                <b>{{ players[1]?.GBW }}</b
+                ><small>GBW</small>
+              </div>
+              <div>
+                <b>{{ players[1]?.GBL }}</b
+                ><small>GBL</small>
+              </div>
+            </div>
+          </div>
+          <div class="ranking-score">
+            <img
+              src="../../../../../assets/images/silver-medal-image.png"
+              alt=""
+            />
+            <span>{{ players[1]?.RANK | number : "2.0-0" }}</span>
           </div>
         </div>
-        <div class="ranking-score">
-          <img
-            src="../../../../../assets/images/silver-medal-image.png"
-            alt=""
-          />
-          <span>23</span>
+      </div>
+      <div class="col-lg-4 col-md-4 PLR-0 box-1">
+        <div class="position-one mr-3">
+          <div class="flex justify-start align-start flex-column">
+            <div class="MB-2-half">
+              <strong>{{ players[0]?.name }}</strong>
+            </div>
+            <div class="flex justify-start align-start width-100">
+              <div>
+                <b>{{ players[0]?.GPW }}</b
+                ><small>GPW</small>
+              </div>
+              <div>
+                <b>{{ players[0]?.GPL }}</b
+                ><small>GPL</small>
+              </div>
+              <div>
+                <b>{{ players[0]?.GBW }}</b
+                ><small>GBW</small>
+              </div>
+              <div>
+                <b>{{ players[0]?.GBL }}</b
+                ><small>GBL</small>
+              </div>
+            </div>
+          </div>
+          <div class="ranking-score">
+            <img
+              src="../../../../../assets/images/gold-medal-image.png"
+              alt=""
+            />
+            <span>{{ players[0]?.RANK | number : "2.0-0" }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 PLR-0 box-3">
+        <div class="position-three">
+          <div class="flex justify-start align-start flex-column">
+            <div class="MB-2-half">
+              <strong>{{ players[2]?.name }}</strong>
+            </div>
+            <div class="flex justify-start align-start width-100">
+              <div>
+                <b>{{ players[2]?.GPW }}</b
+                ><small>GPW</small>
+              </div>
+              <div>
+                <b>{{ players[2]?.GPL }}</b
+                ><small>GPL</small>
+              </div>
+              <div>
+                <b>{{ players[2]?.GBW }}</b
+                ><small>GBW</small>
+              </div>
+              <div>
+                <b>{{ players[2]?.GBL }}</b
+                ><small>GBL</small>
+              </div>
+            </div>
+          </div>
+          <div class="ranking-score">
+            <img
+              src="../../../../../assets/images/bronze-medal-image.png"
+              alt=""
+            />
+            <span>{{ players[2]?.RANK | number : "2.0-0" }}</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 PLR-0">
-      <div class="position-one mr-3">
-        <div class="flex justify-start align-start flex-column">
-          <div class="MB-2-half"><strong>jayesh</strong></div>
-          <div class="flex justify-start align-start width-100">
-            <div><b>4</b><small>Gpw</small></div>
-            <div><b>5</b><small>GpL</small></div>
-            <div><b>5</b><small>GBw</small></div>
-            <div><b>5</b><small>GBL</small></div>
-          </div>
-        </div>
-        <div class="ranking-score">
-          <img src="../../../../../assets/images/gold-medal-image.png" alt="" />
-          <span>25</span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 PLR-0">
-      <div class="position-three">
-        <div class="flex justify-start align-start flex-column">
-          <div class="MB-2-half"><strong>jaya</strong></div>
-          <div class="flex justify-start align-start width-100">
-            <div><b>4</b><small>Gpw</small></div>
-            <div><b>5</b><small>GpL</small></div>
-            <div><b>5</b><small>GBw</small></div>
-            <div><b>5</b><small>GBL</small></div>
-          </div>
-        </div>
-        <div class="ranking-score">
-          <img
-            src="../../../../../assets/images/bronze-medal-image.png"
-            alt=""
-          />
-          <span>21</span>
-        </div>
-      </div>
+    <div class="manager-table">
+      <table>
+        <thead>
+          <tr>
+            <th width="30%" class="text-left">Players</th>
+            <th width="14%">GPW</th>
+            <th width="14%">GPL</th>
+            <th width="14%">GBW</th>
+            <th width="14%">GBL</th>
+            <th width="14%">Ranking</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let player of fourthTo15Players; let i = index"
+            [ngClass]="{ 'even-row': i % 2 === 0 }"
+          >
+            <td class="text-left white-font">{{ player.name }}</td>
+            <td>{{ player.GPW }}</td>
+            <td>{{ player.GPL }}</td>
+            <td>{{ player.GBW }}</td>
+            <td>{{ player.GBL }}</td>
+            <td class="white-font">{{ player.RANK }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <div class="manager-table">
-    <table>
-      <thead>
-        <tr>
-          <th width="30%" class="text-left">Players</th>
-          <th width="14%">Gpw</th>
-          <th width="14%">Gpl</th>
-          <th width="14%">GBW</th>
-          <th width="14%">GPL</th>
-          <th width="14%">Ranking</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-        <tr class="even-row">
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-        <tr>
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-        <tr class="even-row">
-          <td class="text-left white-font">Robert Fox</td>
-          <td>79</td>
-          <td>45</td>
-          <td>78</td>
-          <td>34</td>
-          <td class="white-font">132</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="no-data-table">
+
+  <div class="no-data-table" *ngIf="players.length == 0 && !isLoading">
     <div>
-      <img
-        src="../../../../../assets/images/no-data-ranking-screen.png"
-        alt=""
-      />
+      <img src="../../../../../assets/images/no-data-image.png" alt="" />
     </div>
-    <div class="mt-1"><b>No player data available</b></div>
+    <div class="mt-1"><b>No player ranking available</b></div>
     <div class="MT-1-half">
       <small
         >Come back later after games are played & check the players stat in
@@ -138,17 +162,20 @@
     </div>
   </div>
   <div class="row mt-1">
-    <div
-      class="col-lg-12 col-md-12 col-sm-12 PLR-0 flex justify-start align-center"
-    >
+    <div class="col-lg-12 col-md-12 PLR-0 flex justify-start align-center">
       <!-- <div class="mr-1">
         <button type="button" class="btn primary-btn">RESET ALL</button>
       </div> -->
       <div>
-        <button type="button" class="btn secondary-btn">
+        <button
+          type="button"
+          class="btn secondary-btn"
+          (click)="onBackToMenu()"
+        >
           back to main menu
         </button>
       </div>
     </div>
   </div>
+  <div class="ranking-img"></div>
 </div>

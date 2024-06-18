@@ -31,9 +31,9 @@ html {
     font-size: 9px;
   }
 
-  @include respond("phone") {
-    font-size: 8px;
-  }
+  // @include respond("phone") {
+  //   font-size: 8px;
+  // }
 }
 
 body {
@@ -126,11 +126,6 @@ a {
 
 .w-50 {
   width: 50%;
-}
-
-.border-dash {
-  border-right: 1px dashed rgba($white-color, 0.1);
-  height: calc(100% - 10.4rem);
 }
 
 
@@ -228,6 +223,7 @@ img {
 
 
 .logo {
+  cursor: pointer;
   img {
     width: 10.4rem;
     margin-right: 1.6rem;
@@ -318,6 +314,10 @@ img {
         font-weight: 400;
         font-size: 2.8rem;
         line-height: 3.3rem;
+      }
+
+      &:focus{
+        outline: none !important;
       }
     }
   }

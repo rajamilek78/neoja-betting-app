@@ -12,6 +12,29 @@ export class API_ENDPOINTS{
     // Taam add 
     public static TEAM_ADD = `${API_URL}/team/add`;
 
+    // Game add
+    public static GAME_ADD = `${API_URL}/bet/save-bet`;
+    public static PLAYER_EDit = `${API_URL}/player/edit-player`;
+    public static PLAYER_DELETE = `${API_URL}/player/delete-player`;
+
+    //send Email
+    public static SEND_EMAIL = `${API_URL}/player/send-email`;
+
+    //Player add
+    public static PLAYER_ADD = `${API_URL}/player/add-player`;
+
+     //chnage game rule
+     public static UPSERT_GAME_RULE = `${API_URL}/game-rule/upsert-rule`;
+
+    //Player get all
+    public static PLAYER_ALL = `${API_URL}/player/get-all-players`;
+
+    //Player top
+    public static PLAYER_TOP = `${API_URL}/player/get-top-players`;
+
+    //Get start timer
+    public static GET_GAME_RULES = `${API_URL}/game-rule/get-rule`;
+
     //Reset teams
 
     public static RESET_TEAMS = `${API_URL}/highscore/reset`
@@ -22,6 +45,8 @@ export class API_ENDPOINTS{
     //All team
     public static ALLTEAMDATA = `${API_URL}/team/get-all-teams`;
 
+    //ResetDatabase
+    public static RESET_DATABASE = `${API_URL}/bet/reset-bet`;
 
     //Companies
     public static GET_ALL_COMPANIES = `${COMPANY_URL}/get-companies/all`;

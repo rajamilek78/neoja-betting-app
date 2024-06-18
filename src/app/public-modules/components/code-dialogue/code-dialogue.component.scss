@@ -29,6 +29,8 @@
         line-height: 5.7rem;
         letter-spacing: 2rem !important;
         color: $white-color;
+        border: none;
+        border: 1px solid rgba($white-color, 0.1);
 
         &::placeholder {
             font-family: $font-bebas;
@@ -39,12 +41,8 @@
             color: rgba($white-color, 0.25);
         }
 
-        &:focus-visible {
-            outline: none !important;
-        }
-
         &:focus {
-            border: 1px solid $white-color;
+            outline: none !important;
         }
     }
 }

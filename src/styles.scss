@@ -107,6 +107,9 @@ $eleague-frontend-theme: mat.define-light-theme((color: (primary: $eleague-front
 .material-symbols-outlined {
   font-family: 'Material Icons Outlined' !important;
 }
+button:disabled{
+  cursor:not-allowed !important;
+}
 
 // .tooltip-message-box {
 //   .material-symbols-outlined {

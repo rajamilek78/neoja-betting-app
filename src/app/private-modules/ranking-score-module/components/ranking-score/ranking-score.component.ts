@@ -1,6 +1,11 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonService, SharedService, SnackBarService } from '@app/core';
+import { HighscoreService } from '@app/core/services/highscore.service';
+import { Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SendEmailDialogueComponent } from '@app/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ranking-score',
@@ -8,19 +13,87 @@ import { SendEmailDialogueComponent } from '@app/core';
   styleUrl: './ranking-score.component.scss',
 })
 export class RankingScoreComponent {
-  constructor(private renderer: Renderer2, private dialog: MatDialog) {
-    this.renderer.setStyle(
-      document.body,
-      'background',
-      'url("../../../../../assets/images/ranking-background-img.png")'
-    );
-    this.renderer.setStyle(document.body, 'background-size', 'cover');
-    this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
+  players: any[] = [];
+  fourthTo15Players: any[] = [];
+  isLoading = true;
+  private loaderSubscriber$!: Subscription;
+  constructor(
+    private CommonService: CommonService,
+    private highscoreService: HighscoreService,
+    private renderer: Renderer2,
+    private dialog: MatDialog,
+    private router: Router,
+    private snackbarService: SnackBarService,
+    private sharedService: SharedService,
+  ) {
+    //     this.renderer.setStyle(document.body,
+    //   'background',
+    //   'url("../../../../../assets/images/ranking-background-img.png")'
+    // );
+    // this.renderer.setStyle(document.body, 'background-size', 'cover');
+    // this.renderer.setStyle(document.body, 'background-repeat', 'no-repeat');
   }
 
+  ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+    this.initialize();
+  }
+
+  initialize = () => {
+    this.subscribeIsLoading();
+    this.getAllplayer();
+    this.getSocetData();
+  };
+
+  getAllplayer() {
+    this.CommonService.getTopPlayers().subscribe(
+      (res) => {
+        this.players = res.slice(0, 15);
+        this.fourthTo15Players = res.slice(3, 15);
+        console.log(this.fourthTo15Players);
+        //console.log(this.players)
+      },
+      (err) => {
+        this.snackbarService.setSnackBarMessage(err.error.message);
+        console.error(err);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.loaderSubscriber$) {
+      this.loaderSubscriber$.unsubscribe();
+    }
+  }
+
+  subscribeIsLoading() {
+    this.loaderSubscriber$ = this.sharedService
+      .getLoader()
+      .subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      });
+  }
+
+  getSocetData = () => {
+    this.highscoreService.listenForScoreUpdates().subscribe((newData) => {
+      this.players = newData.slice(0, 15);
+      this.fourthTo15Players = newData.slice(3, 15);
+      console.log(this.players);
+      console.log('Event emitted by server', this.players);
+    });
+  };
   openSendEmailDialogue() {
     const dialogueRef = this.dialog.open(SendEmailDialogueComponent, {
       width: '450px',
     });
   }
+
+  onBackToMenu = () => {
+    this.router.navigate(['']);
+  };
 }

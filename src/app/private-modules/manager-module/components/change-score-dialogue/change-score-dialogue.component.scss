@@ -2,11 +2,28 @@
 
 .ml-4 {
     margin-left: 1.6rem !important;
+
+    @include respond ("tab-port") {
+        margin-left: 0rem !important;
+    }
 }
 
 .mr-4 {
     margin-right: 1.6rem !important;
+
+    @include respond ("tab-port") {
+        margin-right: 0rem !important;
+    }
 }
+
+.mb-1 {
+    margin-bottom: 0rem !important;
+
+    @include respond ("tab-port") {
+        margin-bottom: 3rem !important;
+    }
+}
+
 
 .form-input {
     display: flex;
@@ -21,6 +38,10 @@
         height: 5.2rem;
         border-top-right-radius: 0rem;
         border-bottom-right-radius: 0rem;
+
+        &:focus {
+            outline: none !important;
+        }
     }
 
     .tag {

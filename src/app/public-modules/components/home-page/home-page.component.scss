@@ -23,6 +23,11 @@ h1 {
     display: block;
     color: $white-color !important;
   }
+
+  @include respond ("tab-port") {
+    margin-top: 0rem !important;
+    padding: 4.5rem 0rem 4.5rem 0rem !important;
+  }
 }
 
 .card-1 {

@@ -1,6 +1,7 @@
 @import "../../../../../assets/scss/abstracts/abstracts";
 
 .operator {
+
     padding: 2.4rem;
 
     .timer-display {
@@ -24,13 +25,40 @@
         }
     }
 
+    &__scroll {
+        padding-right: 2.5rem !important;
+        overflow-y: auto;
+        position: sticky;
+        top: 0;
+        height: calc(100vh - 34.5rem);
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba($gray-color, 0.75);
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $gray-color;
+            border-radius: 10px;
+        }
+
+        @include respond ("tab-port") {
+            height: calc(100vh - 38.5rem);
+        }
+    }
+
     &__left {
         position: relative;
-        border-right: 1px solid rgba($white-color, 0.1);
-        padding-right: 3.2rem !important;
-        overflow-y: auto;
+        padding-right: 1rem !important;
 
-        input {
+
+        input,
+        .player-name {
             background-color: transparent;
             position: relative;
             display: inline-block;
@@ -39,15 +67,14 @@
             font-size: 2.8rem;
             font-weight: 400;
             line-height: 3.3rem;
-            border: 1px solid rgba($white-color, 0.1);
+            border: none;
             border-radius: 1rem;
-            margin-bottom: 1.6rem;
-            padding: 1.6rem 1.6rem 1.6rem 3.5rem !important;
             width: 100%;
             text-transform: uppercase;
+            cursor: grab;
 
             &:focus {
-                outline: none;
+                outline: none !important;
             }
 
             &::placeholder {
@@ -70,8 +97,8 @@
 
         .edit-btn {
             position: absolute;
-            top: 2.2rem;
-            right: 8.3rem;
+            top: 0rem;
+            right: 3rem;
 
             img {
                 width: 2.1rem !important;
@@ -80,8 +107,8 @@
 
         .close-btn {
             position: absolute;
-            top: 2.2rem;
-            right: 5rem;
+            top: 0rem;
+            right: 0rem;
 
             svg {
 
@@ -116,12 +143,21 @@
                     text-transform: uppercase;
                     margin-left: 0.8rem;
                 }
+
+                &:focus {
+                    outline: none !important;
+                }
             }
         }
 
         .remove-btn {
+            width: 22%;
+            position: fixed;
+            bottom: 3.5rem;
+            left: 2.4rem;
+
             button {
-                background-color: transparent;
+                background-color: $body-color;
                 padding: 2rem 3.2rem;
                 width: 100%;
                 border: 1px solid $red-color;
@@ -145,12 +181,21 @@
                     text-transform: uppercase;
                     margin-left: 0.8rem;
                 }
+
+                &:focus {
+                    outline: none !important;
+                }
+            }
+
+            @include respond ("tab-port") {
+                width: 41%;
             }
         }
     }
 
 
     &__right {
+        border-left: 1px solid rgba($white-color, 0.1);
         padding-left: 3.2rem !important;
 
         h6 {
@@ -174,22 +219,41 @@
 }
 
 .checked {
-    background-color: rgba($primary-color, 0.1) !important;
+    background-color: rgba($green-color, 0.1) !important;
     border: 1px solid transparent !important;
-    color: $primary-color !important;
+    color: $green-color !important;
 
     svg {
         path {
-            fill: $primary-color;
+            fill: $green-color !important;
         }
     }
 }
 
 .example-box {
+    display: flex !important;
+    align-items: center;
     overflow-y: hidden;
     margin-bottom: 1.2rem;
+    background-color: $body-color;
+    position: relative;
+    display: inline-block;
+    font-family: $font-bebas;
+    color: $white-color;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 3.3rem;
+    border: 1px solid rgba($white-color, 0.1);
+    border-radius: 1rem;
+    margin-bottom: 1.6rem;
+    overflow-y: hidden;
+    padding: 1.6rem 1.6rem 1.6rem 3.7rem !important;
+    width: 100%;
+    text-transform: uppercase;
+    cursor: grab;
 
-    input {
+    input,
+    .player-name {
         background-color: transparent;
         position: relative;
         display: inline-block;
@@ -198,24 +262,22 @@
         font-size: 2.8rem;
         font-weight: 400;
         line-height: 3.3rem;
-        border: 1px solid rgba($white-color, 0.1);
-        border-radius: 1rem;
+        border: none;
         margin-bottom: 0rem !important;
         overflow-y: hidden;
-        padding: 1.6rem;
         width: 100%;
         text-transform: uppercase;
+        cursor: grab;
 
         &:focus {
-            outline: none;
+            outline: none !important;
         }
     }
 
-
     .edit-btn {
         position: absolute;
-        top: 2.2rem;
-        right: 8.3rem;
+        top: 0rem;
+        right: 3rem;
 
         img {
             width: 2.1rem !important;
@@ -224,8 +286,8 @@
 
     .close-btn {
         position: absolute;
-        top: 2.2rem;
-        right: 5rem;
+        top: 0rem;
+        right: 0rem;
 
         svg {
 
@@ -240,6 +302,7 @@
         top: 1.9rem;
         left: 1rem;
 
+
         svg {
 
             path {
@@ -247,6 +310,7 @@
             }
         }
     }
+
 }
 
 .win-btn {
@@ -271,6 +335,10 @@
             vertical-align: middle;
             margin-top: -0.2rem;
             margin-right: 0.8rem;
+        }
+
+        &:focus {
+            outline: none !important;
         }
     }
 
@@ -310,7 +378,7 @@
 
     span {
         color: rgba($white-color, 0.5);
-        font-family: $font-montreal;
+        font-family: $font-bebas;
         font-size: 2.4rem;
         font-weight: 400;
         line-height: 2.8rem;
@@ -319,4 +387,88 @@
 
 .MT-2-half {
     margin-top: 3.7rem !important;
+}
+
+.border-dash {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        height: 100%;
+        border: 1px dashed rgba($white-color, 0.1);
+
+        @include respond ("tab-port") {
+            display: none;
+        }
+    }
+
+    @include respond ("tab-port") {
+        flex-wrap: wrap !important;
+    }
+}
+
+.cursur {
+    cursor: not-allowed !important;
+}
+
+.player-input {
+    background-color: transparent;
+    position: relative;
+    display: inline-block;
+    font-family: $font-bebas;
+    color: $white-color;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 3.3rem;
+    border: 1px solid rgba($white-color, 0.1) !important;
+    border-radius: 1rem;
+    margin-bottom: 1.6rem;
+    padding: 1.6rem 1.6rem 1.6rem 3.5rem !important;
+    border-radius: 1rem;
+    width: 100%;
+    text-transform: uppercase;
+    cursor: text !important;
+
+    &:focus {
+        outline: none !important;
+    }
+
+    &::placeholder {
+        color: rgba($white-color, 0.25);
+    }
+}
+
+.drag-icon-two {
+    position: absolute;
+    top: 1.8rem;
+    left: 1rem;
+
+
+    svg {
+        path {
+            z-index: 5;
+            fill: $white-color;
+        }
+    }
+}
+
+.scroll-length {
+    height: calc(100vh - 13.5rem) !important;
+}
+
+@include respond ("tab-port") {
+    .row {
+        flex-wrap: nowrap;
+    }
+
+    .pr-1 {
+        padding-right: 0rem !important;
+    }
+
+    .pl-1 {
+        padding-left: 0rem !important;
+        padding-top: 2.4rem !important;
+    }
 }
